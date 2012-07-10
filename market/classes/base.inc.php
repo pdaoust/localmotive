@@ -1968,7 +1968,7 @@ class DatabaseConnectionMySQL extends DatabaseConnection {
 			$this->rsrc = $dbh;
 			if (!$this->selectDatabase($database, $dbh)) return false;
 		} else {
-			global $config, $logger;
+			global $config;
 			if ($config['logType']) {
 				global $logger;
 				$logger->addEntry('Could not connect to database ' . $database . ' on server ' . $host, E_DATABASE, 'DatabaseConnection::dbPconnect()');
