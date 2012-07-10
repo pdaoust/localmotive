@@ -441,15 +441,6 @@ INSERT INTO `price` (`personID`, `itemID`, `price`, `tax`, `multiple`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recurring_order_items`
---
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`e20967f_local`@`localhost` SQL SECURITY DEFINER VIEW `localmotive`.`recurring_order_items` AS select `localmotive`.`orderItem`.`orderID` AS `orderID`,`localmotive`.`item`.`itemID` AS `itemID`,`localmotive`.`item`.`label` AS `label`,count(`localmotive`.`orderItem`.`orderID`) AS `no_ordered` from (`localmotive`.`orderItem` join `localmotive`.`item`) where (`localmotive`.`orderItem`.`orderID` in (select `localmotive`.`orders`.`orderID` AS `orderID` from `localmotive`.`orders` where (((`localmotive`.`orders`.`orderType` & 3) = 3) and ((not(`localmotive`.`orders`.`dateCompleted`)) or isnull(`localmotive`.`orders`.`dateCompleted`) or (`localmotive`.`orders`.`dateCompleted` > now())) and `localmotive`.`orders`.`personID` in (select `localmotive`.`person`.`personID` AS `personID` from `localmotive`.`person` where (`localmotive`.`person`.`lft` between (select `localmotive`.`person`.`lft` AS `lft` from `localmotive`.`person` where (`localmotive`.`person`.`personID` = 2)) and (select `localmotive`.`person`.`rgt` AS `rgt` from `localmotive`.`person` where (`localmotive`.`person`.`personID` = 2)))))) and (`localmotive`.`orderItem`.`itemID` = `localmotive`.`item`.`itemID`)) group by `localmotive`.`item`.`itemID`;
--- in use (#1449 - The user specified as a definer ('e20967f_local'@'localhost') does not exist)
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `referrer`
 --
 
