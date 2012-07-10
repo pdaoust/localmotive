@@ -1,0 +1,423 @@
+<?php
+
+    session_start();
+    if (true == $_SESSION["lmauth"]){
+    }else{
+        exit("wrong login");
+    }
+?>
+
+<head>
+	<title>LocalMotive</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+<!--
+.bodystyle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+.style1 {font-weight: bold}
+body {
+	margin-left: 10px;
+	margin-right: 0px;
+	margin-top: 10px;
+}
+.smallfont {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+.whitefont {color: #FFFFFF}
+-->
+    </style>
+</head>
+<body bgcolor="#EFE66F" class="bodystyle">
+<div id="container">
+
+<?php
+
+$php_name="calendar_admin.php";
+$filelist = "calendar_list.csv";
+
+$coloring = array(
+	"homedelivery" => "#b0a70c",
+	"restaurants" => "#6dca20",
+	"events" => "#16b882",
+	"school" => "#006db2",
+	"packedpantry" => "#5024bc",
+	"canning" => "#5024bc",
+	"ecocamps" => "#c51fa1",
+	"harvesttours" => "#ff3000",
+	"foudroutes" => "#ff6e00"
+);
+
+// check what to do
+if (!isset($_REQUEST['mode']))
+   $mode = "unknown";
+else $mode = $_REQUEST['mode'];
+
+switch ($mode) {
+       case "display": displayEntries(); break;
+       case "add": addEntry($_REQUEST['eventdate'], $_REQUEST['eventname'], $_REQUEST['category'], $_REQUEST['details'], $_REQUEST['tickets'], $_REQUEST['purchased'], $_REQUEST['price'], $_REQUEST['active'], $_REQUEST['newid']); break;
+       case "edit": displayEditForm($_REQUEST['id']); break;
+       case "doEdit": editEntry($_REQUEST['eventdate'], $_REQUEST['eventname'], $_REQUEST['category'], $_REQUEST['details'], $_REQUEST['tickets'], $_REQUEST['purchased'],  $_REQUEST['price'], $_REQUEST['active'], $_REQUEST['oldid']); break;
+       case "delete": deleteEntry($_REQUEST['id']); break;
+       default:
+       if (file_exists($filelist)) {
+          	displayEntries(); 
+			displayAddEntryForm();
+			echo '<br><br><a href="' . $GLOBALS["filelist"] . '">Backup</a>  Right Click -> Save Link As<br>' .
+			'The session will end any time you close the browser.';
+       }
+
+} // end switch
+
+
+
+/**************************************************************************/
+
+// Displays the file content
+function displayEntries() { 
+
+	// Display the Areas!!! and set the current area
+	?>
+<span class="style1">Calendar Items</span><strong>:</strong><br>
+		<table width="1000" border="1" cellpadding="0" cellspacing="0" class="smallfont">
+          <tr align="left" valign="top">
+            <td width="25">Row</td>
+            <td width="80"> Date </td>
+            <td width="150"> Event Name</td>
+            <td width="120"> Category</td>
+            <td>Details</td>
+            <td width="30">Tix</td>
+            <td width="30">Sold</td>
+            <td width="30">Price</td>
+            <td width="35">Active</td>
+            <td width="30">&nbsp;</td>
+            <td width="25">&nbsp;</td>
+          </tr>
+  </table>
+		<?
+        $filecontents = file($GLOBALS["filelist"]);
+        for ($i=0;$i<sizeof($filecontents);$i++) {
+			$theline = $filecontents[$i];
+			// parse the line
+			$eventdate = substr( $theline, 0, strpos($theline, ",") );
+			$theline = substr( $theline, strpos($theline, ",")+1 );
+			$eventname = substr( $theline, 0, strpos($theline, ",") );
+			$theline = substr( $theline, strpos($theline, ",")+1 );
+			$category = substr( $theline, 0, strpos($theline, ",") );
+			$theline = substr( $theline, strpos($theline, ",")+1 );
+			$details = substr( $theline, 0, strpos($theline, "#") );
+			$theline = substr( $theline, strpos($theline, "#")+1 );
+			$tickets = substr( $theline, 0, strpos($theline, ",") );
+			$theline = substr( $theline, strpos($theline, ",")+1 );
+			$purchased = substr( $theline, 0, strpos($theline, ",") );
+			$theline = substr( $theline, strpos($theline, ",")+1 );
+			$price = substr( $theline, 0, strpos($theline, ",") );
+			$theline = substr( $theline, strpos($theline, ",")+1 );
+			$active = trim($theline);
+		?>
+		<table width="1000" border="1" cellpadding="0" cellspacing="0" class="smallfont">
+          <tr align="left" valign="top">
+            <td width="25"><? echo ($i+1) ?></td>
+            <td width="80"><? if ($eventdate=="00000000") echo "none"; else echo date("j M Y",strtotime($eventdate)); ?></td>
+            <td width="150"><strong><? echo $eventname ?></strong></td>
+            <td width="120" bgcolor="<? echo $GLOBALS["coloring"][$category];  ?>"><span class="whitefont"><? echo $category ?></span></td>
+            <td><? echo $details ?></td>
+            <td width="30"><? echo $tickets ?></td>
+            <td width="30"><? echo $purchased ?></td>
+            <td width="30"><? echo $price ?></td>
+            <td width="35"><? echo $active ?></td>
+            <td width="30"><? echo " <a href=" . $GLOBALS["php_name"] . "?mode=edit&id=" . $i . ">Edit</a>"; ?></td>
+            <td width="25"><? echo "<a href=" . $GLOBALS["php_name"] . "?mode=delete&id=" . $i . ">Del</a><br>"; ?></td>
+          </tr>
+  </table>
+		<?
+		// list only selected customers, parse the customerid
+		//if ( $_SESSION["currentprefix"]=="" || substr( $customerid,0,1 ) == $_SESSION["currentprefix"] ) {
+		//} // if $prefix
+        } // end for
+}
+
+
+// Displays the form for adding data
+function displayAddEntryForm() {
+         ?> 
+		 <table width="1000" border="1" cellpadding="0" cellspacing="0" class="smallfont">
+           <tr align="left" valign="top">
+             <td width="25">Row</td>
+             <td width="80"> Date </td>
+             <td width="150">Event Name</td>
+             <td width="120">Category</td>
+             <td> Details</td>
+             <td width="30">Tix</td>
+             <td width="30">Sold</td>
+             <td width="30">Price</td>
+             <td width="35">Active</td>
+             <td width="30">&nbsp;</td>
+             <td width="25">&nbsp;</td>
+           </tr>
+  </table>
+		 <br>
+		 <span class="style1">Add a new Item</span>  
+		 <form name=addEntry action=<? echo $GLOBALS["php_name"] ?> method=post>
+         <table width="600" border="0" cellpadding="0" cellspacing="0">
+           <tr>
+             <td>Date:</td>
+             <td><input type=text value=<? echo date('Ymd',time()); ?> name=eventdate> 
+               ex: 20070512 (default: today)</td>
+           </tr>
+           <tr>
+             <td width="150">Event Name:</td>
+             <td><input type=text name='eventname'></td>
+           </tr>
+           <tr>
+             <td width="150">Category:</td>
+             <td><select name="category">
+               <option value="homedelivery">Home Delivery</option>
+               <option value="restaurants">Restaurants</option>
+               <option selected value="events">Events</option>
+               <option value="school">School Programmes</option>
+               <option value="packedpantry">Packed Pantry</option>
+               <option value="canning">Canning Workshops</option>
+               <option value="ecocamps">Eco-Camps</option>
+               <option value="harvesttours">Harvest Tours</option>
+               <option value="foudroutes">Foud Routes</option>
+             </select></td>
+           </tr>
+           <tr>
+             <td width="150">Details:</td>
+             <td><textarea name="details" cols="70" rows="15"></textarea></td>
+           </tr>
+           <tr>
+             <td>Max # of Tickets:</td>
+             <td><input type=text name=tickets></td>
+           </tr>
+           <tr>
+             <td>Purchased Tickets:</td>
+             <td><input type=text value=0 name=purchased></td>
+           </tr>
+           <tr>
+             <td>Price:</td>
+             <td><input type=text name=price> 
+             (don't use the $ sign) </td>
+           </tr>
+           <tr>
+             <td>Active:</td>
+             <td>               <select name=active>
+                 <option value="yes">Yes</option>
+                 <option value="no">No</option>
+               </select></td>
+           </tr>
+         </table>
+         (Note: don't use # character in Detials and &quot;,&quot; in other fields)<br>
+         <input type=hidden name=mode value=add>
+         <input type=submit name=submit value=add>
+         </form>
+		 <?
+}
+
+function addEntry($eventdate, $eventname, $category, $details, $tickets, $purchased, $price, $active, $newid) {
+$details = str_replace("\\", "", $details);
+		?> 
+		 <div align="center">Creating the item, please wait...<br>  </div> 
+		   <?
+
+	// check if the fields were filled
+    if ($eventdate!="" && $eventname!="" && $category!="" && $details!="" && $tickets!="" && $purchased!="" && $price!="" && $active!="") {
+		$content = $eventdate . "," . $eventname . "," . $category . "," . $details . "#" . $tickets . "," . $purchased . "," . $price . "," . $active . "\r\n";
+
+		// find the newid placement !! depending on the date!
+		$previousdate = 0;
+	    $checkfilecontents = file($GLOBALS["filelist"]);
+		$newid=sizeof($checkfilecontents)+1;
+	    for ($i=0;$i<(sizeof($checkfilecontents));$i++) {
+			$theline = $checkfilecontents[$i];
+			// parse the line
+			$checkdate = substr( $theline, 0, strpos($theline, ",") );
+			
+			if (($eventdate>$previousdate) && ($eventdate <= $checkdate)) { $newid=$i+1; break; }
+			if ($checkdate == "00000000") { $newid=$i+1; break; }
+			
+			$previousdate = $checkdate;
+		}
+
+		// read the content of the file into $filecotnents, then rewrite the file
+        $filecontents = file($GLOBALS["filelist"]);
+        $newfilecontents = fopen($GLOBALS["filelist"], "w+");
+		// and then rewrite the file with the new value inserted
+        for ($i=0;$i<(sizeof($filecontents)+1);$i++) {
+	        if ($i == ($newid-1)) {
+				// insert it!
+				$linesize = strlen($content);
+	            $writeresult = fwrite($newfilecontents, $content, $linesize);
+				// rewind the $i and don't come in here again
+				$i--; $newid=-1;
+            } else {
+				$linesize = strlen($filecontents[$i] . "\n");
+	            $writeresult = fwrite($newfilecontents, $filecontents[$i], $linesize);
+			}
+        } // end for
+	    fclose($newfilecontents);
+       	?> 
+		<div align=center class="style1">Entry added!</div>
+		<meta http-equiv='Refresh' content='1; URL=<? echo $GLOBALS["php_name"] ?>'> 
+		<?
+        exit;
+        } else  { // end if $...
+			// rerun the edit	
+			echo "<strong>Error! Make sure you enter all the fields<br></strong>";
+      	    echo "<meta http-equiv='Refresh' content='1; URL=" . $GLOBALS["php_name"] . "'>";
+		}
+}
+
+
+// Displays the form to edit an email;
+function displayEditForm($id) {
+	// get the line to edit
+    $filecontents = file($GLOBALS["filelist"]);
+        for ($i=0;$i<sizeof($filecontents);$i++) {
+			if ($i == $id) {
+				$theline = $filecontents[$i]; 
+				break;
+			}
+        }
+		// parse the line
+		$eventdate = substr( $theline, 0, strpos($theline, ",") );
+		$theline = substr( $theline, strpos($theline, ",")+1 );
+		$eventname = substr( $theline, 0, strpos($theline, ",") );
+		$theline = substr( $theline, strpos($theline, ",")+1 );
+		$category = substr( $theline, 0, strpos($theline, ",") );
+		$theline = substr( $theline, strpos($theline, ",")+1 );
+		$details = substr( $theline, 0, strpos($theline, "#") );
+		$theline = substr( $theline, strpos($theline, "#")+1 );
+		$tickets = substr( $theline, 0, strpos($theline, ",") );
+		$theline = substr( $theline, strpos($theline, ",")+1 );
+		$purchased = substr( $theline, 0, strpos($theline, ",") );
+		$theline = substr( $theline, strpos($theline, ",")+1 );
+		$price = substr( $theline, 0, strpos($theline, ",") );
+		$theline = substr( $theline, strpos($theline, ",")+1 );
+		$active = trim($theline);
+         ?>
+		
+		<strong>Edit the Item</strong><br>
+
+		 <form name=editForm action=<? echo $GLOBALS["php_name"] ?> method=post>
+           <table width="600" border="0" cellpadding="0" cellspacing="0">
+             <tr>
+               <td>Date:</td>
+               <td><input disabled type=text name=eventdate value= '<? echo $eventdate ?>' ></td>
+             </tr>
+             <tr>
+               <td width="150">Event Name:</td>
+               <td><input type=text name=eventname value= '<? echo $eventname ?>' ></td>
+             </tr>
+             <tr>
+               <td width="150">Category:</td>
+               <td><input disabled type=text name=category value= '<? echo $category ?>' ></td>
+             </tr>
+             <tr>
+               <td width="150">Details:</td>
+               <td><textarea name="details" cols="70" rows="15"><? echo $details ?></textarea></td>
+             </tr>
+             <tr>
+               <td>Tickets:</td>
+               <td><input type=text name=tickets value= '<? echo $tickets ?>' >                 (don't use the $ sign) </td>
+             </tr>
+             <tr>
+               <td>Purchased:</td>
+               <td><input type=text name=purchased value= '<? echo $purchased ?>' ></td>
+             </tr>
+             <tr>
+               <td>Price:</td>
+               <td><input type=text name=price value= '<? echo $price ?>' ></td>
+             </tr>
+             <tr>
+               <td>Active:</td>
+               <td><select name=active size="1">
+                 <option value="yes" <? if ($active == "yes") echo 'selected'; ?>>Yes</option>
+                 <option value="no" <? if ($active == "no") echo 'selected'; ?>>No</option>
+               </select></td>
+             </tr>
+           </table>
+           <input type=hidden name=oldid value= '<? echo $id ?>' >
+           <input type=hidden name=mode value=doEdit>
+           <input type=hidden name=eventdate value=<? echo $eventdate ?>>
+           <input type=hidden name=category value=<? echo $category ?>>
+           <input type=submit name=submit value=doEdit>
+         </form>
+		 
+		 <form name=editForm action=<? echo $GLOBALS["php_name"] ?> method=post>
+           <input type=submit name=submit value=Cancel>
+		 </form>		 
+		 <?
+         exit;
+}
+
+function editEntry($eventdate, $eventname, $category, $details, $tickets, $purchased, $price, $active, $oldid) {
+$details = str_replace("\\", "", $details);
+$content = $eventdate . "," . $eventname . "," . $category . "," . $details . "#" . $tickets . "," . $purchased . "," . $price . "," . $active . "\r\n";
+
+	// check if the fields were filled
+    if ($eventdate!="" && $eventname!="" && $category!="" && $details!="" && $tickets!="" && $purchased!="" && $price!="" && $active!="") {
+		$content = $eventdate . "," . $eventname . "," . $category . "," . $details . "#" . $tickets .  "," . $purchased . "," . $price . "," . $active . "\r\n";
+
+        $filecontents = file($GLOBALS["filelist"]);
+        for ($i=0;$i<sizeof($filecontents);$i++) {
+            if ($i == $oldid) {
+				// set the line to the new value 
+                $filecontents[$i] = $content;
+				// and then rewrite the rest of the filecontents into a new file
+                $newfilecontents = fopen($GLOBALS["filelist"], "w+");
+                for ($a=0;$a<sizeof($filecontents);$a++) {
+                    $linesize = strlen($filecontents[$a] . "\n");
+                    $writeresult = fwrite($newfilecontents, $filecontents[$a], $linesize);
+                }
+  		        fclose($newfilecontents);
+                ?> 
+ 				<div align=center class="style1">Entry changed!</div>
+				<meta http-equiv='Refresh' content='1; URL=<? echo $GLOBALS["php_name"] ?>'> <?
+                exit;
+             	}
+	        }
+        } else  { 
+			// rerun the edit	
+			echo "<strong>Error! Make sure you enter all the fields<br></strong>";
+      	    echo "<meta http-equiv='Refresh' content='1; URL=" . $GLOBALS["php_name"] . "?mode=edit'>";
+		}
+		
+		
+
+}
+
+// Deletes an email and writes an updated file;
+function deleteEntry($id) {
+         $filecontents = file($GLOBALS["filelist"]);
+         for ($i=0;$i<sizeof($filecontents);$i++) {
+             //if (chop($filecontents[$i]) == $id) {
+             if ($i == $id) {
+			 	// delete the $id entry 
+                $filecontents[$i] = "";
+				// and then rewrite the filecontent into a new file!
+                $newfilecontents = fopen($GLOBALS["filelist"], "w+");
+                for ($a=0;$a<sizeof($filecontents);$a++) {
+                    $emailsize = strlen($filecontents[$a]);
+                    $writeresult = fwrite($newfilecontents, $filecontents[$a], $emailsize);
+                }
+  		        fclose($newfilecontents);
+                ?> 
+				 <div align=center class="style1">Entry deleted!</div>
+				<meta http-equiv='Refresh' content='1; URL=<? echo $GLOBALS["php_name"] ?>'>
+				<?
+                exit;
+                
+             }
+         }
+}
+
+?>
+
+<!-- end container -->
+</div> 
+</body>
+</html>

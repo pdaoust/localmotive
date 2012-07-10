@@ -1,0 +1,919 @@
+.areaColour, div.autosuggest ul li, div.autosuggest ul li a {
+	color: #845743;
+}
+
+address {
+	font-style: normal;
+}
+
+h2, h3, h4, h5, h6 {
+	border-bottom: 2px dotted #848443;
+}
+
+ul h2, .intro h2, ul h3, .intro h3, ul h4, .intro h4, ul h5, .intro h5, ul h6, .intro h6 {
+	border: 0;
+}
+
+div.autosuggest {
+	border: 1px solid #2e1d12;
+}
+
+div.autosuggest ul li.as_highlight a {
+	background-color: #a0a06e;
+	color: #ffffe7;
+}
+
+div.intro, div.autosuggest, div.locDetails, div#footer {
+	background-color: #a0a06e;
+}
+
+.eatlocal {
+	background-image: url('img/eatlocal.png');
+	background-repeat: no-repeat;
+}
+
+div.intro, div#footer {
+	border-top: 3px solid #2e1d12;
+	border-bottom: 3px solid #2e1d12;
+	color: #ffffe7;
+}
+
+div.subnavbar {
+	border: 1px solid #E2F4BF;
+	background-color: #ffffcc;
+}
+
+div.subnavbar .highlight, div.calnavbar .highlight {
+	border: 1px dotted #6dca20;
+	color: #6dca20;
+	background-color: #E2F4BF;
+}
+
+div.subnavbar div.moreimportant, div.calnavbar div.moreimportant {
+	background-color: #6dca20;
+	color: #ffffff;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #ffffcc;
+	position: relative;
+	font-family: Cambria, Constantia, Georgia, Times New Roman, Times, serif;
+}
+
+.nobr {
+	white-space: nowrap;
+}
+
+.notop, #shoppingListCol *:first-child, #payment *:first-child {
+	margin-top: 0;
+}
+
+.nobot, #shoppingListCol *:last-child, #payment *:last-child {
+	margin-bottom: 0;
+}
+
+h1, h2, h3, div.intro, table.formLayout, table.listing, input, textarea, select, .legend, .navbar, .subnavbar, .calnavbar, body.market, .ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+	font-family: Droid Sans, Bitstream Vera Sans, Candara, Calibri, Verdana, Tahoma, Trebuchet, Trebuchet MS, Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+	margin-bottom: 0.3em;
+}
+
+p + ul, p + ol, p + p {
+	margin-top: 0.7em;
+}
+
+p, ul, ol {
+	margin-top: 0;
+}
+
+a:link, a:visited {
+	color: #845743;
+	text-decoration: none;
+}
+
+a:active, a:hover {
+	color: #a67965;
+	text-decoration: underline;
+}
+
+.nodeLabel a {
+	color: #000000;
+}
+
+a.itemLabel {
+	color: #000;
+	cursor: help;
+}
+
+img {
+	border: 0;
+}
+
+samp {
+	color: #888888;
+	font-size: smaller;
+}
+
+div.intro samp {
+	color: #CCCCCC;
+}
+
+#banner {
+	position: absolute;
+	top: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 154px;
+	background-image: url('img/bannerbg.png');
+	background-repeat: no-repeat;
+	background-position: top center;
+	text-align: center;
+	z-index: 1000;
+}
+
+div#banner h1 img {
+	margin: 0;
+}
+
+div#main {
+	width: 800px;
+	position: relative;
+	top: 140px;
+	margin: 0 auto 0 auto;
+	padding: 20px 0 20px 0;
+	background-color: #ffffe7;
+	border-left: 3px solid #845743;
+	border-right: 3px solid #845743;
+	border-top: 0;
+	border-bottom: 0;
+}
+
+div#content {
+	float: right;
+	position: relative;
+	margin-left: 0px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	width: 560px;
+}
+
+div#content.nomenu {
+	margin-top: 20px;
+	margin-left: 20px;
+	clear: both;
+	width: auto;
+	float: none;
+}
+
+.navbar {
+	width: 200px;
+	margin-left: 0px;
+	margin-top: -21px;
+	font-size: small;
+	float: left;
+	padding: 0;
+}
+
+.navbar li {
+	width: 190px;
+	margin: 2px 0 2px 0;
+	padding: 5px;
+	background-color: #845743;
+	color: #ffffe7;
+	list-style-type: none;
+	text-align: center;
+}
+
+.navbar li * {
+	vertical-align: middle;
+}
+
+.navbar li#menuTogg {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.navbar li:hover {
+	background-color: #a67965;
+}
+
+.navbar li.selected {
+	background-color: #a0a06e;
+}
+
+.navbar a {
+	color: #ffffe7;
+	width: 100%;
+}
+
+div.navbarpics {
+	width: 720px;
+	margin: 0px auto 10px auto;
+}
+
+div.navbarpics img {
+	width: 90px;
+	height: 90px;
+}
+
+div.subnavbar {
+	margin-top: 10px;
+	font-size: small;
+	margin-right: 20px;
+	width: auto;
+	background-color: #ffffcc;
+	padding: 5px;
+	float: left;
+	clear: left;
+}
+
+div#footer {
+	width: auto;
+	margin: 20px auto 0 auto;
+	text-align: center;
+	padding: 5px;
+	clear: both;
+}
+
+.alignright {
+	float: right;
+	/* clear: right; */
+	margin-left: 10px;
+}
+
+.alignleft {
+	float: left;
+	/* clear: left; */
+	margin-right: 10px;
+}
+
+div.subnavbar.alignright {
+	margin-left: 20px;
+	margin-right: 0 !important;
+}
+
+div.calnavbar {
+	margin-top: 10px;
+	font-size: smaller;
+	margin-right: 0px;
+	width: auto;
+	background-color: #ffffcc;
+	padding: 5px;
+	float: right;
+}
+
+div.subnavbar div.navbaritem, div.calnavbar div.navbaritem, div.subnavbar div.moreimportant, div.calnavbar div.moreimportant {
+	font-weight: bold;
+	margin: 4px;
+	text-align: left;
+	padding: 2px;
+}
+
+.horizontal {
+	margin-left: auto;
+	margin-right: auto;
+	display: inline;
+}
+
+div.subnavbar.horizontal {
+	width: 650px;
+	margin-bottom: 10px;
+	text-align: center;
+	clear: both;
+}
+
+div.subnavbar div.moreimportant, div.calnavbar div.moreimportant {
+	font-weight: bold;
+}
+
+div.moreimportant, div.moreimportant a {
+	color: #ffffff;
+}
+
+div.intro, div.commentBox, div.locDetails {
+	/* width: 50%;*/
+	margin: 10px auto 10px auto;
+	/* padding: 10px 20px 10px 20px; */
+	padding: 20px;
+}
+
+div.locDetails {
+	width: auto;
+	margin: 10px 0 10px 0;
+	line-height: 1em;
+}
+
+div.intro, div.announcement {
+	font-size: large;
+}
+
+div.intro *:last-child, div.locDetails *:last-child {
+	margin-bottom: 0;
+}
+
+div.intro *:first-child, div.locDetails *:first-child {
+	margin-top: 0;
+}
+
+div.announcement, div.commentBox {
+	width: 70%;
+	clear: both;
+}
+
+div.commentBox, div.tip {
+	background-color: #ffffcc;
+}
+
+img.announcements {
+	position: relative;
+	float: left;
+	left: -40px;
+	top: -40px;
+	margin-bottom: -30px;
+	margin-right: -20px;
+}
+
+.comingsoon {
+	font-size: smaller;
+	letter-spacing: 0.1em;
+	text-align: center;
+}
+
+.formEntry {
+	/* width: 650px; */
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+}
+
+table {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+table.formLayout {
+	table-layout: fixed;
+	max-width: 660px;
+	border: 0;
+	/* font-size: smaller; */
+	border-collapse: collapse;
+}
+
+table.formLayout tr {
+	border-top: 1px solid #cccc99;
+}
+
+table.formLayout th {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: top;
+	margin-right: 10px;
+	background-color: #ffffcc;
+}
+
+table.formLayout td {
+	padding-left: 0.5em;
+	vertical-align: top;
+	text-align: left;
+}
+
+table.formLayout th ul, table.formLayout th ol {
+	font-weight: normal;
+}
+
+.greyed {
+	color: #9C9C5A;
+}
+
+.legend {
+	background-color: #e7e7cc;
+	font-size: smaller;
+	font-style: italic;
+}
+
+.notice, .owing, .red, a.notice:link, a.notice:visited {
+	color: #ff3300;
+}
+
+.errorBox, .noticeBox, .okBox {
+	color: #000000;
+	border: 1px solid #000000;
+	padding: .5em;
+}
+
+.errorBox {
+	background-color: #FFAA88;
+	border-color: #ff3300;
+}
+
+.noticeBox {
+	background-color: #ffffcc;
+	border-color: #eeeebb;
+}
+
+.okBox {
+	background-color: #b4ec86;
+	border-color: #6dca20;
+}
+
+.intro .notice, .intro .owing, .intro .red, .intro .credit {
+	background-color: #ffffcc;
+	padding-left: .25em;
+	padding-right: .25em;
+}
+
+.intro .notice samp, .intro .owing samp, .intro .red samp, .intro .credit samp {
+	color: #888888;
+}
+
+.credit {
+	color: #77aa00;
+}
+
+#passwordOK, #passwordNotOK, #passwordEmpty {
+	display: none;
+}
+
+#passwordOK {
+	color: #33CC00;
+}
+
+#passwordNotOK, #passwordEmpty {
+	color: #CC3300;
+}
+
+.blue, a.blue:link, a.blue:active, a.blue:visited, a.blue:hover {
+	color: #006db2;
+}
+
+.red {
+	color: #ff3300;
+}
+.green, a.green:link, a.green:active, a.green:visited, a.green:hover {
+	color: #6dca20;
+}
+
+.redfont {
+	color: #FF3300;
+	font-size: 12px;
+}
+.forminput {
+	font-size: 12px;
+}
+.new_customer_table {
+	font-size: 12px;
+}
+.regularfont {
+	font-size: 12px;
+}
+.underline {
+	text-decoration: underline;
+}
+
+input {
+	color: #000000;
+}
+
+input.invalid, select.invalid, textarea.invalid {
+	background-color: #FFAA88;
+}
+
+input.okay {
+	background-color: #b4ec86;
+	color: #000000;
+}
+
+#itemList {
+	/* background-color: #ffffcc; */
+	border: 1px solid #aaaa77;
+	width: 470px;
+	padding: 10px;
+	float: left;
+}
+
+#itemTable {
+	max-height: 450px;
+	overflow: auto;
+}
+
+#shoppingListCol, #payment {
+	/* background-color: #ffffcc; */
+	border: 1px solid #aaaa77;
+	width: 470px;
+	padding: 10px;
+}
+
+.listing td, .listing th {
+	width: auto;
+	overflow: hidden;
+}
+
+#shoppingListCol {
+	float: right;
+}
+
+#payment {
+	margin-top: 20px;
+}
+
+#itemInfo {
+	border: 1px solid #aaaa77;
+	padding: 0;
+	margin: 0;
+	width: 368px;
+	height: 200px;
+}
+
+#status {
+	clear: both;
+}
+
+.even .odd {
+	background-color: #ffffcc;
+}
+
+.even .even {
+	background-color: #eeeebb;
+}
+
+.odd .even {
+	background-color: #ffffcc;
+}
+
+.odd .odd {
+	background-color: #ffffe7;
+}
+
+.specialPacking {
+	background-color: #a2c8e1;
+	font-style: italic;
+	color: #006db2;
+}
+
+.even.specialPacking .odd {
+	background-color: #a2c8e1;
+}
+
+.even.specialPacking .even {
+	background-color: #89b9da;
+}
+
+.odd.specialPacking .even {
+	background-color: #a2c8e1;
+}
+
+.odd.specialPacking .odd {
+	background-color: #cde0ec;
+}
+
+table.listing {
+	border: 0;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+table.listing input, table.listing select {
+	feont-size: x-small;
+}
+
+table.listing td, table.listing th {
+	white-space: nowrap;
+	padding: 0.2em 0.5em 0.2em 0.5em;
+	vertical-align: top;
+}
+
+table.listing th {
+	text-align: left;
+}
+
+table.listing .categoryHeader, table.formLayout .categoryHeader {
+	padding-top: 1em;
+	font-size: 1.5em;
+	border-bottom: 2px solid #aaaa77;
+}
+
+.categoryHeader address {
+	font-weight: normal;
+	font-size: .75em;
+}
+
+table.formLayout .categoryHeader {
+	background: none;
+}
+
+li form {
+	display: inline;
+}
+
+.errorField {
+	background-color: #ffccaa;
+}
+
+.inactive, .gray, .inactive a.itemLabel {
+	color: #888;
+}
+
+.nav {
+	display: inline;
+	width: 12px;
+	height: 12px;
+	margin: 0;
+	padding: 0;
+}
+
+.nav n_u {
+	vertical-align: top;
+}
+
+.nav n_d {
+	vertical-align: bottom;
+}
+
+.icon {
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+}
+
+.iconLg {
+	width: 32px;
+	height: 32px;
+	vertical-align: baseline;
+}
+
+.closeIcon {
+	position: absolute;
+	right: 10px;
+	cursor: pointer;
+}
+
+td img, th img, td input, th input, input[type="image"] {
+	vertical-align: middle;
+}
+
+.ministatement {
+	float: right;
+}
+
+.number {
+	text-align: right;
+}
+
+td.category {
+	font-weight: bold;
+}
+
+.mult {
+	font-weight: bold;
+}
+
+.mult:after {
+	content: '*';
+}
+
+.popup {
+	position: absolute;
+	width: auto;
+	overflow: auto;
+	max-height: 500px;
+	background-color: #fff;
+	border: 3px solid #cccc99;
+	padding: 10px;
+}
+
+.popup.valid {
+	border-color: #33CC00;
+}
+
+.popup.invalid {
+	border-color: #CC3300;
+}
+
+.popupLabel {
+	background-color: #cccc99;
+}
+
+.popup.valid .popupLabel {
+	background-color: #33CC00;
+	color: #FFFFFF;
+}
+
+.okay {
+	background-color: #b4ec86;
+	color: #33CC00;
+}
+
+.popup.invalid .popupLabel, .formLabel.invalid {
+	background-color: #CC3300;
+	color: #FFFFFF;
+}
+
+.labelCell {
+	height: 1em;
+	overflow: hidden;
+}
+
+.truncItemList {
+	max-width: 300px;
+	overflow: hidden;
+}
+
+.truncShoppingList {
+	max-width: 210px;
+	overflow: hidden;
+}
+
+.truncItemListCat {
+	max-width: 430px;
+	overflow: hidden;
+}
+
+.truncShoppingListCat {
+	max-width: 450px;
+	overflow: hidden;
+}
+
+.truncName {
+	max-width: 300px;
+	overflow: hidden;
+}
+
+.truncAddress {
+	max-width: 500px;
+	overflow: hidden;
+}
+
+.truncItem {
+	max-width: 600px;
+	overflow: hidden;
+}
+
+.truncBlob {
+	max-width: 300px;
+	height: 2em;
+	overflow: hidden;
+}
+
+.truncBlobExp {
+	width: auto;
+	height: auto;
+}
+
+body.market .listing, body.market p, body.market .intro p, body.market ul, body.market .intro ul, body.market .formLayout, .commentBox p {
+	font-size: 10pt;
+}
+
+.beta {
+	background-color: #ff3300;
+	color: #ffffff;
+	text-align: center;
+	font-weight: bold;
+}
+
+.tip {
+	font-style: italic;
+}
+
+/* CalendarPopup styles */
+
+.cpYearNavigation, .cpMonthNavigation, .cpDayColumnHeader, .cpTodayText, .cpTodayTextDisabled, .calendar-dayName, .calendar-month {
+	background-color: #eeeebb;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.cpDayColumnHeader {
+	width: 1.5em;
+}
+
+.calendar-dayName, .calendar-dayCell {
+	vertical-align: top;
+	width: 5em;
+}
+
+.calendar-dayCell {
+	height: 4em;
+	background-color: #ffffcc;
+	padding: 0.2em;
+	border: 1px dotted #cccc99;
+}
+
+.calendar-dayCell.calendar-today {
+	border-style: solid;
+}
+
+.calendar-dayCell.calendar-today .calendar-dayNo {
+	color: #000000;
+}
+
+.cpAll {
+	border: 1px solid #cccc99;
+	background-color: #ffffff;
+	font-size: x-small;
+	padding: 0;
+	margin: 0;
+	width: 15em;
+}
+
+.cpHead, .cpBody, .cpFoot {
+	width: 100%;
+	margin: 0;
+}
+
+.cpDayColumnHeader, .cpYearNavigation, .cpMonthNavigation, .cpCurrentMonthDate, .cpCurrentMonthDateDisabled, .cpOtherMonthDate, .cpOtherMonthDateDisabled, .cpCurrentDate, .cpCurrentDateDisabled, .cpTodayText, .cpTodayTextDisabled, .cpText {
+}
+
+.cpCurrentMonthDate, .cpOtherMonthDate, .cpCurrentDate {
+}
+
+.calendar-dayNo {
+	float: right;
+	text-decoration: none;
+}
+
+.calendar-dayNo {
+	color: #888;
+}
+
+.cpCurrentMonthDateDisabled, .cpOtherMonthDateDisabled, .cpCurrentDateDisabled {
+	color: #888;
+	text-align:right;
+	text-decoration:line-through;
+}
+
+.cpCurrentMonthDate {
+	color:#000000;
+	font-weight:bold;
+}
+
+.cpCurrentDate {
+	color: #000000;
+	font-weight:bold;
+}
+
+.cpOtherMonthDate {
+	color:#808080;
+}
+
+td.cpCurrentDate {
+	color:#FFFFFF;
+	background-color: #cccc99;
+}
+
+td.cpCurrentDateDisabled {
+	border: 1px solid #FFAAAA;
+}
+
+td.cpTodayText, td.cpTodayTextDisabled {
+	text-align: center;
+}
+
+a.cpTodayText, span.cpTodayTextDisabled {
+}
+
+a.cpTodayText {
+	color:#000000;
+	font-weight:bold;
+}
+
+span.cpTodayTextDisabled {
+	color: #888;
+}
+
+.cpBorder {
+	border: 1px solid #6677DD;
+}
+
+.ruleAbove th, .ruleAbove td {
+	border-top: 3px solid #cccc99;
+}
+
+ul.nobullet {
+	list-style-type: none;
+}
+
+.extrainfo {
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+.editable {
+	cursor: pointer;
+}
+
+.iconNum {
+	font-size: smaller;
+}
+
+input.search {
+	width: 15em;
+}

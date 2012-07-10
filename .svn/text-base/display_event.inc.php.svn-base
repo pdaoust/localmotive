@@ -1,0 +1,56 @@
+<?
+// Display the event info from the calendar db
+
+$filelist = "calendar_list.csv";
+
+$filecontents = file($GLOBALS["filelist"]);
+for ($i=0;$i<sizeof($filecontents);$i++) {
+	$theline = $filecontents[$i];
+	// parse the line
+	$eventdate = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$eventname = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$category = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	if (($selected_date == $eventdate) && ($selected_event == $eventname)) {
+		$details = substr( $theline, 0, strpos($theline, "#") );
+		$theline = substr( $theline, strpos($theline, "#")+1 );
+		$tickets = substr( $theline, 0, strpos($theline, ",") );
+		$theline = substr( $theline, strpos($theline, ",")+1 );
+		$purchased = substr( $theline, 0, strpos($theline, ",") );
+		$theline = substr( $theline, strpos($theline, ",")+1 );
+		$price = substr( $theline, 0, strpos($theline, ",") );
+		$theline = substr( $theline, strpos($theline, ",")+1 );
+		$active = trim($theline);
+		break;
+	}
+}
+?>
+<h2><? echo $eventname; ?></h2>
+<p>
+<h3>Date</h3> <? if ($eventdate!="00000000") echo date("j M Y",strtotime($eventdate)); else echo "no date"; ?> <br>
+<h3>Details</h3>
+<? 
+	echo $details; 
+	echo "<br><strong>Max # of tix:</strong> " . $tickets . 
+		 "<br><strong>Tix Left:</strong> " . ($tickets-$purchased) . 
+		 "<br><strong>Price:</strong> $" . $price . "<br>"; 
+?>
+</p>
+
+<h3>Availability</h3>
+<p>
+<?
+// Availability
+if ($tickets==0) $filledSpaces = 80; 
+else $filledSpaces = $purchased * 80 / $tickets;
+echo '<span class="areaColour">' . str_repeat('&bull;', $filledSpaces) . '</span><span class="greyed">' . str_repeat('&bull;', 80 - $filledSpaces) . '</span><br/><strong>' . round((80 - $filledSpaces)/80*100) . '%</strong> of space available!';
+switch ($selected_category) {
+	case "packedpantry": echo " - Jars Left: " . ($tickets-$purchased); break;
+	case "canning": echo " - Spots Left: " . ($tickets-$purchased); break;
+	default: echo " - Tickets Left: " . ($tickets-$purchased);
+}
+	
+?></p>
+<p class="legend">Note: <span class="areaColour">&bull;</span> indicates filled spaces; <span class="greyed">&bull;</span> indicates available spaces.</p>

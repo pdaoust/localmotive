@@ -1,0 +1,37 @@
+<?php
+$pageTitle = 'Localmotive - Home Delivery - Our Food';
+$pageArea = 'home_delivery';
+$pageSubArea = 'our_food';
+include ('header.tpl.php');
+include ('home_delivery_navbar.inc.php');
+?>
+
+<h2>Our Food</h2>
+<p>We select only the <strong>highest quality organic produce, dairy, meats, bakery, bulk goods, and beverages</strong>. By sourcing producepicked at its height of ripeness, your bin of veggies and fruits will be fresh and packed with nutrients that are often lost when sitting in trucks or on store shelves for days on end. Organic food production is focused on <strong>conserving air, water and soil resources</strong> that are integral to long-term food supply. Not only is organic food <strong>better for the environment</strong>, it is also <strong>healthier for our bodies</strong>.</p>
+
+<h3><img src="img/pears.jpg" class="alignright" style="position: relative; left: 10px;" alt="pears"/>Produce</h3>
+<p>Localmotive strives to primarily support local organic farmers in the Okanagan. When selection from local growers is limited, we offer produce and fruit from certified organic farms in BC and Northwest US, and imported produce and fruit from organic Fair Trade Co-operatives.</p>
+
+<h3>Baking</h3>
+<p>Localmotive offers a variety of organic baking from local bakers Just Pies and Joy road: fresh loaves of bread, many of them wheatfree, fruit turnovers and samosas, fresh granolas and health bars, cinnamon buns, and more, all made locally and organically!</p>
+
+<h3>Meats</h3>
+<p>Our organically certified, hormone-free, grass-fed and SPCA-approved <strong>beef and lamb</strong> are raised and finished at <a href="http://www.valefarms.com" target="_blank">Vale Grassroots Farm</a> in Lumby, BC. We offer a variety of cuts as well as sausages from this progressive family farm.</p>
+<p>Localmotive also offers certified organic <strong>turkey, pork, and chicken</strong> products from Organa Farms in Yarrow, BC, and whole organic <strong>chickens</strong> from Oliver, BC.</p>
+<p>Organic meat is safer to eat, since it is raised without hormones or antibiotics, and supports organic grain and grass production, which saves the environment from tonnes of chemicals each year. Organic certification of meat production also ensures that animals are free-range and treated humanely.</p>
+
+<h3>Dairy</h3>
+<p>Choosing to consume organic milk products is important, as hormones, medications, and toxins found in conventional milk have been shown to have detrimental effects on health. All of our dairy products are from certified farms in BC. Our <strong>local farm eggs</strong> are from free-range operations (ensuring a humane, outdoor existence for the chickens) and are nourished by organic feeds. Our <strong>butter, milk, cheeses, and yogurt</strong> are from Jersyland Organics in Grand Forks, BC, which offer a wide variety of wholesome, fresh dairy products.</p>
+
+<h3>Beverages, Bulk and More</h3>
+<p>Localmotive supports many other local food producers and carries a diversity of organic products, including:</p>
+<ul>
+	<li>fruit juices and dried fruit chips from Naramata</li>
+	<li>Fair Trade organic fresh roasted coffee from Backyard Beans, Summerland</li>
+	<li>Okanagan Wildbrush Honey from Penticton</li>
+	<li>bulk rice, oats, grains, lentils, pasta, tea, soups, and more</li>
+	<li>biodegradable, organic laundry and dish cleaners</li>
+</ul>
+
+<?php
+include ('footer.tpl.php'); ?>

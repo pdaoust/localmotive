@@ -1,0 +1,198 @@
+<?php
+
+    session_start();
+    if (true == $_SESSION["lmauth"]){
+    }else{
+        exit("wrong login");
+    }
+?>
+<head>
+	<title>LocalMotive</title>
+	<link rel="stylesheet" type="text/css" href="_lib/localmotiv.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="styles_global.css" />
+	<link rel="stylesheet" type="text/css" href="styles_healthyharvest.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+<!--
+.style1 {font-weight: bold}
+.style2 {color: #FF0000}
+-->
+    </style>
+</head>
+<body bgcolor="#EFE66F" class="bodystyle">
+<div id="content">
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20">&nbsp;</td>
+    <td width="687">&nbsp;
+
+<?php
+
+$php_name="locs_admin_healthyharvest.php";
+$filelist = "locs_healthyharvest.txt";
+include ('market/classes/base.inc.php');
+include ('locs_healthyharvest.inc.php');
+
+// check what to do
+if (!isset($_REQUEST['mode']))
+   $mode = "unknown";
+else $mode = $_REQUEST['mode'];
+
+switch ($mode) {
+       case "display": displayEntries(); break;
+       case "edit": displayEditForm(); break;
+       case "doEdit": editEntry(); break;
+       default:
+       if (file_exists($filelist)) {
+			displayEditForm();
+			echo '<br><br><a href="' . $GLOBALS["filelist"] . '">Backup</a>  Right Click -> Save Link As<br>' .
+			'The session will end any time you close the browser.';
+       }
+
+} // end switch
+?>
+	</td>
+  </tr>
+</table>
+<?
+// Displays the form to edit
+function displayEditForm() {
+	// get the line to edit
+   $locs = file_get_contents($GLOBALS["filelist"]);
+         ?>
+		
+<script type="text/javascript" language="JavaScript">
+function addTown () {
+	locs = document.getElementById('locsNr').value;
+	tablesDiv = document.getElementById('locsTables');
+	newLoc = document.createElement('table');
+	newLoc.className = 'formLayout';
+	newLoc.innerHTML = '<tr><th>Town</th><td><input type="text" name="locs[' + locs + '][town]"/></td></tr>' + 
+		'<tr><th>Payment spot(s)</th><td><textarea name="locs[' + locs + '][payment]"></textarea></td></tr>' +
+		'<tr><th>Pickup spot(s)</th><td><textarea name="locs[' + locs + '][pickup]"></textarea></td></tr>' +
+		'<tr><th>Dates</th><td><textarea name="locs[' + locs + '][dates]"></textarea></td></tr>' +
+		'<tr><th>Contact name</th><td><input type="text" name="locs[' + locs + '][contact]"/></td></tr>' +
+		'<tr><th>Contact e-mail</th><td><input type="text" name="locs[' + locs + '][email]"/></td></tr>' +
+		'<tr><th>Contact phone</th><td><input type="text" name="locs[' + locs + '][phone]"/></td></tr>';
+	tablesDiv.appendChild(newLoc);
+	document.getElementById('locsNr').value = locs + 1;
+}
+</script>
+		<h2>Edit the Healthy Harvest locations and schedules</h2>	    
+		<form name=editForm action=<? echo $GLOBALS["php_name"] ?> method=post style="margin: 2">
+<p>Okay, a little bit of info... don't use any special formatting, like bold and italic; the website will do it for you. To delete a listing, simply erase the town name. Payments and pickup spots are in the following format:</p>
+<blockquote>Location name:address<br/>
+Location name:address<br/>
+Location name:address</blockquote>
+<p>Dates are in the following format:</p>
+<blockquote>Payment date:pickup date<br/>
+Payment date:pickup date<br/>
+Payment date:pickup date</blockquote><?php
+if ($locs = unserialize($locs)) {
+	echo '<input type="hidden" id="locsNr" value="' . count($locs) . '"/>';
+	echo "<div id=\"locsTables\">\n";
+	foreach ($locs as $i => $thisLoc) {
+		echo "<table class=\"formLayout\">\n";
+		echo "\t<tr><th>Town</th><td><input type=\"text\" name=\"locs[$i][town]\" value=\"" . $thisLoc['town'] . "\"/></td></tr>\n";
+		echo "\t<tr><th>Payment spot(s)</th><td><textarea name=\"locs[$i][payment]\" rows=\"5\" cols=\"30\">";
+		foreach ($thisLoc['payment'] as $thisPmt) {
+			echo $thisPmt['name'] . ':' . $thisPmt['addy'] . "\n";
+		}
+		echo "</textarea></td></tr>\n";
+		echo "\t<tr><th>Pickup spot(s)</th><td><textarea name=\"locs[$i][pickup]\" rows=\"5\" cols=\"30\">";
+		foreach ($thisLoc['pickup'] as $thisPU) {
+			echo $thisPU['name'] . ':' . $thisPU['addy'] . "\n";
+		}
+		echo "</textarea></td></tr>\n";
+		echo "\t<tr><th>Dates</th><td><textarea name=\"locs[$i][dates]\" rows=\"5\" cols=\"30\">";
+		foreach ($thisLoc['dates'] as $thisDate) {
+			echo $thisDate['payment'] . ':' . $thisDate['pickup'] . "\n";
+		}
+		echo "</textarea></td></tr>\n";
+		echo "\t<tr><th>Contact name</th><td><input type=\"text\" name=\"locs[$i][contact]\" value=\"" . $thisLoc['contact'] . "\"/></td></tr>\n";
+		echo "\t<tr><th>Contact e-mail</th><td><input type=\"text\" name=\"locs[$i][email]\" value=\"" . $thisLoc['email'] . "\"/></td></tr>\n";
+		echo "\t<tr><th>Contact phone</th><td><input type=\"text\" name=\"locs[$i][phone]\" value=\"" . $thisLoc['phone'] . "\"/></td></tr>\n";
+		echo "</table>\n";
+	}
+} else { ?>
+<input type="hidden" id="locsNr" value="0"/>
+<table class="formLayout">
+	<tr><th>Town</th><td><input type="text" name="locs[0][town]"/></td></tr> 
+	<tr><th>Payment spot(s)</th><td><textarea name="locs[0][payment]"></textarea></td></tr>
+	<tr><th>Pickup spot(s)</th><td><textarea name="locs[0][pickup]"></textarea></td></tr>
+	<tr><th>Dates</th><td><textarea name="locs[0][dates]"></textarea></td></tr>
+	<tr><th>Contact name</th><td><input type="text" name="locs[0][contact]"/></td></tr>
+	<tr><th>Contact e-mail</th><td><input type="text" name="locs[0][email]"/></td></tr>
+	<tr><th>Contact phone</th><td><input type="text" name="locs[0][phone]"/></td></tr>
+</table>
+<? } ?>
+</div>
+<input type="button" value="Add town" onclick="addTown()"/>
+<input type=submit name="mode" value="doEdit">
+  </form>
+		 Display:<br>
+         <hr>
+<? showLocs($locs, false); ?>
+		<hr> <?		 
+         exit;
+}
+
+// Edits and writes the updated file;
+function editEntry () {
+	echo '<pre>' . print_r($_REQUEST['locs'], true) . '</pre>';
+	$locs = $_REQUEST['locs'];
+	$i = 0;
+	$newLocs = array ();
+	foreach ($locs as $thisLoc) {
+		if (trim($thisLoc['town'])) {
+			$newThisLoc = array ();
+			$newThisLoc['town'] = trim($thisLoc['town']);
+			$pmts = explode("\n", trim($thisLoc['payment']));
+			$newThisLoc['payment'] = array ();
+			foreach ($pmts as $thisPmt) {
+				$thisPmt = trim($thisPmt);
+				if ($thisPmt) {
+					$thisPmt = explode(':', $thisPmt);
+					if (count($thisPmt) > 1) $newThisLoc['payment'][] = array ('name' => trim($thisPmt[0]), 'addy' => trim($thisPmt[1]));
+				}
+			}
+			$pickups = explode("\n", trim($thisLoc['pickup']));
+			$newThisLoc['pickup'] = array ();
+			foreach ($pickups as $thisPU) {
+				$thisPU = trim($thisPU);
+				if ($thisPU) {
+					$thisPU = explode(':', $thisPU);
+					if (count($thisPU) > 1) $newThisLoc['pickup'][] = array ('name' => trim($thisPU[0]), 'addy' => trim($thisPU[1]));
+				}
+			}
+			$dates = explode("\n", trim($thisLoc['dates']));
+			$newThisLoc['dates'] = array ();
+			foreach ($dates as $thisDate) {
+				$thisDate = trim($thisDate);
+				if ($thisDate) {
+					$thisDate = explode(':', $thisDate);
+					if (count($thisDate) > 1) $newThisLoc['dates'][] = array ('payment' => trim($thisDate[0]), 'pickup' => trim($thisDate[1]));
+				}
+			}
+			$newThisLoc['contact'] = trim($thisLoc['contact']);
+			$newThisLoc['email'] = trim($thisLoc['email']);
+			$newThisLoc['phone'] = trim($thisLoc['phone']);
+			$newLocs[] = $newThisLoc;
+		}
+	}
+	$newfilecontents = fopen($GLOBALS["filelist"], "w");
+	echo serialize($newLocs);
+	$writeresult = fwrite($newfilecontents, serialize($newLocs));
+	fclose($newfilecontents);
+   ?> 
+<div align=center class="style1">Entry changed!</div>
+<meta http-equiv='Refresh' content='1; URL=<? echo $GLOBALS["php_name"] ?>'> <?
+	exit;
+}
+?>
+
+
+<!-- end container -->
+</div> 
+</body>
+</html>

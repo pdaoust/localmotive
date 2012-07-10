@@ -1,0 +1,11 @@
+<?php
+$pageTitle = 'Localmotive - School Programmes';
+$pageArea = 'school_programmes';
+include ('header.tpl.php');
+?>
+<div class="intro">
+	<h2>School Programmes</h2>
+	<p></p>LocalMotive is a proud supplier of the Farm-to-School Salad Bar project, delivering high quality fresh local produce to schools, giving kids the chance to eat a fresh nutritious meal two times per week. Seasonal salads, soups, snacks, and hot meals are prepared by schools and presented to students in an appealing salad bar. To learn more, visit the website for the project at <a href="http://www.bchealthyliving.ca/node/102" target="_blank">http://www.bchealthyliving.ca/node/102</a>.  
+</div>
+
+<?php include ('footer.tpl.php'); ?>

@@ -1,0 +1,122 @@
+<?php
+
+    session_start();
+    if (true == $_SESSION["lmauth"]){
+    }else{
+        exit("wrong login");
+    }
+?>
+<head>
+	<title>LocalMotive</title>
+
+	<link rel="stylesheet" type="text/css" href="_lib/localmotiv.css" media="all" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+<!--
+.bodystyle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+.style1 {font-weight: bold}
+body {
+	margin-left: 10px;
+	margin-right: 0px;
+	margin-top: 10px;
+}
+-->
+    </style>
+</head>
+<body bgcolor="#EFE66F" class="bodystyle">
+<div id="container">
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20">&nbsp;</td>
+    <td width="687">&nbsp;
+
+<?php
+
+$php_name="recipes_admin.php";
+$filelist = "recipes.csv";
+
+
+// check what to do
+if (!isset($_REQUEST['mode']))
+   $mode = "unknown";
+else $mode = $_REQUEST['mode'];
+
+switch ($mode) {
+       case "display": displayEntries(); break;
+       case "edit": displayEditForm($_REQUEST['id']); break;
+       case "doEdit": editEntry($_REQUEST['recipes']); break;
+       default:
+       if (file_exists($filelist)) {
+			displayEditForm();
+			echo '<br><br><a href="' . $GLOBALS["filelist"] . '">Backup</a>  Right Click -> Save Link As<br>' .
+			'The session will end any time you close the browser.';
+       }
+
+} // end switch
+?>
+	</td>
+  </tr>
+</table>
+<?
+
+// Displays the form to edit
+function displayEditForm() {
+	// get the line to edit
+    $filecontents = file($GLOBALS["filelist"]);
+	$recipes = $filecontents[0]; 
+	$recipes = str_replace("<newline>", "\r\n", $recipes);
+         ?>
+		
+		<strong>Edit <span class="boldfont">the Recipes</span></strong><br>	    
+		<form name=editForm action=<? echo $GLOBALS["php_name"] ?> method=post style="margin: 2">
+- do not use commas!!<br>
+- for a new line use &quot;&lt;br&gt;&quot;<br>
+- note the usage of html code:<br>
+&lt;div align=&quot;center&quot; class=&quot;orangelarge&quot;&gt; ... &lt;/div&gt;<br>
+&lt;span class=&quot;yesllowlarge&quot;&gt; ... &lt;/span&gt; <br>
+&nbsp;&nbsp;&nbsp;- files get uploaded to uploaded_files/ <br>
+&lt;img src=&quot;uploaded_files/farmer.gif&quot;&gt;<br>
+&lt;img src=&quot;uploaded_files/farmer.gif&quot; width=&quot;195&quot; height=&quot;195&quot;&gt;<br>
+<br>
+<table width="500" border="0" cellpadding="0" cellspacing="0">
+             <tr class="mainfont">
+               don't use #</td>
+               <td><textarea name="recipes" cols="70" rows="20" class="forminput" id="recipes"><? echo $recipes ?>
+             </textarea></td>
+             </tr>
+          </table>
+           <input type=hidden name=mode value=doEdit>
+           <input type=submit name=submit value=doEdit>
+  </form>
+		 <br>
+		 Display:<br>
+         <hr>
+		 <?
+		 echo $recipes; ?> <hr> <?
+         exit;
+}
+
+// Edits and writes the updated file;
+function editEntry($recipes) {
+				$recipes = str_replace("\r\n", "<newline>", $recipes);
+				$recipes = str_replace("\'", "'", $recipes);
+				$recipes = str_replace('\"', '"', $recipes);
+                $newfilecontents = fopen($GLOBALS["filelist"], "w+");
+                $linesize = strlen($recipes . "\n");
+                $writeresult = fwrite($newfilecontents, $recipes, $linesize);
+  		        fclose($newfilecontents);
+                ?> 
+ 				<div align=center class="style1">Entry changed!</div>
+				<meta http-equiv='Refresh' content='1; URL=<? echo $GLOBALS["php_name"] ?>'> <?
+                exit;
+}
+?>
+
+
+<!-- end container -->
+</div> 
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+body {
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+}
+.eventslist-title {font-weight: bold; font-size: 12pt;}
+.eventslist-date {color: green;}
+.linked-day { font-size: 11pt; }
+a.linked-day { color: red; font-weight: bold; font-size: larger; text-decoration: none; }
+
+-->
+</style></head>
+
+<?
+$selected_date = $_REQUEST['selected_date'];
+if (!isset($selected_date)) $selected_date = date($time);
+?>
+
+<body>
+<div align="center">
+	<table width="210" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="153"><div align="right"><span class="eventslist-title">Event's List</span> </div></td>
+        <td width="60"><div align="center">&nbsp;&nbsp;<a href="calendar_eventslist.php?selected_date=00000000" class="linked-day">other</a></div></td>
+      </tr>
+    </table>
+	<span class="eventslist-date"><? if ($selected_date!="00000000") echo date("j M Y",strtotime($selected_date)); else echo "no date"; ?></span>
+<table width="210" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong>Event</strong></td>
+    <td width="42" align="center"><strong>Tix Left </strong></td>
+    <td width="40" align="center"><strong>Price</strong></td>
+  </tr>
+</table>
+
+
+<?
+$coloring = array(
+	"homedelivery" => "#b0a70c",
+	"restaurants" => "#6dca20",
+	"events" => "#16b882",
+	"school" => "#006db2",
+	"packedpantry" => "#5024bc",
+	"canning" => "#5024bc",
+	"ecocamps" => "#c51fa1",
+	"harvesttours" => "#ff3000",
+	"foudroutes" => "#ff6e00"
+);
+$links = array(
+	"homedelivery" => "home_delivery.php",
+	"restaurants" => "restaurants.php",
+	"events" => "events_workshops.php",
+	"school" => "school_programmes.php",
+	"packedpantry" => "packed_pantry.php",
+	"canning" => "canning_workshops.php",
+	"ecocamps" => "eco_camps.php",
+	"harvesttours" => "harvest_tours.php",
+	"foudroutes" => "food_routes.php"
+);
+$no_events_today=true;
+$filecontents = file("calendar_list.csv");
+for ($i=0;$i<(sizeof($filecontents));$i++) {
+	$theline = $filecontents[$i];
+	// parse the line
+	$checkdate = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$eventname = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$category = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$details = substr( $theline, 0, strpos($theline, "#") );
+	$theline = substr( $theline, strpos($theline, "#")+1 );
+	$tickets = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$purchased = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$price = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$active = $theline;
+	
+	// pick active dates for the three months
+	
+	if ($checkdate==$selected_date){
+		$no_events_today=false;
+?>
+<table width="210" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><? echo '<a href="' . $links[$category] . '?selected_date=' . $checkdate . '&selected_event=' . $eventname . '", target="_parent"><font color="' . $coloring[$category] . '">' . $eventname . '</font></a>'; ?></td>
+    <td width="42" align="center"><? echo $tickets - $purchased; ?></td>
+    <td width="40" align="center"><? echo "$" . $price ?></td>
+  </tr>
+</table>
+
+<? 
+	} // end if
+} // end for loop 
+if ($no_events_today) echo "no events for this date";
+?>
+</div>
+</body>
+</html>

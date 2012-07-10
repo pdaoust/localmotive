@@ -1,0 +1,190 @@
+@font-face {
+	font-family: Droid Sans;
+	font-style: normal;
+	src: local('Droid Sans'), url('http://www.localmotive.ca/droid.ttf');
+}
+
+@font-face {
+	font-family: Droid Sans;
+	font-weight: bold;
+	src: local('Droid Sans Bold'), url('http://www.localmotive.ca/droidb.ttf');
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #ffffff;
+	font-size: 8pt;
+	font-family: Cambria, Constantia, Georgia, Times New Roman, Times, serif;
+}
+
+body.market, p {
+	font-family: Droid Sans, Bitstream Vera Sans, Candara, Calibri, Verdana, Tahoma, Trebuchet, Trebuchet MS, Helvetica, Arial, sans-serif;
+}
+
+body.market .listing, body.market p, body.market .intro p, body.market .intro ul, body.market .formLayout, .commentBox p, input, p {
+	font-size: 8pt;
+}
+
+@page {
+	padding: 0.5in;
+}
+
+a:link, a:visited {
+	text-decoration: underline;
+	color: #660000;
+}
+
+div.navbar, div.navbarpics, div.subnavbar {
+	display: none;
+}
+
+.alignright {
+	float: right !important;
+	clear: right !important;
+	margin-left: 10px;
+}
+
+.alignleft {
+	float: left !important;
+	clear: left !important;
+	margin-right: 10px;
+}
+
+div#content {
+	width: auto;
+	padding: 0;
+	background: transparent;
+}
+
+div.intro {
+	width: 50%;
+	border: 2pt solid #888888;
+}
+
+div.announcement {
+	width: 70%;
+	clear: both;
+	border: 2pt solid #888888;
+}
+
+table.formLayout {
+	table-layout: fixed;
+	max-width: 660px;
+	border: 0;
+	/* font-size: smaller; */
+}
+
+table.formLayout tr {
+	border-top: 1px solid #888888;
+}
+
+table.formLayout th {
+	background-color: transparent;
+}
+
+.greyed {
+	color: #9C9C5A;
+}
+
+.legend {
+	background-color: transparent;
+	font-size: smaller;
+	font-style: italic;
+}
+
+.notice, .owing, .red {
+	color: #ff3300;
+}
+
+.credit {
+	color: #000000;
+}
+
+.redfont {
+	color: #FF3300;
+}
+
+#itemList, #itemTable, #shoppingListCol, #shoppingList, #payment, #itemInfo {
+	/* background-color: #ffffcc; */
+	background: transparent;
+	border: 1pt solid #888888;
+	float: none;
+	clear: both;
+	width: auto;
+}
+
+table.listing {
+	border: 0;
+}
+
+.even .odd, .even .even {
+	border-bottom: 0.5pt solid #888888;
+}
+
+.odd .odd, .odd .even {
+	border-bottom: 0.5pt solid #cccccc;
+}
+
+table.listing td, table.listing th {
+	border-left: 0.5pt solid #000000;
+	border-right: 0.5pt solid #000000;
+}
+
+table.listing tr *:first-child {
+	border-left: 0;
+}
+
+table.listing tr *:last-child {
+	border-right: 0;
+}
+
+table.listing .categoryHeader {
+	border-bottom: 2pt solid #888888;
+}
+
+table.listing th {
+	border-bottom: 1pt solid #000000;
+}
+
+.errorField {
+	background: transparent;
+	color: #ff3300;
+}
+
+.inactive, .gray {
+	color: #888;
+}
+
+td, th {
+	background: transparent;
+	padding: 0;
+}
+
+.onePage {
+	page-break-after: always;
+}
+
+.truncItem {
+	width: 35em;
+}
+
+#itemTable input, .navbar, .commentBox, .navbarpics, #itemInfo, #marketStation, .noprint {
+	display: none;
+}
+
+.gt1 {
+	border: 0.5pt dotted #888;
+}
+
+#itemTable {
+	max-height: 100%;
+}
+
+.truncItemList, .truncShoppingList {
+	width: auto;
+}
+
+#shoppingListCol {
+	page-break-before: always;
+}

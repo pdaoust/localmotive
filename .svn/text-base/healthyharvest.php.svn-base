@@ -1,0 +1,108 @@
+<?php
+$pageTitle = 'Localmotive - Healthy Harvest Box';
+$pageArea = 'healthyharvest';
+$pageSubArea = 'healthyharvest';
+include ('header.tpl.php');
+//include ('healthyharvest_navbar.inc.php');
+require_once ('market/classes/base.inc.php');
+
+?>
+
+<script type="text/javascript" language="JavaScript">
+function expandLoc (locID) {
+	thisLoc = document.getElementById('loc' + locID);
+	thisLocToggle = document.getElementById('showHide' + locID);
+	if (thisLoc.style.display == 'none') {
+		thisLoc.style.display = 'block';
+		thisLocToggle.innerHTML = 'hide';
+	} else {
+		thisLoc.style.display = 'none';
+		thisLocToggle.innerHTML = 'show';
+	}
+}
+</script>
+
+<div class="intro">
+	<h2>Healthy Harvest Box</h2>
+	<p>Designed to support local farmers and make fresh eating affordable for consumers, the Healthy Harvest Box is a 'surprise bin' of seasonal mixed produce, packaged in your community and sold at wholesale prices. Early in the year, we plan with farmers for a pre-determined amount of produce for a set number of bins. In this way, farmers are able to sell everything they have planted, for a fair price. Customers sign up for a weekly, biweekly, or monthly bin, and pay a low markup for their commitment to the box programme.</p>
+	<p class="notice">The Healthy Harvest Box programme is closed as of Oct 16th, 2009 and will resume in 2010. Customers can still sign-up for the programme online; however, the accounts will not be activated until 2010. Please send us an email with any questions: <a href="mailto:&#102;&#101;e&#100;&#109;&#101;&#64;&#108;&#111;&#99;&#97;&#108;&#109;ot&#105;&#118;&#101;&#46;&#99;&#97;">&#102;&#101;&#101;&#100;&#109;&#101;&#64;&#108;&#111;&#99;&#97;&#108;&#109;&#111;&#116;&#105;&#118;e&#46;c&#97;</a>. Thank you for your support this year!</p>
+</div>
+<div style="text-align: center; margin: 0;">
+	<a href="market/signup.php?svcID=2"><img src="img/sign_up.jpg" alt="Sign up!" style="width: 110px; height: 120px; vertical-align: middle;"/></a>
+	<!-- <a href="market/marketTour.php?service=farmersMarket" target="_blank"><img src="img/market_tour.jpg" alt="Market tour" style="width: 140px; height: 160px; vertical-align: middle;"/></a> -->
+	<a href="market/"><img src="img/place_order.jpg" alt="Place an order" style="width: 110px; height: 120px; vertical-align: middle;"/></a>
+</div>
+<p>Boxes come with great recipe ideas to make seasonal eating more delicious. You can also order additional local food items online to add to your bin. Bins are picked up from your designated community Healthy Harvest Box <a href="#locations">pick-up spot</a> or are delivered to workplaces or buying groups who order multiple bins. Payment is made one week in advance, by cash or cheque in person or online.</p>
+<h2>Save money!<img src="img/gourds.jpg" class="alignright" alt="gourds"/></h2>
+<p>By dealing directly with farmers, we get the best price possible for locally grown and produced foods. Purchase in bulk at wholesale prices, and benefit from savings on fuel that would normally be incurred traveling to different farms.</p>
+<h2><img src="img/potatoes.jpg" class="alignleft" style="position: relative;" alt="potatoes"/>Save time!</h2>
+<p>Shop for your local foods in minutes at our web-based market! Choose items from a variety of growers within the South Okanagan and Similkameen region, and have them delivered to your local dept or workplace. Ordering and payment online takes only minutes out of your busy schedule.</p>
+<h2>Save the environment!</h2>
+<p>In this day and age, the average meal travels over 2500 km to your plate. Our selection of products comes from the Okanagan and Similkameen valleys. Combined with our efficient delivery system, we ensure that your food choices require as little CO<sub>2</sub> as possible.<img src="img/farmer.jpg" class="alignright" style="position: relative; left: 10px;" alt="farmer"/></p>
+<h2>Save our farmers!</h2>
+<p>Farmers in the Okanagan and BC are competing against unprecedented conditions: global trade, increasing land prices, and increased food regulations. As a result, many farmers are in massive debt and going out of business, and there is a significant lack of new farmers taking on this trade. By supporting these growers and producers, Localmotive strives to create a niche for more local products and hope for the future farming generation.</p>
+
+<h2><a name="locations"></a>Community locations for pickup and payment</h2>
+<?php
+$root = new Person (2);
+$depots = $root->getChildren('groupName', false, array ('personType' => P_DEPOT));
+$cities = array ();
+foreach ($depots as $thisDepot) {
+	if (!($thisDepot->personType & P_PRIVATE)) {
+		$k = $thisDepot->personID;
+		$ships = $thisDepot->getAddresses(AD_SHIP);
+		$firstAddy = current($ships);
+		if (!isset($cities[$firstAddy->city])) $cities[$firstAddy->city] = array ();
+		$cities[$firstAddy->city][$k] = $thisDepot;
+	}
+}
+
+$already = array ();
+foreach ($cities as $city => $depots) {
+	echo '<h3>' . $city . '</h3>';
+	foreach ($depots as $thisDepot) {
+		$boths = $thisDepot->getAddresses(AD_SHIP + AD_PAY, true);
+		$ships = $thisDepot->getAddresses(AD_SHIP);
+		$pays = $thisDepot->getAddresses(AD_PAY);
+		echo "<div class=\"locDetails\">\n";
+		echo "<h4>" . $thisDepot->contactName . ($thisDepot->groupName ? ', ' . $thisDepot->groupName : null) . "</h4>\n";
+		echo "\t<address>";
+		if ($thisDepot->email) echo "\tE-mail: " . munge($thisDepot->email) . "<br/>\n";
+		echo "\t</address>\n";
+		if ($thisDepot->phone) echo "\tPhone: " . $thisDepot->phone . "</address>\n";
+		if (count($boths)) {
+			echo "\t<h5>Pickup &amp; payment spot" . (count($ships) > 1 ? 's' : null) . "</h5>\n";
+			echo "\t<ul>\n";
+			foreach ($boths as $thisAddy) {
+				echo "\t\t<li><em>" . $thisAddy->careOf . '</em>, ' . $thisAddy->address1 . ($thisAddy->address2 ? ', ' . $thisAddy->address2 : null) . "</li>\n";
+				if (isset($ships[$thisAddy->addressID])) unset($ships[$thisAddy->addressID]);
+				if (isset($pays[$thisAddy->addressID])) unset($pays[$thisAddy->addressID]);
+			}
+			echo "\t</ul>\n";
+		}
+		if (count($ships)) {
+			echo "\t<h5>Pickup spot" . (count($ships) > 1 ? 's' : null) . "</h5>\n";
+			echo "\t<ul>\n";
+			foreach ($ships as $thisAddy) {
+				echo "\t\t<li><em>" . $thisAddy->careOf . '</em>, ' . $thisAddy->address1 . ($thisAddy->address2 ? ', ' . $thisAddy->address2 : null) . "</li>\n";
+				if (isset($pays[$thisAddy->addressID])) unset($pays[$thisAddy->addressID]);
+			}
+			echo "\t</ul>\n";
+		}
+		if (count($pays)) {
+			echo "\t<h5>Payment spot" . (count($pays) > 1 ? 's' : null) . "</h5>\n";
+			echo "\t<ul>\n";
+			foreach ($pays as $thisAddy) {
+				echo "\t\t<li><em>" . $thisAddy->careOf . '</em>, ' . $thisAddy->address1 . ($thisAddy->address2 ? ', ' . $thisAddy->address2 : null) . "</li>\n";
+			}
+			echo "\t</ul>\n";
+		}
+		echo "</div>\n";
+	}
+}
+
+?>
+<h2><img src="img/pears.jpg" class="alignleft" style="position: relative; left: -10px;" alt="pears"/>Volunteer opportunities</h2>
+<p>We are always looking for volunteers in the community to help us package bins, or do other co-ordination work.  Please contact the coordinator for your area if you are interested.</p>
+
+<?php include ('footer.tpl.php'); ?>

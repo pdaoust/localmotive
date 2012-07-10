@@ -1,0 +1,8 @@
+<?php
+$pageTitle = 'Localmotive - Healthy Harvest - Why Organic?';
+$pageArea = 'healthyharvest';
+$pageSubArea = 'why_organic';
+include ('header.tpl.php');
+include ('healthyharvest_navbar.inc.php');
+include ('why_organic.inc.php');
+include ('footer.tpl.php'); ?>

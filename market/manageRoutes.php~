@@ -1,0 +1,332 @@
+<?php
+
+require_once ('marketInit.inc.php');
+
+require_once ($path . '/market/classes/route.inc.php');
+require_once ($path . '/market/classes/deliveryDay.inc.php');
+require_once ($path . '/market/classes/order.inc.php');
+require_once ($path . '/market/classes/item.inc.php');
+require_once ($path . '/market/classes/orderItem.inc.php');
+require_once ($path . '/market/classes/price.inc.php');
+
+if (isset($_REQUEST['ajax'])) $ajax = true;
+else $ajax = false;
+
+if (!$user = tryLogin()) die ();
+if ($user->personID != 1) {
+	if ($ajax) {
+		echo '0';
+	} else {
+		require_once ($path . '/header.tpl.php');
+		$loginError = 'This area is restricted to administrators. Please enter the correct administrator login info below.';
+		require_once ($path . '/market/templates/login.tpl.php');
+		require_once ($path . '/footer.tpl.php');
+	}
+	die ();
+}
+
+$pageTitle = 'Localmotive - Manage people';
+$verifyPersonFields = false;
+$errorPersonFields = array ();
+$verifyRouteFields = false;
+$errorGroupFields = array ();
+$verifyRouteFields = false;
+$errorRouteFields = array ();
+
+if (isset($_REQUEST['action'])) {
+	switch ($_REQUEST['action']) {
+		case 'loadDeliveryDay':
+			if (isset($_REQUEST['deliveryDayID'])) {
+				$deliveryDay = new DeliveryDay ((int) $_REQUEST['deliveryDayID']);
+				if (!$deliveryDay->deliveryDayID) echo '0';
+				else {
+					echo $deliveryDay->deliveryDayID . "\n";
+					echo $deliveryDay->label . "\n";
+					echo $deliveryDay->cutoffDay . "\n";
+					echo (int) $deliveryDay->active;
+				}
+			} else echo '0';
+			die ();
+			break;
+		case 'editDeliveryDay':
+			if (isset($_REQUEST['deliveryDayID'])) {
+				$new = false;
+				if ($db->query('SELECT deliveryDayID FROM deliveryDay WHERE deliveryDayID = ' . (int) $_REQUEST['deliveryDayID'])) {
+					if (!$db->getRow()) $new = true;
+				}
+				$deliveryDay = new DeliveryDay ((int) $_REQUEST['deliveryDayID']);
+				$deliveryDay->label = $_REQUEST['label'];
+				$deliveryDay->active = ((int) $_REQUEST['active'] ? true : false);
+				$deliveryDay->cutoffDay = (int) $_REQUEST['cutoffDay'];
+				if (!$deliveryDay->save()) {
+					if ($ajax) {
+						if ($deliveryDay->getError() == E_INVALID_DATA) echo "-1\n";
+						else echo "0\n";
+					}
+				} else if ($ajax) {
+					if ($new) {
+						echo "2\n";
+						die ();
+					}
+					else echo "1\n";
+				}
+				if ($ajax) {
+					echo $deliveryDay->deliveryDayID . "\n";
+					echo $deliveryDay->label . "\n";
+					echo $deliveryDay->cutoffDay . "\n";
+					echo (int) $deliveryDay->active;
+					if ($deliveryDay->getError() == E_INVALID_DATA) echo "\n" . implode(':', $deliveryDay->getErrorDetail());
+					die ();
+				}
+			} else if ($ajax) {
+				echo '0';
+				die ();
+			}
+			break;
+		case 'deleteDeliveryDay':
+			if (isset($_REQUEST['deliveryDayID'])) {
+				$deliveryDay = new DeliveryDay ((int) $_REQUEST['deliveryDayID']);
+				$deliveryDay->delete();
+			}
+			break;
+		case 'loadRoute':
+			if (isset($_REQUEST['routeID'])) {
+				$route = new Route ((int) $_REQUEST['routeID']);
+				if (!$route->routeID) echo '0';
+				else {
+					echo $route->routeID . "\n";
+					echo $route->label . "\n";
+					echo (int) $route->active;
+				}
+			} else echo '0';
+			die ();
+			break;
+		case 'editRoute':
+			if (isset($_REQUEST['routeID'])) {
+				$editRoute = new Route ((int) $_REQUEST['routeID']);
+				$editRoute->label = $_REQUEST['label'];
+				$editRoute->active = ($_REQUEST['active'] ? true : false);
+				if (!$editRoute->save()) {
+					if ($ajax) {
+						if ($editRoute->getError() == E_INVALID_DATA) echo "-1\n";
+						else echo "0\n";
+					}
+				} else if ($ajax) {
+					if (!(int) $_REQUEST['routeID']) {
+						echo "2\n";
+						die ();
+					}
+					else echo "1\n";
+				}
+				if ($ajax) {
+					echo $editRoute->routeID . "\n";
+					echo $editRoute->label . "\n";
+					echo (int) $editRoute->active;
+					if ($editRoute->getError() == E_INVALID_DATA) echo "\n" . implode(':', $editRoute->getErrorDetail());
+					die ();
+				}
+			} else if ($ajax) {
+				echo '0';
+				die ();
+			}
+			break;
+		case 'deleteRoute':
+			if (isset($_REQUEST['routeID'])) {
+				$editRoute = new Route ((int) $_REQUEST['routeID']);
+				$editRoute->delete();
+			}
+			break;
+		case 'addDeliveryDay':
+		case 'addRoute':
+			if (isset($_REQUEST['routeID'])) {
+				if ((int) $_REQUEST['routeID'] && (int) $_REQUEST['deliveryDayID']) {
+					$route = new Route ((int) $_REQUEST['routeID']);
+					if ($route->addRouteDay((int) $_REQUEST['deliveryDayID'])) {
+						if ($ajax) {
+							echo $_REQUEST['deliveryDayID'] . "\n";
+							echo $route->routeID . "\n";
+							echo $route->label . "\n";
+							echo $route->routeDays[(int) $_REQUEST['deliveryDayID']]->getLastSlot();
+							die ();
+						}
+					} else if ($ajax) {
+						echo '0';
+						die ();
+					}
+				}
+			}
+			break;
+		case 'removeRoute':
+			if (isset($_REQUEST['routeID'])) {
+				if ((int) $_REQUEST['routeID'] && (int) $_REQUEST['deliveryDayID']) {
+					$route = new Route ((int) $_REQUEST['routeID']);
+					$route->deleteRouteDay((int) $_REQUEST['deliveryDayID']);
+					if ($ajax) {
+						echo (int) $_REQUEST['deliveryDayID'] . "\n";
+						echo (int) $_REQUEST['routeID'] . "\n";
+						echo $route->label;
+						die ();
+					}
+				}
+			}
+			break;
+		case 'moveRoute':
+			if (isset($_REQUEST['routeID']) && isset($_REQUEST['deliveryDayID'])) {
+				$route = new Route ((int) $_REQUEST['routeID']);
+				if ($routeDay = $route->routeDays[(int) $_REQUEST['deliveryDayID']]) {
+					switch ($_REQUEST['direction']) {
+						case 'up':
+							if ($routeDay->moveUp()) {
+								if ($ajax) {
+									echo 'deliveryDayID:' . $routeDay->deliveryDayID . "\n";
+									echo 'routeID:' . $routeDay->routeID . "\n";
+									echo "direction:-1\n";
+									echo 'deliverySlot:' . $routeDay->getDeliverySlot() . "\n";
+									echo 'lastSlot:' . $routeDay->getLastSlot();
+									die ();
+								}
+							} else if ($ajax) {
+									echo '0';
+									die ();
+							}
+							break;
+						case 'down':
+							if ($routeDay->moveDown()) {
+								if ($ajax) {
+									echo 'deliveryDayID:' . $routeDay->deliveryDayID . "\n";
+									echo 'routeID:' . $routeDay->routeID . "\n";
+									echo "direction:1\n";
+									echo 'deliverySlot:' . $routeDay->getDeliverySlot() . "\n";
+									echo 'lastSlot:' . $routeDay->getLastSlot();
+									die ();
+								}
+							} else if ($ajax) {
+									echo '0';
+									die ();
+							}
+					}
+				} else if ($ajax) {
+					echo '0';
+					die ();
+				}
+			}
+			break;
+		case 'setRoute':
+			if (isset($_REQUEST['personID'])) {
+				if ((int) $_REQUEST['personID'] && (int) $_REQUEST['routeID']) {
+					$person = new Person ((int) $_REQUEST['personID']);
+					$oldRouteID = $person->getRouteID();
+					if ($person->setRoute((int) $_REQUEST['routeID'])) {
+						if ($ajax) {
+							echo $person->personID . "\n";
+							echo $person->getRouteID() . "\n";
+							echo (int) $oldRouteID . "\n";
+							die ();
+						}
+					} else if ($ajax) {
+						echo '0';
+						die ();
+					}
+				} else if ($ajax) {
+					echo '0';
+					die ();
+				}
+			}
+			break;
+		case 'removePerson':
+			if (isset($_REQUEST['personID'])) {
+				if ((int) $_REQUEST['personID']) {
+					$person = new Person ((int) $_REQUEST['personID']);
+					$oldRouteID = $person->getRouteID();
+					$person->setRoute(0);
+					if ($ajax) {
+						echo $person->personID . "\n";
+						echo "0\n";
+						echo (int) $oldRouteID;
+						die ();
+					}
+				}
+			}
+			break;
+		case 'movePerson':
+			if (isset($_REQUEST['personID'])) {
+				$person = new Person ((int) $_REQUEST['personID']);
+					switch ($_REQUEST['direction']) {
+						case 'up':
+							if ($person->moveUp()) {
+								if ($ajax) {
+									echo 'personID:' . $person->personID . "\n";
+									echo "direction:-1\n";
+									echo 'deliverySlot:' . $person->getDeliverySlot() . "\n";
+									echo 'lastSlot:' . $person->getLastSlot() . "\n";
+									echo 'routeID:' . $person->getRouteID();
+									die ();
+								}
+							} else if ($ajax) {
+									echo '0';
+									die ();
+							}
+							break;
+						case 'down':
+							if ($person->moveDown()) {
+								if ($ajax) {
+									echo 'personID:' . $person->personID . "\n";
+									echo "direction:1\n";
+									echo 'deliverySlot:' . $person->getDeliverySlot() . "\n";
+									echo 'lastSlot:' . $person->getLastSlot() . "\n";
+									echo 'routeID:' . $person->getRouteID();
+									die ();
+								}
+							} else if ($ajax) {
+									echo '0';
+									die ();
+							}
+					}
+				$person->save();
+			}
+	}
+	redirectThisPage('manageRoutes.php' . ($viewBy ? '?viewBy=' . $viewBy : ''));
+}
+
+$routes = array ();
+
+if (!$db->query('SELECT * FROM deliveryDay ORDER BY deliveryDayID')) {
+	databaseError($db);
+	die ();
+}
+$deliveryDays = array ();
+while ($thisDeliveryDayData = $db->getRow()) {
+	$thisDeliveryDay = new DeliveryDay ($thisDeliveryDayData);
+	$deliveryDays[$thisDeliveryDay->deliveryDayID] = $thisDeliveryDay;
+}
+
+if (!$db->query('SELECT * FROM routeDay')) {
+	databaseError($db);
+	die ();
+}
+$routeDays = array ();
+while ($thisRouteDayData = $db->getRow()) {
+	$thisRouteDay = new RouteDay ($thisRouteDayData);
+	if (!isset($routeDays[$thisRouteDay->routeID])) $routeDays[$thisRouteDay->routeID] = array ();
+	$routeDays[$thisRouteDay->routeID][$thisRouteDay->deliveryDayID] = $thisRouteDay;
+}
+if (!$db->query('SELECT * FROM route ORDER BY label')) {
+	databaseError($db);
+	die ();
+}
+while ($thisRouteData = $db->getRow()) {
+	if (isset($routeDays[$thisRouteData['routeID']])) $thisRouteData['routeDays'] = $routeDays[$thisRouteData['routeID']];
+	$thisRoute = new Route ($thisRouteData);
+	$routes[$thisRouteData['routeID']] = $thisRoute;
+}
+$routes[0] = new Route (null);
+$people = array ();
+foreach ($routes as $thisRoute) {
+	$people[$thisRoute->routeID] = $thisRoute->getPeople();
+}
+
+include ($path . '/header.tpl.php');
+include ($path . '/market/templates/manageRoutes.tpl.php');
+include ($path . '/footer.tpl.php');
+
+?>

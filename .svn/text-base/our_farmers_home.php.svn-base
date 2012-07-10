@@ -1,0 +1,8 @@
+<?php
+$pageTitle = 'Localmotive - Home Delivery - Our Farmers';
+$pageArea = 'home_delivery';
+$pageSubArea = 'our_farmers';
+include ('header.tpl.php');
+include ('home_delivery_navbar.inc.php');
+include ('our_farmers.inc.php');
+include ('footer.tpl.php'); ?>

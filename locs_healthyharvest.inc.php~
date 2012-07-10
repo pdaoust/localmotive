@@ -1,0 +1,40 @@
+<?php
+function showLocs ($locations, $hide = true) {
+	foreach ($locations as $i => $thisLoc) {
+		echo '<h3>' . ($hide ? '<a href="javascript:expandLoc(' . $i . ')">' : null) . $thisLoc['town'] . " (<span id=\"showHide" . $i . '">show</span> details)' . ($hide ? '</a>' : null) . "</h3>\n";
+		echo '<div id="loc' . $i . '" class="locDetails"' . ($hide ? ' style="display: none;"' : null) . ">\n";
+		if (isset($thisLoc['payment'])) {
+			echo "\t<h4>Payment spot" . (count($thisLoc['payment']) > 1 ? 's' : null) . "</h4>\n";
+			echo "\t<ul>\n";
+			foreach ($thisLoc['payment'] as $thisPmt) {
+				echo "\t\t<li><em>" . $thisPmt['name'] . '</em>, ' . $thisPmt['addy'] . "</li>\n";
+			}
+			echo "\t</ul>\n";
+		}
+		if (isset($thisLoc['pickup'])) {
+			echo "\t<h4>Pickup spot" . (count($thisLoc['pickup']) > 1 ? 's' : null) . "</h4>\n";
+			echo "\t<ul>\n";
+			foreach ($thisLoc['pickup'] as $thisPU) {
+				echo "\t\t<li><em>" . $thisPU['name'] . '</em>, ' . $thisPU['addy'] . "</li>\n";
+			}
+			echo "\t</ul>\n";
+		}
+		if (isset($thisLoc['dates'])) {
+			echo "\t<h4>Dates</h4>\n";
+			echo "\t<table class=\"listing\">\n";
+			echo "\t\t<tr class=\"odd\"><th class=\"odd\">Payment</th><th class=\"even\">Pickup</th></tr>\n";
+			$j = 0;
+			foreach ($thisLoc['dates'] as $thisDate) {
+				echo "\t\t<tr class=\"" . ($j % 2 ? 'odd' : 'even') . '"><td class="odd">' . $thisDate['payment'] . '</td><td class="even">' . $thisDate['pickup'] . "</td></tr>\n";
+				$j ++;
+			}
+			echo "\t</table>\n";
+		}
+		echo "\t<h4>Contact</h4>\n";
+		echo "\t<address><strong>" . $thisLoc['contact'] . "</strong><br/>\n";
+		if ($thisLoc['email']) echo "\tE-mail: " . munge($thisLoc['email']) . "<br/>\n";
+		if ($thisLoc['phone']) echo "\tPhone: " . $thisLoc['phone'] . "</address>\n"; 
+		echo "</div>\n";
+	}
+}
+?>

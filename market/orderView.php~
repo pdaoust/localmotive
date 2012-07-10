@@ -1,0 +1,73 @@
+<?php
+
+require_once ('marketInit.inc.php');
+require_once ($path . '/market/classes/order.inc.php');
+require_once ($path . '/market/classes/item.inc.php');
+require_once ($path . '/market/classes/orderItem.inc.php');
+require_once ($path . '/market/classes/price.inc.php');
+require_once ($path . '/market/classes/journalEntry.inc.php');
+require_once ($path . '/market/classes/route.inc.php');
+require_once ($path . '/market/classes/deliveryDay.inc.php');
+
+if (!$user = tryLogin()) die ();
+
+$style = (isset($_REQUEST['style']) ? ($_REQUEST['style'] == 'dialogue' ? 'dialogue' : 'normal') : 'normal');
+$template = ($style == 'dialogue' ? '_d' : null);
+
+if (isset($_REQUEST['orderID'])) {
+	$order = new Order ((int) $_REQUEST['orderID']);
+	if (!$order->orderID) {
+		include ($path . '/header' . $template . '.tpl.php');
+		$error = 'No such order!';
+		$errorDetail = 'There is no order #' . (int) $_REQUEST['orderID'] . ' in the database.';
+		include ($path . '/market/templates/error.tpl.php');
+		include ($path . '/footer' . $template . '.tpl.php');
+		die ();
+	}
+	$customer = $order->getPerson();
+	if (!$customer->isIn($user)) {
+		include ($path . '/header' . $template . '.tpl.php');
+		$error = 'Access denied!';
+		$errorDetail = 'You do not have access to this person\'s account details.';
+		include ($path . '/market/templates/error.tpl.php');
+		include ($path . '/footer' . $template . '.tpl.php');
+		die ();
+	}
+	if (isset($_REQUEST['action']) && $user->personID == 1) {
+		switch ($_REQUEST['action']) {
+			case 'cancel':
+				if (!$order->getDateDelivered()) {
+					if ($order->getDateCompleted()) {
+						$order->delete();
+						include ($path . '/market/templates/close.tpl.php');
+						die ();
+					} else $order->cancel();
+				}
+				break;
+			case 'confirm':
+				if (!$order->getDateCompleted() && $order->getDateToDeliver()) $order->complete();
+				break;
+			case 'defer':
+				$nextDeliveryDay = $order->getNextDeliveryDay();
+				if ($order->getDateToDeliver() && $order->getDateToDeliver() < $nextDeliveryDay) {
+					$order->setDateToDeliver($nextDeliveryDay);
+					$order->save();
+				}
+				break;
+			case 'deliver':
+				if ($order->getDateCompleted() && !$order->getDateDelivered()) {
+					$logger->addEntry('delivering');
+					$order->deliver();
+				}
+		}
+	}
+	$pageTitle = 'Order #' . $order->orderID . ' for ' . $customer->contactName;
+	$showBlankFields = false;
+	include ($path . '/header' . $template . '.tpl.php');
+	if ($user->personID == 1) include ($path . '/market/templates/orderTools.tpl.php');
+	include ($path . '/market/templates/invoice.tpl.php');
+	include ($path . '/footer' . $template . '.tpl.php');
+	die ();
+}
+
+?>

@@ -1,0 +1,74 @@
+<head>
+	<title>LocalMotive</title>
+
+	<link rel="stylesheet" type="text/css" href="_lib/localmotiv.css" media="all" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function checkframes() {
+	//if (self.name == "") parent.location = "index.php?menuitem=home";
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+BODY {
+	background-repeat: repeat-y;
+	background-color: #85C660;
+	background-position: center;
+	}
+-->
+</style>
+</head>
+
+<body onLoad="checkframes()">
+<table width="600" border="0" align="center">
+  <tr>
+    <td><span class="titlefont"> Instructions      </span><br />      <br />
+      <span class="subtitlefont">The Market Station and Your Shopping List:<br>
+      </span> <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To order from our Produce Station, click the box beside the
+      desired items in the list on the right, and then click on the &quot;add to
+      list&quot;. These items are added to your shopping list. If a box is
+      inactive and the writing faded, it means that the item is temporarily
+      out of stock.<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Continue shopping at the Market by clicking on the graphic of
+      the different market sections, either Dairy, Meats, Bulk, Baked or
+      Extras. Check items as desired until your order is <strong>$25 or more</strong>.<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When your shopping is complete go to the bottom of the page
+      and click the Submit button to finalize the transaction. (Please try to
+      avoid clicking this button numerous times as it affects our ordering
+      system). A summary of your order is then stated with the total price,
+      and confirmation email will be sent to you to as a final indicator that
+      the order was received. A similar receipt will be placed in your bin
+      when you receive your order. If you have ordered an item that we
+      cannot supply, we will circle this item on your receipt, and calculate
+      the credit for the missing items.<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Credit is given towards your next purchase for any items
+      that are not to your satisfaction</strong>, so notify us if you are unsatisfied
+      and we will add credit to your next purchase using our <strong>Online
+      Accounting system</strong>. We add any credit to your account on Fridays,
+      and this amount will be automatically deducted from the total of your
+      next order.<br>
+      <br>      <br>    </td>
+  </tr>
+</table>
+<div id="container">
+
+  
+  <div id="content">
+	
+		<div align="center">          </div>
+  </div> 
+	<div align="center">
+	  <!-- end content -->
+	  
+
+  
+  </div>
+</div> 
+<div align="center">
+  <!-- end container -->
+</div>
+</body>

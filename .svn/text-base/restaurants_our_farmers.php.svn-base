@@ -1,0 +1,8 @@
+<?php
+$pageTitle = 'Localmotive - Restaurants - Our Farmers';
+$pageArea = 'restaurants';
+$pageSubArea = 'our_farmers';
+include ('header.tpl.php');
+include ('restaurants_navbar.inc.php');
+include ('our_farmers.inc.php');
+include ('footer.tpl.php'); ?>

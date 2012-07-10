@@ -1,0 +1,8 @@
+<?php
+$pageTitle = 'Localmotive - Restaurants - Why Organic?';
+$pageArea = 'restaurants';
+$pageSubArea = 'why_organic';
+include ('header.tpl.php');
+include ('restaurants_navbar.inc.php');
+include ('why_organic.inc.php');
+include ('footer.tpl.php'); ?>

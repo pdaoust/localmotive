@@ -1,0 +1,21 @@
+body {
+	background: url('img/bg.jpg');
+	margin: 20px;
+	text-align: left;
+}
+
+.onePage {
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 1px solid #917C6F;
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+dl.orderDetails { margin-top: 1em; }
+
+dl.orderDetails dt { width: 10em; }
+
+.onePage *:first-child { margin-top: 0; }

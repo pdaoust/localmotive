@@ -1,0 +1,63 @@
+<?php
+$pageTitle = 'Localmotive - Home Delivery - General Info';
+$pageArea = 'home_delivery';
+$pageSubArea = 'general_info';
+include ('header.tpl.php');
+include ('home_delivery_navbar.inc.php');
+?>
+
+
+<h2>General Info</h2>
+
+<h3>To become a customer and place your first order:</h3>
+<p>To become a customer, go to our <a href="market/signup.php">sign-up page</a> and fill out the required information. After you are signed up in our system, you will receive an email notifying you that you may place your first order. To order, come back to the <a href="home_delivery.php">Home Delivery</a> area, click on <a href="place_an_order.php">Place an Order</a>, enter your password (which you created when you signed up) and you will enter our online market. To view our market before you sign up, take a <a href="market.php" target="_blank">market tour</a>.</p>
+
+<h3>Your bin</h3>
+<p>Localmotive Organic Delivery is easy. Every week we offer a selection of produce, fruit, bulk goods, bakery, meats, dairy, beverages, and cleaning supplies, all displayed on our online market. Ordering is as simple as the click of your mouse on desired items, which are added to your online shopping list. The minimum order is $25 for custom and surprise orders, with free delivery to your home or office. We deliver to Summerland, Naramata, Penticton, OK Falls, Oliver, Osoyoos and all points in between.</p>
+
+<h3>Online ordering</h3>
+<h4>Ordering</h4>
+
+<p>Custom orders can be placed by Sunday evening for Tuesday and Wednesday deliveries. Orders placed by Wednesday evening will be delivered on Fridays.</p>
+
+<p>Orders are packed according to when they are received, so the sooner you can order, the more likely we can provide all of the items that you order. A new list of items is posted every Friday afternoon, and a reminder e-mail titled "Market is Ready" is sent out to help you remember to place your order.</p>
+
+<p>Once signed in, you are taken to the Online Market. The market is divided into several different sections, each with a list of products. Click on the picture of the section that you would like to see. Browse the list of products by scrolling down the list, and choose products by typing in your desired quantity and pressing the '+' button. Items selected are transferred over to your shopping list, and a total for your order is tallied up as you choose more items. Once you have successfully submitted your order, a receipt of the transaction is sent to your email address. Occasionally an order does not go through properly, and a good indication of this is when you do not receive a receipt to your email account. In this case, please contact us for further assistance.</p>
+
+<p>Surprise Orders are recurring orders that you set up to suit your regular dietary needs. Surprise orders can be mixed produce bin orders, starting at $25, containing a variety of fruits and vegetables at the best prices we can find. Or choose an assortment of baking or dairy that you like to have around consistently. These orders can be changed as you figure out your ideal surprise bin, by visiting the market and altering your surprise bin contents.</p>
+   
+<h4>Products</h4>
+<p>Because we would like to eventually only supply products from the Okanagan and BC, products are labeled according to where they come from; town names or abbreviations of provinces/states are used to do this. Also, we go to extreme lengths to have your items harvested or baked only one or two days before it arrives at your doorstep! That is the definition of fresh!</p>
+<p>All items are certified organic, unless otherwise indicated.</p>  
+<p>If you have ideas for products you would like to see us carry, please send us a note at the bottom of your order in the comments section.</p>
+
+<!--<h4>Recipes</h4>
+<p>Although we would like to give everyone a copy of our favorite recipe books, we know that you, the discerning customer, often have the most amazing formulas that have passed the taste test time and time again. As such we have added a <a href="recipes.php">Recipes</a> section at the top of the Market area. This area allows you to post your own recipes, and view those of other clients. We truly appreciate the need for more innovative ways to use and celebrate those seasonal veggies!</p>-->
+
+<h4>Cancelling or missing an order</h4>
+<p>If you would like to cancel your order for the week, you must notify us three days in advance of your scheduled delivery.  You may cancel two deliveries in a row, but we reserve the right to replace you with a member on our waiting list if you do not continue with your schedule of deliveries.</p>
+
+<h4>Credit</h4>
+<p>Credit is given towards your next purchase for any items that are not to your satisfaction, or that are out of stock. Notify us if you are unsatisfied and we will add credit to your next purchase using our online accounting system. We add any credit to your account three days following your delivery, and this amount will be automatically deducted from the total of your next order.</p>
+
+<h4>Payment</h4>
+<p>Total price for your order is indicated once you have clicked on the &quot;Submit Order&quot; button. Payment is made upon delivery of your bin. Localmotive accepts cash, cheques made out to Localmotive, or credit card. Pre-payment for multiple bins is easy with our online accounting system.</p> 
+<p>To pay by credit card, you may choose to do so once you have completed ordering. You are taken to a secure PayPal site, where you can set up an account, and payment is made directly through this account to Localmotive. You will be taken to PayPal to complete payments each time you order online. A 3% fee is added for credit card payments.</p>
+<!--<p>A $12 refundable deposit is required for your bin and cold packs, and this will be only added to the price of your first delivery. The day of your next delivery, set out your bin from the previous delivery, and we'll take it home to be cleaned and reused. We keep track of bins that are not placed out, and will charge an extra $12 to your account after 2 bins are not returned.</p>-->
+
+<h4>Composting</h4>
+<p>As we will be picking-up your box from the previous week, you may leave compost scraps in the bin for us to take away, helping to reduce the volume of garbage waste. We will accept compost that is no older than 6 days old, is not cooked, and contains no meat products. We provide a compost bucket with a lid for each new customer, and you can set out this bucket with your old bin on your delivery day. We will empty the bucket and leave it there for you.</p>
+<p>If we have not yet provided a bucket for you, please put your compost into a plastic bag without any holes or leaks in the bottom.</p>
+
+<h4>Recipes</h4>
+<!--<p>Once a month our newsletter, The Veggie Rap, comes with your bin. The Veggie Rap contains recipes, ideas, profiles on farmers, and community events, and is open for submissions!</p>-->
+<p>Every week, your invoice will have delicious recipes to give you some creative ideas for preparing your fruits and vegetables.</p>
+
+<h4>Membership fees</h4>
+<p>Membership fees for Localmotive Food Co-operative are $25 per family per year. This fee includes two rubbermaid bins. Each year we charge all co-op members the $25 fee.</p>  
+
+<h4>Bin reeplacement/cleaning fees</h4>
+<p>Bins that are returned with excessive dirtiness, smell or wear will be charged a bin replacement or cleaning fee of $7 per bin. We also keep track of the number of bins you have received, and will add a $7 per bin charge for unreturned bins.</p>
+
+<?php
+include ('footer.tpl.php'); ?>

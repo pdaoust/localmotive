@@ -1,0 +1,49 @@
+<?php
+$pageTitle = 'Localmotive - Home Delivery - Delivery Info';
+$pageArea = 'home_delivery';
+$pageSubArea = 'delivery_info';
+include ('header.tpl.php');
+include ('home_delivery_navbar.inc.php');
+?>
+
+<h2>Delivery info</h2>
+
+<p>Your address will determine what day your food box is delivered:</p>
+
+<ul>
+	<li><strong>Tuesday through Saturday:</strong> 
+		<ul>
+			<li>Penticton (all areas excluding East Side Rd, West Bench)</li>
+		</ul>
+	</li>
+	<li><strong>Tuesday and Friday:</strong>
+		<ul>
+			<li>Naramata</li>
+			<li>East Side Rd</li>
+		</ul>
+	</li>
+	<li><strong>Wednesday and Saturday:</strong>
+		<ul>
+			<li>Kaleden</li>
+			<li>West Bench</li>
+			<li>Trout Creek</li>
+			<li>Summerland</li>
+		</ul>
+	</li>
+	<li><strong>Thursday:</strong>
+		<ul>
+			<li>Okanagan Falls</li>
+			<li>Oliver</li>
+			<li>Osoyoos</li>
+		</ul>
+	</li>
+</ul>
+
+<p style="display: none;">We deliver as much as possible by bicycle!  Save the CO<sub>2</sub>, and support a healthy lifestyle for our delivery people!</li>
+
+<p>We deliver our food in a cooled, sealed container, so you don't even need to be home! Deliveries are made throughout the day, from 8 AM until 6 PM. In the event that you are not home when we deliver, please let us know where you would like us to leave your box, and leave your payment in your previous weeks bin. As we are often in a rush, please try to have your bin clean and ready for the delivery people, outside your door on the morning of your delivery.</p>
+
+<p>Please leave out a cooler if you are receiving dairy or meat in your order. If necessary, we can supply you with a mist wand to cool your bin until you return home in the afternoon. The wand, which can be set up with a garden hose, cools the immediate area around the bin, keeping the contents extra cool! Wands are $22 extra.</p>
+
+<?php
+include ('footer.tpl.php'); ?>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+<Document>
+  <name>Localmotive delivery routes</name>
+  <description><![CDATA[]]></description>
+  <NetworkLink>
+    <Url>
+      <name>Localmotive delivery routes</name>
+      <href>http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;oe=UTF8&amp;msa=0&amp;msid=102658992648557619036.00044b803c374ab0bd4fe&amp;output=kml</href>
+    </Url>
+  </NetworkLink>
+</Document>
+</kml>

@@ -1,0 +1,23 @@
+<?php
+
+require_once ('navbar.inc.php');
+
+// Each item in the array has a sub-area ID, a plain-english label, a link href, a boolean that says whether to open in a new window, and a boolean indicating whether it should stand out
+$subnavbarItems = array (
+	array ('healthyharvest', 'Healthy Harvest', 'healthyharvest.php', false, false),
+	array ('our_farmers', 'Our Farmers', 'healthyharvest_our_farmers.php', false, false),
+	array ('our_food', 'Our Food', 'healthyharvest_our_food.php', false, false),
+	array ('why_organic', 'Why Organic?', 'healthyharvest_why_organic.php', false, false)
+);
+
+generateNavbar ($subnavbarItems, 'subnavbar', $pageSubArea, ($pageSubArea == 'healthyharvest') ? NAVBAR_HORIZONTAL : NAVBAR_VERTICAL);
+
+if ($pageSubArea != 'healthyharvest') {
+	$marketNavbarItems = array (
+		array ('new_customer', 'Sign Up!', 'market/signup.php?pageArea=healthyharvest', false, true),
+		array ('place_an_order', 'Place an Order', 'market/index.php?pageArea=healthyharvest', false, true),
+		array ('market_tour', 'Market Tour', 'market/marketTour.php?pageArea=healthyharvest', true, true)
+	);
+	generateNavbar ($marketNavbarItems, 'subnavbar alignright', $pageSubArea, NAVBAR_VERTICAL);
+}
+?>

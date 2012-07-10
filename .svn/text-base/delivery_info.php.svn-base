@@ -1,0 +1,35 @@
+<?php
+$pageTitle = 'Localmotive - Home Delivery - Delivery Info';
+$pageArea = 'home_delivery';
+$pageSubArea = 'delivery_info';
+include ('header.tpl.php');
+include ('home_delivery_navbar.inc.php');
+?>
+
+<h2>Delivery info</h2>
+
+<p>The market is updated with new products for Saturday morning. We deliver two times per week (Tuesdays and Fridays) for:</p>
+
+<ul>
+	<li>Penticton and West Bench</li>
+	<li>Summerland</li>
+	<li>Naramata</li>
+	<li>Kaleden</li>
+	<li>East Side Road</li>
+	<li>Okanagan Falls</li>
+</ul>
+
+<p>We deliver once a week (Wednesdays) for:</p>
+<ul>
+	<li>Oliver</li>
+	<li>Osoyoos</li>
+</ul>
+
+<p>We deliver our food in a cooled, sealed container, so you don't even need to be home! Deliveries are made throughout the day, from 2 PM until 8 PM. In the event that you are not home when we deliver, please let us know where you would like us to leave your box (preferably in a shady location). Please leave your payment in your previous week's bin, by cash or cheque made out to Localmotive.</p>
+
+<p>As we are often in a rush, please try to have your bin clean and payment ready for the delivery people, outside your door, on the morning of your delivery.</p>
+
+<p><strong>Please leave out a cooler with your own frozen cold packs if you are receiving dairy or meat in your order.</strong></p>
+
+<?php
+include ('footer.tpl.php'); ?>

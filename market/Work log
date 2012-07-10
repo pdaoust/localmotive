@@ -1,0 +1,156 @@
+add 'checkForeignKeys' argument to validate ()
+
+need some way to check if recurring order customers get enough!
+
+reorderQuantity and canOrderPastReorder -- what if quantity > 0 & quantity < reorderQuantity & !canOrderPastReorder? nothing can be done with that! how about if it's canOrderPastZero?
+
+create item->getQuantityAvailable()
+
+MONSDAY 10 DEC: order.inc.php line 301, route.inc.php getNextDeliveryDay(). changing all the code for that, using info@ogmatter.com's comment on http://ca.php.net/date. 1 week is 604800 seconds.
+
+add one-time referral discount
+
+TUESDAY 18 DEC: gave up trying to figure out why replicate and getNextDeliveryDay don't respect recurring order period
+
+FRIDAY 21 DEC: boy, do I feel good about manageInventory! A few notes for the new year:
+manageInventory.php
+add price management
+manageAccounts.php: put in all sorts of views: toggle view active/all, view outrecurring, undelivered orders, specific group/route, etc
+add promo table, with options for first-time discount, category discount
+take out ability to delete routes/groups -- actually, just enable things to be deleted if they're unassociated
+add a sort order for routes? change deliveryDay to a first-order item with a junction between multiple routes I think would work best. In that case, deliveryDay would have a maximum of seven rows.
+
+bugs for tree view:
+* when you expand a branch whose sub-branches were contracted, they get expanded, but expander doesn't change
+* corollary: sub-branches that were contracted should stay contracted on parent's expansion
+* could be remedied simply by storing an array of toggle states for the entire tree! yes!
+
+MONDAY 31 DEC: just finished changing deliveryDay functionality, should change/check managePeople.php et al to work with new
+
+Should turn person into a hierarchical thing.
+
+MONDAY, JAN 28:
+did most of hierarchical stuff for managePeople and manageInventory. Next: try to log into the market and start bug testing!
+
+TUESDAY, JAN 29:
+working well, so far, just have to move setParent() to after save, so it doesn't nudge things over before it should. Or perhaps start a transaction that encapsulates the entire 'editPerson' routine
+
+MON, FEB 4:
+should I put a maxOurecurring in the person table?
+Finally figured out a sort order hack for MPTT: create a sort field out of a concatenation of the path's column values, then sort by that. It's not a clean hack: a node JamesBrown in People would be on the same footing as a Brown child of a node James in People
+
+TUE, FEB 5
+fixed sorting problem; used ||| as a separator
+I HATE REGRESSIONS!!! adding a route to a delivery day screws up the deliverySlot. Hint: I don't think MAX(deliverySlot) is working.
+
+MON, FEB 11
+trying to figure out why it won't create orderItems. there's a "person::getProperty('routeID'): no objectID" which might be related; I don't know where it's getting called from.
+
+TUE, FEB 12
+more grief -- fixed yesterday's problem, but now i can't setRoute(). I forgot my notes on that at home. Once I've got that fixed, I can test out market.php, import and save people, etc. I also noeed to figure out why personType just doesn't work.
+
+MON AND TUE, FEB 25 AND 26
+Redid all the code for moving deliverySlots up and down; that works fine now. Repaired a lot of problems with the ordering code, esp recurring orders, prices, and delivery day calculations, but I fear that I might have to refactor the whole bloody thing.
+	Also, in manageAccounts.php, there's a transaction that doesn't close -- savePerson, with no personID. Furthermore, it tries to do it a zillion times.
+	
+MON, MAR 10
+fixed some bugs with manageAccounts.php (didn't fix bugs for orders; use fixed version of people for reference) and did activity.php -- next stop, activity.tpl.php and noactivity.tpl.php
+
+MON, MAR 17
+While trying to fix code for adding payments to orders, I decided to skip that affair entirely. It's still broken -- for some reason I'm getting two journal entries per delivery, rather than one -- but I'm not going to worry about it now. No, scratch that -- some journalEntry has something wrong with it. It's all fixed now.
+	Did the activity window (no controls for looking back past a month yet though). Doing a lot of refactoring in manageAccounts.php, to show routes, customers, or suppliers. It's a bloody mess right now.
+	
+TUE, MAR 18
+I need to figure out how to automatically adjust prices for discount once enough has been ordered. Match $price->unitPrice against $orderItem->price? no, check for discount!
+Order::getNextDeliveryDay() is returning the wrong date!
+
+WED, MAR 18
+Did almost all of the order form; PayPal payments aren't added in as payments because there's no way of verifying the payment yet. I figure that should be done manually anyway.
+A couple things I need to do before BUG TESTING AND DEPLOYMENT! Whoo!
+(1) make it so that the healthy harvest and home delivery sections have their own stylesheets applied
+(2) fix the issue with getNextDeliveryDay()
+(3) add a star consolidation routine
+(4) prepare delivery schedule -- print out driving list, invoices
+(5) fix editing forms for routes and deliveryDays. No -- refactor all the forms!
+
+TUE, MAR 25
+Finished:
+(1) stylesheets applied.
+(2) Almost done with getNextDeliveryDay(). I simplified Order::getNextDeliveryDay() vastly, shunting most of the work into Route::getNextDeliveryDay(). I still need to figure out precisely how I'm going to calculate start dates for recurring orders; probably the best policy will be to round off Order::dateStart to the beginning of the week, then count it from there. Then when a person is created, they should probably have their dateStart generated, rounded to a Sunday, based on their route's cutoffDay and whether it's enforced.
+(3) added star consolidation.
+(4) & (5) not yet.
+New stuff:
+* Market tour created as its own page, rather than using order.php, which proved too complicated.
+* Changed all dates to UNIX timestamps, which get converted back into MySQL datestamps when saved.
+can't think of anything else.
+
+WED, MAR 26
+(2) finished, I think -- needs testing first.
+I added some extra date and string sanitizing functions for MySQL, and cleaned up a whole host of thingies. I don't even know what I've done today!
+
+MON, MAR 31
+Apparently I made Order::getNextDeliveryDay() calculate the next delivery day based not on today's date but on the next delivery day, so you should be able to do it any time in the week, after the previous week's schedule is finished.
+Don't forget to remove 'Route' from the edit person form.
+(4) Started work on delivery schedule. Still need to make invoices pretty, cuz they look like ass right now. Also, try to get rid of headers and footers from invoices and credit sheets.
+
+TUE, MAR 32 (HA! April fool's!)
+(4) finished the bloody thing. No statements on invoices, but it shows a previous balance plus all activity on the current order, like the current system, but with the added detail of showing payments made.
+* Created Order::getOrderItemsInTree() which returns the item tree, but only with paths to items on the order.
+* created Order::getJournalEntries() which doesn't take any times; just gives all journal entries that pertain to an order.
+* Fiddled a bit with Person::getJournalEntries() and activity.php to make it work better. Still a glitch with daylight savings' time, though; it bumps you into the next day.
+TODO:
+* create order history page
+* link sign-up form to market
+* consider the option of printing off only today's delivery schedule
+* allow customers to edit their own info
+* allow customers to edit their recurring orders
+* put hierarchical poop into shopping list
+* have invoice printed and e-mailed for customers
+* add Localmotive contact info and logo to invoices
+
+MON AND TUE, APR 7 & 8
+AJAX-ified manageRoutes.php and manageRoutes.tpl.php. Gosh, this AJAX thing is easy! The DHTML part of it is not so easy though.
+
+MON, 14 APR
+changed a lot of constant names, so I can type them faster.
+created order history and order view.
+fixed a few bugs here and there.
+changed prepareDelivery to printSchedule, made it only work for the next delivery day
+did most of the switchover from 'complete' to 'checkout - complete'; just have to put warning and choice on order.tpl.php
+
+WED, 16 APR
+debugging todo: why did Aaron Grant's order have 0000-00-00 00:00:00 as a dateCompleted instead of null? Will this recur?
+TODO:
+* warnings for orders pushed back, with choice box
+
+TUE, 22 APR
+TO-DONE:
+* order history page
+* today's delivery schedule only
+* allow customers to edit info / recurring orders
+* hierarchical poop in shopping list
+* print and e-mail invoice
+
+WED, 23 APR
+TO-DONE:
+* list of ordered items
+TODO:
+* Currently items can be added to an already checked-out order, and even if the order isn't checked out again, it'll retain the same dateToDeliver without warning the customer. Maybe a 'checkedOut' field in OrderItem?
+* highlight items beyond the cutoffDay?
+
+MONDAY, 11 AUGUST
+* converted 'loadPerson' to JSON; need to do it to editPerson (perhaps by rolling up into separate function) and of course make changes to template JS
+* started work on 'manageOnePerson' -- want to do this: if leaf node, bring up form; if branch, go to managePeople.php with nodeID
+
+WED, 20 AUG
+work on createPerson.php
+
+FRI, 22 AUG
+checking for duplicate recurring orders no longer works!!!
+
+TUE, 26 AUG
+Okay, fixed the dupe recurring order thing, I think.
+TODO: add order tools buttons to each order in orderHistory.tpl.php; for 'confirm' and 'deliver', needs to check if $person is in $user. Also do a bit of AJAX funkiness to update automatically.
+
+TUE, 2 SEP
+left off wondering why I can't iterate through a tbody and erase all the prices that aren't pertinent to an item's edit form

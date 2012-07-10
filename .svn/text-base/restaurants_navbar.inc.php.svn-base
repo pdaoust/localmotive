@@ -1,0 +1,23 @@
+<?php
+
+require_once ('navbar.inc.php');
+
+// Each item in the array has a sub-area ID, a plain-english label, a link href, a boolean that says whether to open in a new window, and a boolean indicating whether it should stand out
+$subnavbarItems = array (
+	array ('restaurants', 'Restaurants', 'restaurants.php', false, false),
+	array ('our_farmers', 'Our Farmers', 'restaurants_our_farmers.php', false, false),
+	array ('our_food', 'Our Food', 'restaurants_our_food.php', false, false),
+	array ('why_organic', 'Why Organic?', 'restaurants_why_organic.php', false, false)
+);
+
+generateNavbar ($subnavbarItems, 'subnavbar', $pageSubArea, ($pageSubArea == 'restaurants') ? NAVBAR_HORIZONTAL : NAVBAR_VERTICAL);
+
+if ($pageSubArea != 'restaurants') {
+	$marketNavbarItems = array (
+		array ('new_customer', 'Sign Up!', 'restaurants_new_customer.php', false, true),
+		array ('place_an_order', 'Place an Order', 'restaurants_place_an_order.php', false, true),
+		array ('market_tour', 'Market Tour', 'restaurants_market.php', true, true)
+	);
+	generateNavbar ($marketNavbarItems, 'subnavbar alignright', $pageSubArea, NAVBAR_VERTICAL);
+}
+?>

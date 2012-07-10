@@ -1,0 +1,28 @@
+<div class="subnavbar">
+<?php
+
+// Each item in the array has a sub-area ID, a plain-english label, a link href, a boolean that says whether to open in a new window, and a boolean indicating whether it should stand out
+$subnavbarItems = array (
+	array ('packed_pantry', 'Packed Pantry', 'packed_pantry.php', false, true),
+	array ('canning_workshops', 'Canning', 'canning_workshops.php', false, true)
+);
+
+foreach ($subnavbarItems as $i => $thisItem) {
+	echo '<div class="navbaritem';
+	if ($thisItem[4]) { echo ' moreimportant'; }
+	if ($thisItem[0] == $pageSubArea) { echo ' highlight'; }
+	echo '">';
+	if ($thisItem[0] != $pageSubArea) {
+		echo '<a href="' . $thisItem[2] . '"';
+		if ($thisItem[3]) {
+			echo ' target="_blank"';
+		}
+		echo '>';
+	}
+	echo $thisItem[1];
+	if ($thisItem[0] != $pageSubArea) { echo '</a>'; }
+	echo '</div>';
+}
+	
+?>
+</div>

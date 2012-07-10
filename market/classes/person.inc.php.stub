@@ -1,0 +1,335 @@
+<?php
+
+// this is the hierarchical version of Person. Whee!
+
+$logger->addEntry('WSOD defining PersonMapper');
+
+class PersonMapper extends MarketPrototype {
+	private static $_tree;
+
+	public function validate () { return true; }
+
+	public static function getTree () {
+		if (!is_array(self::$_tree)) {
+			$root = new Person (1);
+			$this->_tree = $root->getTree();
+		}
+		return self::$_tree;
+	}
+
+	public static function getPeople ($people) {
+		if (!is_array($people)) {
+			$this->setError(E_INVALID_DATA, '$people must be an array of personIDs', 'PersonMapper::getPeople()');
+			return false;
+		}
+		foreach ($people as $k => $v) {
+			if (!(int) $v) unset($people[$k]);
+			else $people[$k] = (int) $v;
+		}
+		if (!$db->query('SELECT * FROM person WHERE personID IN (' . implode(',', $people) . ')')) {
+			$this->setError(E_DATABASE, 'couldnt get people', 'ItemMapper::getPeople()');
+			return false;
+		}
+		$people = array ();
+		while ($r = $db->getRow(F_RECORD)) {
+			$people[$r->v('personID')] = new Person ($r);
+		}
+		return $people;
+	}
+}
+
+$logger->addEntry('WSOD singletoning PersonMapper');
+
+$PersonMapper = new PersonMapper;
+
+$logger->addEntry('WSOD defining Person');
+
+
+class Person extends MarketTree {
+	public $personID;
+	public $dateCreated;
+	public $lastLogin;
+	public $active = true;
+	public $personType;
+	private $deliverySlot;
+	public $contactName;
+	public $groupName;
+	public $email;
+	private $password;
+	public $privateKey;
+	public $addresses = array ();
+	public $phone;
+	private $routeID;
+	public $customCancelsRecurring;
+	public $canCustomOrder;
+	public $payTypeIDs;
+	public $payTypeID;
+	public $compost = false;
+	public $minOrder;
+	public $minOrderDeliver;
+	public $bulkDiscount;
+	public $bulkDiscountQuantity;
+	public $shipping;
+	public $shippingType;
+	public $maxStars;
+	public $deposit;
+	public $credit;
+	// public $balance = 0;
+	public $stars = 0;
+	public $recent = false;
+	public $bins = 0;
+	public $coldpacks = 0;
+	public $bottles = 0;
+	public $notes;
+	public $description;
+	public $website;
+	public $image;
+	private $sessionID;
+	private $cookieID;
+	protected $sortFields = array ('sortOrder', 'contactName', 'name', 'groupName', 'email', 'city', 'balance', 'deliverySlot', 'routeID', 'route');
+	public $cc;
+	public $txnID;
+	public $pad = false;
+	public $depth;
+	private $_payTypes;
+
+	public function __construct ($personInfo = null, $password = null) {
+
+	}
+
+	public function newObject ($objectData = null) {
+		return new Person ($objectData);
+	}
+
+	public function validate () {
+		return true;
+	}
+
+	public function save () {
+		return true;
+	}
+
+	public function delete ($deleteChildren = false, $action = DEL_BOTH) {
+		return true;
+	}
+
+	public function getLabel ($oneOnly = false) {
+
+	}
+
+	public function hasAssociatedData () {
+		return false;
+	}
+
+	public function hasAddresses ($addressType = AD_ALL) {
+		return new Array();
+	}
+
+	public function getOrders ($dateStart = null, $dateEnd = null, $orderType = array (O_SALE_EDITABLE, O_BASE), $recursive = false, $orderBy = 'dateToDeliver', $lostOnly = false, $openOnly = false, $completedOnly = false) {
+		return new Array();
+	}
+
+	public function getUnpaidOrders () {
+		return new Array();
+	}
+
+	public function getOrdersBefore ($orderID) {
+		return new Array();
+	}
+
+	public function hasOpenOrder ($orderType = array(O_SALE, O_BASE), $idOnly = false) {
+		return false;
+	}
+
+	public function startOrder ($orderType = O_SALE_EDITABLE_DELIVER, $period = null) {
+		return false;
+	}
+
+	public function setPassword ($newPassword) {
+	}
+
+	public function checkPassword ($password) {
+		return true;
+	}
+
+	public function encrypt ($stringToEncrypt) {
+	}
+
+	public function logout () {
+	}
+
+	public function checkSession () {
+	}
+
+	public function setSession ($sessionInfo, $remember, $init = true) {
+		return true;
+	}
+
+	public function updateCookie ($cookieID, $save) {
+	}
+
+	public function checkRemembered ($cookie) {
+		return false;
+	}
+
+	public function authenticate ($username, $password, $remember = false) {
+		return true;
+	}
+
+	public function isAdmin () {
+		return false;
+	}
+
+	public function canDeliver () {
+		return true;
+	}
+
+	public function getMinOrder ($includeThis = true) {
+	}
+
+	public function getMinOrderDeliver ($includeThis = true) {
+	}
+
+	public function getBulkDiscount ($includeThis = true) {
+	}
+
+	public function getBulkDiscountQuantity ($includeThis = true) {
+	}
+
+	public function getShipping ($includeThis = true) {
+	}
+
+	public function getShippingType ($includeThis = true) {
+	}
+
+	public function getMaxStars ($includeThis = true) {
+	}
+
+	public function getDeposit ($includeThis = true) {
+	}
+
+	public function getCanCustomOrder ($includeThis = true) {
+	}
+
+	public function canCustomOrder ($includeThis = true) {
+	}
+
+	public function getCustomCancelsRecurring ($includeThis = true) {
+	}
+
+	public function customCancelsRecurring ($includeThis = true) {
+	}
+
+	public function getCredit ($includeThis = true) {
+	}
+
+	public function getPayTypeID ($includeThis = true) {
+	}
+
+	public function getPayTypeIDs ($includeThis = true) {
+	}
+
+	public function getPayType ($includeThis = true) {
+	}
+
+	public function getPayTypes ($amount = 0, $includeThis = true) {
+	}
+
+	public function canUsePayType ($payTypeID, $includeThis = true) {
+	}
+
+	public function getRoute ($recursive = true, $includeThis = true) {
+	}
+
+	public function getRouteID ($recursive = true, $includeThis = true) {
+	}
+
+	public function getAddress ($addressID) {
+	}
+
+	public function getAddresses ($addressType = AD_ALL, $all = false) {
+	}
+
+	public function addAddress ($address) {
+	}
+
+	public function removeAddress ($addressID) {
+	}
+
+	public function removeAddressesOfType ($addressType) {
+	}
+
+	public function getDepot () {
+	}
+
+	public function getCategory () {
+	}
+
+	public function getDeliverer () {
+	}
+
+	public function getDeliveryDays () {
+	}
+
+	public function getNextDeliveryDay () {
+	}
+
+	public function setRoute ($routeID) {
+		return true;
+	}
+
+	public function getDeliverySlot () {
+	}
+
+	public function isLastSlot () {
+		return false;
+	}
+
+	public function getLastSlot () {
+		return false;
+	}
+
+	public function setDeliverySlot ($newSlot, $changeMode = MODE_ABSOLUTE) {
+		return true;
+	}
+
+	public function moveUp () {
+	}
+
+	public function moveDown () {
+	}
+
+	public function createJournalEntry ($amount, $notes = null, $payTypeID = null, $txnID = null) {
+	}
+
+	public function pay ($amount, $notes = null, $payTypeID = null, $txnID = null) {
+		return true;
+	}
+
+	public function getJournalEntries ($dateStart = null, $dateEnd = null) {
+	}
+
+	public function getBalance ($includeCredit = false) {
+		return 0;
+	}
+
+	public function openCustomerAccount ($personInfo = null, $deposit = null) {
+		return true;
+	}
+
+	public function closeCustomerAccount ($deposit = null) {
+	}
+
+	protected function matchCriteria ($object, $criteria) {
+		return true;
+	}
+
+	public function getPrice ($item) {
+	}
+
+	public function sortBranch ($a, $b) {
+		return 1;
+	}
+}
+
+?>

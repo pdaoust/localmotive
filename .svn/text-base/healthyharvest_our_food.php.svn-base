@@ -1,0 +1,8 @@
+<?php
+$pageTitle = 'Localmotive - Healthy Harvest - Our Food';
+$pageArea = 'healthyharvest';
+$pageSubArea = 'our_food';
+include ('header.tpl.php');
+include ('healthyharvest_navbar.inc.php');
+include ('our_food.inc.php');
+include ('footer.tpl.php'); ?>

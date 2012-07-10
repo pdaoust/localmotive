@@ -1,0 +1,35 @@
+<?
+
+define ('NAVBAR_BREAK', 1);
+define ('NAVBAR_HORIZONTAL', 1);
+define ('NAVBAR_VERTICAL', 0);
+
+function generateNavbar ($navbarItems, $navbarStyle, $pageSubArea, $navbarOrientation) {
+	echo '<div class="' . $navbarStyle;
+	if ($navbarOrientation == NAVBAR_HORIZONTAL) { echo ' horizontal'; }
+	echo "\">\n";
+	foreach ($navbarItems as $i => $thisItem) {
+		if ($thisItem == NAVBAR_BREAK) { echo "</div>\n<div class=\"" . $navbarStyle . "\">"; }
+		else {
+			echo '<div class="navbaritem';
+			if ($navbarOrientation == NAVBAR_HORIZONTAL) { echo ' horizontal'; }
+			if ($thisItem[4]) { echo ' moreimportant'; }
+			if ($thisItem[0] == $pageSubArea) { echo ' highlight'; }
+			echo '">';
+			if ($thisItem[0] != $pageSubArea) {
+				echo '<a href="' . $thisItem[2] . '"';
+				if ($thisItem[3]) {
+					echo ' target="_blank"';
+				}
+				echo '>';
+			}
+			echo $thisItem[1];
+			if ($thisItem[0] != $pageSubArea) { echo '</a>'; }
+			echo '</div>';
+			if ($navbarOrientation == NAVBAR_HORIZONTAL && count($navbarItems) > $i + 1) { echo ' &middot; '; }
+		}
+	}
+	echo "</div>\n";
+}
+
+?>

@@ -1,0 +1,295 @@
+[16-Mar-2012 14:31:00] PHP Parse error:  syntax error, unexpected '{' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/person.inc.php on line 861
+[16-Mar-2012 14:36:28] PHP Parse error:  syntax error, unexpected '{' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/person.inc.php on line 861
+[16-Mar-2012 14:37:19] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[16-Mar-2012 14:37:19] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 14:38:17] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[16-Mar-2012 14:38:17] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 14:44:41] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[16-Mar-2012 14:44:41] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 14:44:59] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[16-Mar-2012 14:44:59] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 14:45:06] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[16-Mar-2012 14:45:06] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 14:45:51] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[16-Mar-2012 14:45:51] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 14:45:53] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[16-Mar-2012 14:45:53] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 14:46:13] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[16-Mar-2012 14:46:13] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 15:45:13] PHP Fatal error:  Call to undefined method Person::getPathTree() in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/item.inc.php on line 30
+[16-Mar-2012 15:45:38] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[16-Mar-2012 15:45:39] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 15:46:15] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[16-Mar-2012 15:46:15] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 15:47:22] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 523800 bytes) in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 738
+[16-Mar-2012 15:48:23] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[16-Mar-2012 15:57:06] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[19-Mar-2012 10:50:48] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[22-Mar-2012 12:19:13] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[31-May-2012 20:00:36 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1438
+[31-May-2012 20:00:36 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[31-May-2012 20:00:38 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[31-May-2012 20:06:39 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[06-Jun-2012 22:15:12 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1438
+[06-Jun-2012 22:15:12 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[06-Jun-2012 22:15:16 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[25-Jun-2012 19:56:56 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1438
+[25-Jun-2012 19:56:56 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[04-Jul-2012 23:17:58 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1438
+[04-Jul-2012 23:17:58 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[09-Jul-2012 23:55:34 UTC] PHP Notice:  Use of undefined constant DB_MYSQL - assumed 'DB_MYSQL' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 29
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1745
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1746
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1749
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/config.inc.php on line 36
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1729
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_NUM - assumed 'F_NUM' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1735
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_ASSOC - assumed 'F_ASSOC' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1738
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant F_RECORD - assumed 'F_RECORD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1739
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant LOG_NONE - assumed 'LOG_NONE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2272
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2276
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2285
+[09-Jul-2012 23:55:35 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/item.inc.php on line 31
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant E_DATABASE - assumed 'E_DATABASE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1695
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant E_DATABASE - assumed 'E_DATABASE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/item.inc.php on line 36
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant E_DATABASE - assumed 'E_DATABASE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 694
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant E_DATABASE - assumed 'E_DATABASE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 696
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant I_CHILD - assumed 'I_CHILD' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1474
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant E_NO_OBJECT_ID - assumed 'E_NO_OBJECT_ID' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1445
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1445
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant E_DATABASE - assumed 'E_DATABASE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 694
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant E_INVALID_DATA - assumed 'E_INVALID_DATA' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 699
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Use of undefined constant LOG_FILE - assumed 'LOG_FILE' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 2355
+[09-Jul-2012 23:55:36 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[09-Jul-2012 23:56:30 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/item.inc.php on line 31
+[09-Jul-2012 23:56:30 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/paul/Documents/Localmotive/website/trunk.pathtree/header.tpl.php on line 132
+[09-Jul-2012 23:56:30 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1445
+[09-Jul-2012 23:56:30 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[10-Jul-2012 00:05:54 UTC] PHP Fatal error:  Call to undefined method Person::getNodePath() in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/item.inc.php on line 31
+[10-Jul-2012 00:05:57 UTC] PHP Fatal error:  Call to undefined method Person::getNodePath() in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/item.inc.php on line 31
+[10-Jul-2012 00:06:08 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1445
+[10-Jul-2012 00:06:08 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[10-Jul-2012 00:06:10 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1445
+[10-Jul-2012 00:06:10 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[10-Jul-2012 00:07:45 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1445
+[10-Jul-2012 00:07:45 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[10-Jul-2012 00:12:40 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1445
+[10-Jul-2012 00:12:40 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49
+[10-Jul-2012 00:22:38 UTC] PHP Notice:  Use of undefined constant __CLASS - assumed '__CLASS' in /home/paul/Documents/Localmotive/website/trunk.pathtree/market/classes/base.inc.php on line 1445
+[10-Jul-2012 00:22:38 UTC] PHP Notice:  Trying to get property of non-object in /home/paul/Documents/Localmotive/website/trunk.pathtree/footer.tpl.php on line 49

@@ -1,0 +1,105 @@
+<?php
+
+    session_start();
+    if (true == $_SESSION["lmauth"]){
+    }else{
+        exit("wrong login");
+    }
+?>
+<head>
+	<title>LocalMotive</title>
+	<link rel="stylesheet" type="text/css" href="_lib/localmotiv.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="styles_global.css" />
+	<link rel="stylesheet" type="text/css" href="styles_home_delivery.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+<!--
+.style1 {font-weight: bold}
+.style2 {color: #FF0000}
+-->
+    </style>
+</head>
+<body bgcolor="#EFE66F" class="bodystyle">
+<div id="content">
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20">&nbsp;</td>
+    <td width="687">&nbsp;
+
+<?php
+
+$php_name="bin_admin_healthyharvest.php";
+$filelist = "bin_healthyharvest.txt";
+
+
+// check what to do
+if (!isset($_REQUEST['mode']))
+   $mode = "unknown";
+else $mode = $_REQUEST['mode'];
+
+switch ($mode) {
+       case "display": displayEntries(); break;
+       case "edit": displayEditForm($_REQUEST['id']); break;
+       case "doEdit": editEntry($_REQUEST['bin']); break;
+       default:
+       if (file_exists($filelist)) {
+			displayEditForm();
+			echo '<br><br><a href="' . $GLOBALS["filelist"] . '">Backup</a>  Right Click -> Save Link As<br>' .
+			'The session will end any time you close the browser.';
+       }
+
+} // end switch
+?>
+	</td>
+  </tr>
+</table>
+<?
+// Displays the form to edit
+function displayEditForm() {
+	// get the line to edit
+   $bin = file($GLOBALS["filelist"]);
+         ?>
+		
+		<h2>Edit the Healthy Harvest bin contents</h2>	    
+		<form name=editForm action=<? echo $GLOBALS["php_name"] ?> method=post style="margin: 2">
+<p><strong>Hey Thomas!</strong>A few notes about what you can put in here. First of all, all paragraph breaks, headers, and sub-headers are invalid. Basically, stick to <samp>&lt;em&gt;</samp><em>italics</em><samp>&lt;/em&gt;</samp>, <samp>&lt;strong&gt;</samp><strong>bold</strong><samp>&lt;/strong&gt;</samp>, and <samp>&lt;span class="notice"&gt;</samp><span class="notice">highlighted</span><samp>&lt;/span&gt;</samp>. Finish each line with a carriage return, and a bulleted list will be generated from it.</p>
+<table width="500" border="0" cellpadding="0" cellspacing="0">
+             <tr class="mainfont">
+               
+               <td><textarea name="bin" cols="70" rows="20" class="forminput" id="bin"><? if (count($bin)) echo implode(null, $bin); ?></textarea></td>
+             </tr>
+          </table>
+           <input type=submit name=mode value=doEdit>
+  </form>
+		 Display:<br>
+         <hr>
+	<ul>
+			 <?
+	if (count($bin)) {
+		foreach ($bin as $thisItem) {
+			echo '<li>' . $thisItem . '</li>';
+		}
+	}
+         ?>
+   </ul>
+		<hr> <?		 
+         exit;
+}
+
+// Edits and writes the updated file;
+function editEntry ($bin) {
+                $newfilecontents = fopen($GLOBALS["filelist"], "w");
+                $writeresult = fwrite($newfilecontents, $bin);
+  		        fclose($newfilecontents);
+                ?> 
+ 				<div align=center class="style1">Entry changed!</div>
+				<meta http-equiv='Refresh' content='1; URL=<? echo $GLOBALS["php_name"] ?>'> <?
+                exit;
+}
+?>
+
+
+<!-- end container -->
+</div> 
+</body>
+</html>

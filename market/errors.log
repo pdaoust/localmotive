@@ -1,0 +1,181 @@
+hello?[09-Jul-2012 16:15:35] PHP Fatal error:  Call to undefined function  htmlescape() in /home/heliosst/domains/heliosstudio.ca/public_html/localmotive/header.tpl.php on line 13
+[09-Jul-2012 16:16:10] PHP Fatal error:  Class 'DatabaseConnectionMySQL' not found in /home/heliosst/domains/heliosstudio.ca/public_html/localmotive/market/config.inc.php on line 20
+[09-Jul-2012 16:16:33] PHP Fatal error:  Class 'Logger' not found in /home/heliosst/domains/heliosstudio.ca/public_html/localmotive/market/marketInit.inc.php on line 56
+[09-Jul-2012 16:16:48] PHP Fatal error:  Class 'MarketPrototype' not found in /home/heliosst/domains/heliosstudio.ca/public_html/localmotive/market/classes/misc.inc.php on line 3
+[09-Jul-2012 16:20:06] PHP Fatal error:  Class 'Person' not found in /home/heliosst/domains/heliosstudio.ca/public_html/localmotive/market/marketInit.inc.php on line 105
+[09-Jul-2012 16:21:58] PHP Fatal error:  Class 'Person' not found in /home/heliosst/domains/heliosstudio.ca/public_html/localmotive/market/marketInit.inc.php on line 105
+[09-Jul-2012 16:24:13] PHP Fatal error:  Class Person contains 3 abstract methods and must therefore be declared abstract or implement the remaining methods (MarketTree::newObject, MarketTree::matchCriteria, MarketPrototype::validate) in /home/heliosst/domains/heliosstudio.ca/public_html/localmotive/market/classes/person.inc.php on line 96
+[09-Jul-2012 16:25:25] PHP Fatal error:  Class Person contains 2 abstract methods and must therefore be declared abstract or implement the remaining methods (MarketTree::newObject, MarketPrototype::validate) in /home/heliosst/domains/heliosstudio.ca/public_html/localmotive/market/classes/person.inc.php on line 1058
+[2012/07/09 16:55:35] index.php: -------------------- MARK
+[2012/07/09 16:55:36] index.php: WSOD loading misc
+[2012/07/09 16:55:36] index.php: WSOD loading address
+[2012/07/09 16:55:36] index.php: WSOD loading person
+[2012/07/09 16:55:36] index.php: WSOD defining PersonMapper
+[2012/07/09 16:55:36] index.php: WSOD singletoning PersonMapper
+[2012/07/09 16:55:36] index.php: WSOD defining Person
+[2012/07/09 16:55:36] index.php: WSOD loading journalEntry
+[2012/07/09 16:55:36] index.php:  - Failed query: SELECT a.*, price.personID AS pricePersonID, price.price AS pricePrice, price.tax AS priceTax, price.multiple AS priceMultiple FROM price, item a LEFT JOIN item b ON b.nodePath LIKE CONCAT(a.nodePath, "/%") WHERE (a.active = 1 OR a.active IS NULL) AND price.personID IN () AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORDER BY dateCreated DESC LIMIT 0,5
+[2012/07/09 16:55:36] index.php: ItemMapper::getNewItems():  - Couldnt get items || You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORD' at line 1 || SELECT a.*, price.personID AS pricePersonID, price.price AS pricePrice, price.tax AS priceTax, price.multiple AS priceMultiple FROM price, item a LEFT JOIN item b ON b.nodePath LIKE CONCAT(a.nodePath, "/%") WHERE (a.active = 1 OR a.active IS NULL) AND price.personID IN () AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORDER BY dateCreated DESC LIMIT 0,5
+[2012/07/09 16:55:36] index.php: __CLASS::getProperty('shipping'):  - no objectID
+[2012/07/09 16:55:36] javascriptTools.js.php: -------------------- MARK
+[2012/07/09 16:55:36] javascriptTools.js.php: WSOD loading misc
+[2012/07/09 16:55:36] javascriptTools.js.php: WSOD loading address
+[2012/07/09 16:55:36] javascriptTools.js.php: WSOD loading person
+[2012/07/09 16:55:36] javascriptTools.js.php: WSOD defining PersonMapper
+[2012/07/09 16:55:36] javascriptTools.js.php: WSOD singletoning PersonMapper
+[2012/07/09 16:55:36] javascriptTools.js.php: WSOD defining Person
+[2012/07/09 16:55:36] javascriptTools.js.php: WSOD loading journalEntry
+[2012/07/09 16:56:30] index.php: -------------------- MARK
+[2012/07/09 16:56:30] index.php: WSOD loading misc
+[2012/07/09 16:56:30] index.php: WSOD loading address
+[2012/07/09 16:56:30] index.php: WSOD loading person
+[2012/07/09 16:56:30] index.php: WSOD defining PersonMapper
+[2012/07/09 16:56:30] index.php: WSOD singletoning PersonMapper
+[2012/07/09 16:56:30] index.php: WSOD defining Person
+[2012/07/09 16:56:30] index.php: WSOD loading journalEntry
+[2012/07/09 16:56:30] index.php: E_DATABASE - Failed query: SELECT a.*, price.personID AS pricePersonID, price.price AS pricePrice, price.tax AS priceTax, price.multiple AS priceMultiple FROM price, item a LEFT JOIN item b ON b.nodePath LIKE CONCAT(a.nodePath, "/%") WHERE (a.active = 1 OR a.active IS NULL) AND price.personID IN () AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORDER BY dateCreated DESC LIMIT 0,5
+[2012/07/09 16:56:30] index.php: ItemMapper::getNewItems(): E_DATABASE - Couldnt get items || You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORD' at line 1 || SELECT a.*, price.personID AS pricePersonID, price.price AS pricePrice, price.tax AS priceTax, price.multiple AS priceMultiple FROM price, item a LEFT JOIN item b ON b.nodePath LIKE CONCAT(a.nodePath, "/%") WHERE (a.active = 1 OR a.active IS NULL) AND price.personID IN () AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORDER BY dateCreated DESC LIMIT 0,5
+[2012/07/09 16:56:30] index.php: __CLASS::getProperty('shipping'): E_NO_OBJECT_ID - no objectID
+[2012/07/09 16:56:30] javascriptTools.js.php: -------------------- MARK
+[2012/07/09 16:56:30] javascriptTools.js.php: WSOD loading misc
+[2012/07/09 16:56:30] javascriptTools.js.php: WSOD loading address
+[2012/07/09 16:56:30] javascriptTools.js.php: WSOD loading person
+[2012/07/09 16:56:30] javascriptTools.js.php: WSOD defining PersonMapper
+[2012/07/09 16:56:30] javascriptTools.js.php: WSOD singletoning PersonMapper
+[2012/07/09 16:56:30] javascriptTools.js.php: WSOD defining Person
+[2012/07/09 16:56:30] javascriptTools.js.php: WSOD loading journalEntry
+[2012/07/09 17:05:53] index.php: -------------------- MARK
+[2012/07/09 17:05:53] index.php: WSOD loading misc
+[2012/07/09 17:05:53] index.php: WSOD loading address
+[2012/07/09 17:05:53] index.php: WSOD loading person
+[2012/07/09 17:05:53] index.php: WSOD defining PersonMapper
+[2012/07/09 17:05:53] index.php: WSOD singletoning PersonMapper
+[2012/07/09 17:05:53] index.php: WSOD defining Person
+[2012/07/09 17:05:53] index.php: WSOD loading journalEntry
+[2012/07/09 17:05:54] javascriptTools.js.php: -------------------- MARK
+[2012/07/09 17:05:54] javascriptTools.js.php: WSOD loading misc
+[2012/07/09 17:05:54] javascriptTools.js.php: WSOD loading address
+[2012/07/09 17:05:54] javascriptTools.js.php: WSOD loading person
+[2012/07/09 17:05:54] javascriptTools.js.php: WSOD defining PersonMapper
+[2012/07/09 17:05:54] javascriptTools.js.php: WSOD singletoning PersonMapper
+[2012/07/09 17:05:54] javascriptTools.js.php: WSOD defining Person
+[2012/07/09 17:05:54] javascriptTools.js.php: WSOD loading journalEntry
+[2012/07/09 17:05:57] index.php: -------------------- MARK
+[2012/07/09 17:05:57] index.php: WSOD loading misc
+[2012/07/09 17:05:57] index.php: WSOD loading address
+[2012/07/09 17:05:57] index.php: WSOD loading person
+[2012/07/09 17:05:57] index.php: WSOD defining PersonMapper
+[2012/07/09 17:05:57] index.php: WSOD singletoning PersonMapper
+[2012/07/09 17:05:57] index.php: WSOD defining Person
+[2012/07/09 17:05:57] index.php: WSOD loading journalEntry
+[2012/07/09 17:05:57] javascriptTools.js.php: -------------------- MARK
+[2012/07/09 17:05:57] javascriptTools.js.php: WSOD loading misc
+[2012/07/09 17:05:57] javascriptTools.js.php: WSOD loading address
+[2012/07/09 17:05:57] javascriptTools.js.php: WSOD loading person
+[2012/07/09 17:05:57] javascriptTools.js.php: WSOD defining PersonMapper
+[2012/07/09 17:05:57] javascriptTools.js.php: WSOD singletoning PersonMapper
+[2012/07/09 17:05:57] javascriptTools.js.php: WSOD defining Person
+[2012/07/09 17:05:57] javascriptTools.js.php: WSOD loading journalEntry
+[2012/07/09 17:06:07] index.php: -------------------- MARK
+[2012/07/09 17:06:07] index.php: WSOD loading misc
+[2012/07/09 17:06:07] index.php: WSOD loading address
+[2012/07/09 17:06:07] index.php: WSOD loading person
+[2012/07/09 17:06:07] index.php: WSOD defining PersonMapper
+[2012/07/09 17:06:07] index.php: WSOD singletoning PersonMapper
+[2012/07/09 17:06:07] index.php: WSOD defining Person
+[2012/07/09 17:06:07] index.php: WSOD loading journalEntry
+[2012/07/09 17:06:07] index.php: Successful query: SELECT a.*, price.personID AS pricePersonID, price.price AS pricePrice, price.tax AS priceTax, price.multiple AS priceMultiple FROM price, item a LEFT JOIN item b ON b.nodePath LIKE CONCAT(a.nodePath, "/%") WHERE (a.active = 1 OR a.active IS NULL) AND price.personID IN (1) AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORDER BY dateCreated DESC LIMIT 0,5
+[2012/07/09 17:06:08] index.php: Person::__construct(): E_NO_OBJECT - no person 2
+[2012/07/09 17:06:08] index.php: __CLASS::getProperty('shipping'): E_NO_OBJECT_ID - no objectID
+[2012/07/09 17:06:08] javascriptTools.js.php: -------------------- MARK
+[2012/07/09 17:06:08] javascriptTools.js.php: WSOD loading misc
+[2012/07/09 17:06:08] javascriptTools.js.php: WSOD loading address
+[2012/07/09 17:06:08] javascriptTools.js.php: WSOD loading person
+[2012/07/09 17:06:08] javascriptTools.js.php: WSOD defining PersonMapper
+[2012/07/09 17:06:08] javascriptTools.js.php: WSOD singletoning PersonMapper
+[2012/07/09 17:06:08] javascriptTools.js.php: WSOD defining Person
+[2012/07/09 17:06:08] javascriptTools.js.php: WSOD loading journalEntry
+[2012/07/09 17:06:10] index.php: -------------------- MARK
+[2012/07/09 17:06:10] index.php: WSOD loading misc
+[2012/07/09 17:06:10] index.php: WSOD loading address
+[2012/07/09 17:06:10] index.php: WSOD loading person
+[2012/07/09 17:06:10] index.php: WSOD defining PersonMapper
+[2012/07/09 17:06:10] index.php: WSOD singletoning PersonMapper
+[2012/07/09 17:06:10] index.php: WSOD defining Person
+[2012/07/09 17:06:10] index.php: WSOD loading journalEntry
+[2012/07/09 17:06:10] index.php: Successful query: SELECT a.*, price.personID AS pricePersonID, price.price AS pricePrice, price.tax AS priceTax, price.multiple AS priceMultiple FROM price, item a LEFT JOIN item b ON b.nodePath LIKE CONCAT(a.nodePath, "/%") WHERE (a.active = 1 OR a.active IS NULL) AND price.personID IN (1) AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORDER BY dateCreated DESC LIMIT 0,5
+[2012/07/09 17:06:10] index.php: Person::__construct(): E_NO_OBJECT - no person 2
+[2012/07/09 17:06:10] index.php: __CLASS::getProperty('shipping'): E_NO_OBJECT_ID - no objectID
+[2012/07/09 17:07:45] index.php: -------------------- MARK
+[2012/07/09 17:07:45] index.php: WSOD loading misc
+[2012/07/09 17:07:45] index.php: WSOD loading address
+[2012/07/09 17:07:45] index.php: WSOD loading person
+[2012/07/09 17:07:45] index.php: WSOD defining PersonMapper
+[2012/07/09 17:07:45] index.php: WSOD singletoning PersonMapper
+[2012/07/09 17:07:45] index.php: WSOD defining Person
+[2012/07/09 17:07:45] index.php: WSOD loading journalEntry
+[2012/07/09 17:07:45] index.php: Successful query: SELECT a.*, price.personID AS pricePersonID, price.price AS pricePrice, price.tax AS priceTax, price.multiple AS priceMultiple FROM price, item a LEFT JOIN item b ON b.nodePath LIKE CONCAT(a.nodePath, "/%") WHERE (a.active = 1 OR a.active IS NULL) AND price.personID IN (1) AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORDER BY dateCreated DESC LIMIT 0,5
+[2012/07/09 17:07:45] index.php: Person::__construct(): E_NO_OBJECT - no person 2
+[2012/07/09 17:07:45] index.php: __CLASS::getProperty('shipping'): E_NO_OBJECT_ID - no objectID
+[2012/07/09 17:12:40] index.php: -------------------- MARK
+[2012/07/09 17:12:40] index.php: WSOD loading misc
+[2012/07/09 17:12:40] index.php: WSOD loading address
+[2012/07/09 17:12:40] index.php: WSOD loading person
+[2012/07/09 17:12:40] index.php: WSOD defining PersonMapper
+[2012/07/09 17:12:40] index.php: WSOD singletoning PersonMapper
+[2012/07/09 17:12:40] index.php: WSOD defining Person
+[2012/07/09 17:12:40] index.php: WSOD loading journalEntry
+[2012/07/09 17:12:40] index.php: Successful query: SELECT a.*, price.personID AS pricePersonID, price.price AS pricePrice, price.tax AS priceTax, price.multiple AS priceMultiple FROM price, item a LEFT JOIN item b ON b.nodePath LIKE CONCAT(a.nodePath, "/%") WHERE (a.active = 1 OR a.active IS NULL) AND price.personID IN (1) AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORDER BY dateCreated DESC LIMIT 0,5
+[2012/07/09 17:12:40] index.php: Person::__construct(): E_NO_OBJECT - no person 2
+[2012/07/09 17:12:40] index.php: __CLASS::getProperty('shipping'): E_NO_OBJECT_ID - no objectID
+[2012/07/09 17:12:40] javascriptTools.js.php: -------------------- MARK
+[2012/07/09 17:12:40] javascriptTools.js.php: WSOD loading misc
+[2012/07/09 17:12:40] javascriptTools.js.php: WSOD loading address
+[2012/07/09 17:12:40] javascriptTools.js.php: WSOD loading person
+[2012/07/09 17:12:40] javascriptTools.js.php: WSOD defining PersonMapper
+[2012/07/09 17:12:40] javascriptTools.js.php: WSOD singletoning PersonMapper
+[2012/07/09 17:12:40] javascriptTools.js.php: WSOD defining Person
+[2012/07/09 17:12:40] javascriptTools.js.php: WSOD loading journalEntry
+[2012/07/09 17:22:38] index.php: -------------------- MARK
+[2012/07/09 17:22:38] index.php: WSOD loading misc
+[2012/07/09 17:22:38] index.php: WSOD loading address
+[2012/07/09 17:22:38] index.php: WSOD loading person
+[2012/07/09 17:22:38] index.php: WSOD defining PersonMapper
+[2012/07/09 17:22:38] index.php: WSOD singletoning PersonMapper
+[2012/07/09 17:22:38] index.php: WSOD defining Person
+[2012/07/09 17:22:38] index.php: WSOD loading journalEntry
+[2012/07/09 17:22:38] index.php: Successful query: SELECT a.*, price.personID AS pricePersonID, price.price AS pricePrice, price.tax AS priceTax, price.multiple AS priceMultiple FROM price, item a LEFT JOIN item b ON b.nodePath LIKE CONCAT(a.nodePath, "/%") WHERE (a.active = 1 OR a.active IS NULL) AND price.personID IN (1) AND price.itemID = a.itemID GROUP BY a.itemID HAVING (COUNT(b.itemID) < 1) ORDER BY dateCreated DESC LIMIT 0,5
+[2012/07/09 17:22:38] index.php: Person::__construct(): E_NO_OBJECT - no person 2
+[2012/07/09 17:22:38] index.php: __CLASS::getProperty('shipping'): E_NO_OBJECT_ID - no objectID
+[2012/07/09 17:22:40] javascriptTools.js.php: -------------------- MARK
+[2012/07/09 17:22:40] javascriptTools.js.php: WSOD loading misc
+[2012/07/09 17:22:40] javascriptTools.js.php: WSOD loading address
+[2012/07/09 17:22:40] javascriptTools.js.php: WSOD loading person
+[2012/07/09 17:22:40] javascriptTools.js.php: WSOD defining PersonMapper
+[2012/07/09 17:22:40] javascriptTools.js.php: WSOD singletoning PersonMapper
+[2012/07/09 17:22:40] javascriptTools.js.php: WSOD defining Person
+[2012/07/09 17:22:40] javascriptTools.js.php: WSOD loading journalEntry
+[2012/07/09 19:58:23] index.php: -------------------- MARK
+[2012/07/09 19:58:23] index.php: WSOD loading misc
+[2012/07/09 19:58:23] index.php: WSOD loading address
+[2012/07/09 19:58:23] index.php: WSOD loading person
+[2012/07/09 19:58:23] index.php: WSOD defining PersonMapper
+[2012/07/09 19:58:23] index.php: WSOD singletoning PersonMapper
+[2012/07/09 19:58:23] index.php: WSOD defining Person
+[2012/07/09 19:58:23] index.php: WSOD loading journalEntry
+[2012/07/09 19:58:28] index.php: -------------------- MARK
+[2012/07/09 19:58:28] index.php: WSOD loading misc
+[2012/07/09 19:58:28] index.php: WSOD loading address
+[2012/07/09 19:58:28] index.php: WSOD loading person
+[2012/07/09 19:58:28] index.php: WSOD defining PersonMapper
+[2012/07/09 19:58:28] index.php: WSOD singletoning PersonMapper
+[2012/07/09 19:58:28] index.php: WSOD defining Person
+[2012/07/09 19:58:28] index.php: WSOD loading journalEntry
+[2012/07/09 19:58:30] index.php: -------------------- MARK
+[2012/07/09 19:58:30] index.php: WSOD loading misc
+[2012/07/09 19:58:30] index.php: WSOD loading address
+[2012/07/09 19:58:30] index.php: WSOD loading person
+[2012/07/09 19:58:30] index.php: WSOD defining PersonMapper
+[2012/07/09 19:58:30] index.php: WSOD singletoning PersonMapper
+[2012/07/09 19:58:30] index.php: WSOD defining Person
+[2012/07/09 19:58:30] index.php: WSOD loading journalEntry

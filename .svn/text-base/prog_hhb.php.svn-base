@@ -1,0 +1,226 @@
+<?php
+require_once ('market/marketInit.inc.php');
+$pageArea = 'programs';
+$pageSubArea = 'hhb';
+$pageTitle = 'Healthy Harvest Box, local food delivery program - Localmotive Organic Food Co-op';
+$svc = new Person (2);
+include ('header.tpl.php'); ?>
+<h2>Healthy Harvest Box</h2>
+<div class="intro box">
+	<p>A mixed CSA (Consumer Supported Agriculture) box of fresh, seasonal produce, sourced as locally as possible from farms in the Okanagan-Similkameen region and BC, and sold at wholesale prices. Boxes are available every week, two weeks, three weeks, or month, and are picked up at a convenient community location on Wednesdays or Thursdays <a href="#schedule">(check schedule)</a>  or are delivered for $5 extra<?= $svc->getMinOrderDeliver() ? ' on ' . money_format(NF_MONEY, $svc->getMinOrderDeliver()) . ' minimum orders' : null ?>. Start eating fresh with this <a href="#boxcontents">surprise box</a> of veggies and fruit selected from the best seasonal items available in our region, and choose additional local grocery items to accompany your order. Program starts May 2010.</p>
+	<p class="rgt vmiddle"><a href="market/signup.php?svcID=<?= $svc->personID ?>" class="button large">sign up now!</a> &nbsp; <a href="market/order.php?tour=1&svcID=<?= $svc->personID ?>" class="button">tour the market</a></p>
+</div>
+
+<h3>How it works</h3>
+
+<ol class="steps box">
+	<li>
+		<h4>Sign up</h4>
+		<p>Sign up for the Healthy Harvest Box with our <a href="market/signup.php?svcID=2">online sign-up form</a>. Choose between home delivery <!--(<?= money_format(NF_MONEY, $svc->getMinOrderDeliver()) ?> minimum order)--> and group pickup <!--(<?= money_format(NF_MONEY, $svc->getMinOrder()) ?> minimum order)--> for your box service.
+		<h5>Tips</h5>
+		<ul class="normal">
+			<li>Your e-mail address will be your login username for future visits to the market.</li>
+			<li>If you choose home delivery, make sure your address is complete, and select the area you live in under 'Route'.</p>
+			<li>Take advantage of the 'Directions' field to tell us how to find your house &mdash; how to access a locked gate, what your house looks like, where to leave the box, etc.</li>
+			<li>If you choose group pickup, look for the group drop spot that is most convenient for you. See below for the <a href="#depots">list of current drop spots</a> and their schedules.</li>
+		</ul>
+	</li>
+
+	<li>
+		<h4>Choose a box type and a schedule</h4>
+		<dl class="normal">
+			<dt>$20 Healthy Harvest Box</dt>
+			<dd>Mostly non-organic, but occasionally some organic items</dd>
+			<dt>$30 Organic Harvest Box</dt>
+			<dd>Certified organic only</dd>
+		</dl>
+		<p>Customers wanting to have boxes delivered must select either the $25 Harvest Box or the $35 Organic Box option.<!-- In addition, a minimum order of $50 is required for delivery to homes, or a combined total of $50 for workplace groups.--></p>
+		<p>The Healthy Harvest Box is a <abbr title="Consumer-Supported Agriculture">CSA</abbr> box program. You choose the frequency of box that works best for you, either weekly, or every two, three, or four weeks. By committing to regular orders, you allow us to plan crops with farms and supply a more consistent selection of local produce. Each year we plan with <a href="farmers.php">farms</a> to figure out how much they can sell to us, and having a consistent clientele allows more accurate planning. <a href="#boxOnHold">You can change your schedule</a>, but we ask you to try to minimize changes.</p>
+		<p>Once you sign up, you don't need to place an order every week; our system creates orders for you based on your schedule. However, you can modify your order any time you like.</p>
+	</li>
+
+	<li>
+		<h4>Add more groceries to your box</h4>
+		<p>Once you have signed up, you can order additional groceries to add to your box. <a href="market/">Log in to your account</a> using your email address and your password. You will now be at the main menu. From the main menu, choose 'Order items from the market', and you will be taken to the virtual farmers' market. Click on a market stall to browse the items for sale in that category. To add an item to your order, enter the quantity you want in the item's box (leave it blank if you only want one) and press the <span class="button small">+</span> button.</p>
+		<p>Although we specialize in produce, you can choose from dairy, meats, baking, bulk goods, and other extras to build your order. Items that are visible but greyed out are unavailable or have sold out, due to supply shortages or seasonal changes in availability.</p>
+		<p>Ordering is available from Friday at 4 pm until Sunday midnight. A 'Market Is Ready' email is sent out each Friday when the market is ready to take your orders. You can clearly see when you'll be receiving your next order, either from the main menu or the market. If you have missed the ordering window or already placed an order, your current order will be bumped into next period.</p>
+	</li>
+
+	<li>
+		<h4>Choose items to receive every time</h4>
+		<p>Once you have chosen all of your items, proceed to the checkout and verify your shopping list. At this point, you have the opportunity to select items that you would like to order on a recurring basis. To do so, click on the <img src="market/img/inf.png" alt="infinity" title="infinity" class="icon"/> symbol beside the item so it is highlighted in green, and it will be ordered on your behalf with every recurrence of your delivery. For example, if you would like a container of yogourt every week, simply add the item to your order, and upon checkout, click on the <img src="market/img/inf.png" alt="infinity" title="infinity" class="icon"/> symbol, and you will have it delivered each week or two as desired.</p>
+		<p>You'll find that some items cannot be permanently added to your order. This is usually because they are seasonal or in short supply.</p>
+	</li>
+
+	<li>
+		<h4>Pay for your box</h4>
+		<p>You can pay by credit card (online), cheque, or cash. Online payment by credit card is subject to a 3% service charge, and is processed by PayPal, a secure online transaction company. VISA and Mastercard are both accepted by PayPal.</p>
+		<h5>Payments by cheque or cash</h5>
+		<p>If you pay by cheque (made out to LocalMotive) or cash, and are signed up for home delivery, place your payment inside your empty Rubbermaid box which you have set out to return. If you are signed up with a group drop spot, leave the payment with your group manager. If we do not receive your payment at time of delivery, we will regrettably not be able to leave your delivery, and all future purchases for your account will only be processed through the online credit card payment. <a href="#payment">Read more about payment options and terms.</a></p>
+	</li>
+
+	<li>
+		<h4>Receive your box!</h4>
+		<p>If you have signed up for home delivery, we'll need to know a bit about where you live. <a href="#homeDelivery">Read more about home delivery.</a> If you have signed up to a <a href="#dpots">group drop spot</a>, pick up your box on your group's delivery day. In your box, you will find a list of its contents, along with a newsletter and recipe ideas.</p>
+	</li>
+</ol>
+
+<h3 id="boxcontents">What's in the box?</h3>
+
+<p>You can either choose a 'surprise box' or customise your box's contents. The <b>Healthy Harvest Box</b> (a mix of organic and non-organic) and the <b>Organic Harvest Box</b> are surprise boxes, and because we choose the contents for you, we're able to put them together for wholesale price &mdash; typically 25% less than you'd pay in a supermarket. The <b>customised box</b> is closer to retail prices.</p>
+<p>Download a <a href="localmotive-newsletter-sample.pdf" type="application/pdf">sample copy of our newsletter</a> from June 2010 to see what you might get in your surprise bin!</p>
+
+<h3 id="schedule">Delivery schedule</h3>
+
+<h4>Wednesdays</h4>
+<dl class="normal">
+	<dt>Penticton North (north of Industrial Ave)</dt>
+	<dd>10 am to 12 noon</dd>
+	<dt>Summerland</dt>
+	<dd>3 pm to 5 pm</dd>
+	<dt>Naramata</dt>
+	<dd>4 pm to 6 pm</dd>
+</dl>
+
+<h4>Thursdays</h4>
+<dl class="normal">
+	<dt>Penticton South (south of Industrial Ave)</dt>
+	<dd>10 am to 12 noon</dd>
+	<dt>Okanagan Falls and Oliver</dt>
+	<dd>3 pm to 5 pm</dd>
+	<dt>East Side Rd</dt>
+	<dd>5 pm to 7 pm</dd>
+</dl>
+
+<h3 id="depots">Pickup locations</h3>
+
+<?php
+$root = new Person (2);
+$depots = $root->getChildren('groupName', false, array ('personType' => P_DEPOT));
+$cities = array ();
+foreach ($depots as $thisDepot) {
+	if (!($thisDepot->personType & P_PRIVATE)) {
+		$k = $thisDepot->personID;
+		$ships = $thisDepot->getAddresses(AD_SHIP);
+		$firstAddy = current($ships);
+		if (!isset($cities[$firstAddy->city])) $cities[$firstAddy->city] = array ();
+		$cities[$firstAddy->city][$k] = $thisDepot;
+	}
+}
+
+$already = array ();
+foreach ($cities as $city => $depots) {
+	echo '<div class="info lgt">';
+	echo '<h4>' . $city . '</h4>';
+	foreach ($depots as $thisDepot) {
+		$boths = $thisDepot->getAddresses(AD_SHIP + AD_PAY, true);
+		$ships = $thisDepot->getAddresses(AD_SHIP);
+		$pays = $thisDepot->getAddresses(AD_PAY);
+		echo "<div class=\"info\">\n";
+		echo "<h5>" . $thisDepot->getLabel() . "</h5>\n";
+		echo "\t<p>";
+		$details = array ();
+		if ($thisDepot->email) $details[] = '<strong>E-mail</strong>: ' . munge($thisDepot->email);
+		if ($thisDepot->phone) $details[] = '<strong>Phone</strong>: ' . $thisDepot->phone;
+		if ($thisDepot->description) $details[] = $thisDepot->description;
+		echo implode('<br/>', $details);
+		echo "\t</p>\n";
+		foreach (array('boths', 'ships', 'pays') as $v) {
+			if (count($$v)) {
+				echo "\t<h6>";
+				switch ($v) {
+					case 'boths':
+						echo 'Pickup &amp; payment';
+						break;
+					case 'ships':
+						echo 'Pickup';
+						break;
+					case 'pays':
+						echo 'Payment';
+				}
+				echo ' spot' . (count($$v) > 1 ? 's' : null) . "</h6>\n";
+				echo "\t<ul>\n";
+				foreach ($$v as $thisAddy) {
+					echo "\t\t<li><em>" . $thisAddy->careOf . '</em>, ' . $thisAddy->address1 . ($thisAddy->address2 ? ', ' . $thisAddy->address2 : null) . "</li>\n";
+					if ($v == 'boths') {
+						if (isset($ships[$thisAddy->addressID])) unset($ships[$thisAddy->addressID]);
+					}
+					if ($v == 'boths' || $v == 'ships') {
+						if (isset($pays[$thisAddy->addressID])) unset($pays[$thisAddy->addressID]);
+					}
+				}
+				echo "\t</ul>\n";
+			}
+		}
+		/*
+		if (count($ships)) {
+			echo "\t<h5>Pickup spot" . (count($ships) > 1 ? 's' : null) . "</h5>\n";
+			echo "\t<ul>\n";
+			foreach ($ships as $thisAddy) {
+				echo "\t\t<li><em>" . $thisAddy->careOf . '</em>, ' . $thisAddy->address1 . ($thisAddy->address2 ? ', ' . $thisAddy->address2 : null) . "</li>\n";
+				if (isset($pays[$thisAddy->addressID])) unset($pays[$thisAddy->addressID]);
+			}
+			echo "\t</ul>\n";
+		}
+		if (count($pays)) {
+			echo "\t<h5>Payment spot" . (count($pays) > 1 ? 's' : null) . "</h5>\n";
+			echo "\t<ul>\n";
+			foreach ($pays as $thisAddy) {
+				echo "\t\t<li><em>" . $thisAddy->careOf . '</em>, ' . $thisAddy->address1 . ($thisAddy->address2 ? ', ' . $thisAddy->address2 : null) . "</li>\n";
+			}
+			echo "\t</ul>\n";
+		} */
+		echo "</div>\n";
+	}
+	echo '</div>';
+}
+
+?>
+
+<h3 id="homeDelivery">Delivery of boxes to homes or groups</h3>
+
+<p>Delivery of boxes is available to homes for a minimum order of <?= money_format(NF_MONEY, $svc->getMinOrderDeliver()) ?>. Clients wishing to have boxes delivered pay a $5 fee for delivery, and must select either the $25 Harvest Box (delivered) or the $35 Organic Box (delivered) option upon signup (delivery fee is included). In addition, the minimum order for delivery is $50. If you expect that you can't make up a <?= money_format(NF_MONEY, $svc->getMinOrderDeliver()) ?> order, contact us to create your own group drop off spot at your workplace or neighborhood, and have your colleagues or friends sign up to your group. Deliveries are on Wednesdays or Thursdays <a href="#schedule">(check schedule)</a>. Delivery is available for Summerland, Penticton, Naramata, Kaleden, East Side Road, Okanagan Falls, and Oliver.</p>
+
+<p>When you sign up, choose the delivery area that you are in, and enter any details about where you live. We prefer to leave your box of groceries <em>somewhere cool and shady</em> if possible (the north side of a building is best), so indicate where that might be in the 'directions' box of the signup form.</p>
+
+<h3>Refrigerated items</h3>
+
+<p>Any items that you have purchased that require refrigeration (indicated by the <img src="market/img/cold.png" alt="blue snowflake" title="blue snowflake" class="icon"/> icon) will be packaged with adequate cold packs to keep your items cool until you are home. It is even more ideal if you can leave out a cooler with your own ice packs in the cooler, and we will transfer refrigerated items into this cooler. Cold packs are expensive, and we appreciate it if you can keep your own stock of them if possible.</p>
+
+<h3 id="payment">Credits and deposits</h3>
+
+<p>Credit is given for any items that are missing or short from your order, or items that are of low quality based on your opinion. Credit is indicated on your receipt by the driver, or you can contact us with your concern. Balances to all accounts are processed on Fridays, and if you are anticipating a credit due to a missing item, it will be posted to your account at this time as well.</p>
+
+<p>Some items, such as milk in glass, include a bottle deposit in the price. When you return the bottle, your account is credited for the deposit, and this credit will be applied to your next order.</p>
+
+<h3>Box deposit and containers</h3>
+
+<p>Your order is packaged into a reusable Rubbermaid tote box, and boxes are exchanged upon each delivery. Please ensure that your box is clean and ready for exchange as of 10 am on your delivery day. If you forget to return your box, your account will be charged a $7 fee per box until it is returned.</p>
+
+<h3>Membership fee</h3>
+
+<p>A yearly membership fee of <?= money_format(NF_MONEY, $svc->getDeposit()) ?> applies to all customers, helping to cover administration costs and overhead.</p>
+
+<h3 class="boxOnHold">Box on Hold</h3>
+
+<ol>
+	<li>Log into your account and proceed to the market, where you would normally order additional items for your box.</li>
+	<li>Look for the form near the bottom of the screen that says 'Put on hold', and enter the date of the Sunday prior to your box date.</li>
+	<li>Choose the Sunday prior to the date you want to start receiving your box again.</li>
+	<li>Press 'save' instead of 'check out'. Your box is now on hold!</li>
+	<li>If you want to cancel your box, simply leave the resume date empty.</li>
+</ol>
+
+<h3>Long weekends!</h3>
+
+<p>On long weekends with a Monday holiday, our delivery service is bumped by one day, so that deliveries are moved to Thursday and Friday of the following week.</p>
+
+<h3>The nature of buying from the farm</h3>
+
+<p>As we are sourcing as locally as possible for the contents of our boxes, it is important to note that many of the items we offer are highly seasonal and are often of limited supply. We expect that rhubarb will be ready in April, strawberries in June, corn in August, pumpkins in October, and kale in November (and maybe December and January and February...). When you eat local peaches that are ready in August, they are sweeter, more beautiful, and better for you than the dry peaches shipped in from South America in February. This seasonality applies to eggs, meats, and dairy products as well. The result is that, for example, free range eggs can be unavailable at times due to chickens who decide it is time to molt for a few weeks, or berry crops which may be very limited at the beginning of their harvest season until peak harvest is reached.</p>
+
+<p>In order to reduce the surprise of missing items that are not included in your boxes, the market indicates when an item has run out. When this happens, it will be greyed out, and you will not be able to add it to your order. We apologize in advance for any frustration that arises due to this reality, and are working to contract growers to cultivate more of popular items in the future.</p>
+
+<p>For more info call 250-497-6577.</p>
+
+<?php include ('footer.tpl.php'); ?>

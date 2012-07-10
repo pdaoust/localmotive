@@ -1,0 +1,13 @@
+		</div>
+		<div class="navbar"><?php
+			foreach ($navbarItems as $i => $thisItem) {
+				if ($thisItem[0] == $pageArea) { echo '<span class="' . $thisItem[0] . '_active nobr">'; }
+				else { echo '<span class="' . $thisItem[0] . ' nobr"><a href="' . $thisItem[2] . '">'; }
+				echo $thisItem[1];
+				if ($thisItem[0] != $pageArea) { echo '</a>'; }
+				echo '</span> ';
+				if ($i < (count($navbarItems) - 1)) { echo '&bull; '; }
+			}
+		?><br />Thank you for visiting <a href="http://www.localmotive.ca/">www.localmotive.ca</a> &bull; <a href="contact.php">Contact Us</a></div>
+	</body>
+</html>

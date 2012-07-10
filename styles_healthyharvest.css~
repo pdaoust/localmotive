@@ -1,0 +1,35 @@
+h1, h2, a, .areaColour, div.autosuggest ul li, div.autosuggest ul li a {
+	color: #6dca20;
+}
+
+div.autosuggest {
+	border: 1px solid #6dca20;
+}
+
+div.autosuggest ul li.as_highlight a {
+	background-color: #6dca20;
+}
+
+div#banner {
+	background-image: url('img/healthyharvest_t_b.png');
+}
+
+div.intro, div.autosuggest, div. {
+	background-color: #E2F4BF;
+}
+
+div.subnavbar {
+	border: 1px solid #E2F4BF;
+	background-color: #ffffcc;
+}
+
+div.subnavbar .highlight, div.calnavbar .highlight {
+	border: 1px dotted #6dca20;
+	color: #6dca20;
+	background-color: #E2F4BF;
+}
+
+div.subnavbar div.moreimportant, div.calnavbar div.moreimportant {
+	background-color: #6dca20;
+	color: #ffffff;
+}

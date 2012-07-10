@@ -1,0 +1,4 @@
+body {
+	padding: 10px;
+	font-family: Droid Sans, Bitstream Vera Sans, Candara, Calibri, Verdana, Tahoma, Trebuchet, Trebuchet MS, Helvetica, Arial, sans-serif;
+}

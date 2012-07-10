@@ -1,0 +1,223 @@
+<?php
+
+require_once ('marketInit.inc.php');
+require_once ($path . '/market/classes/journalEntry.inc.php');
+require_once ($path . '/market/classes/item.inc.php');
+require_once ($path . '/market/classes/order.inc.php');
+require_once ($path . '/market/classes/orderItem.inc.php');
+require_once ($path . '/market/classes/deliveryDay.inc.php');
+require_once ($path . '/market/classes/route.inc.php');
+require_once ($path . '/market/classes/price.inc.php');
+
+$pageTitle = 'Localmotive - Market';
+
+if (!$user = tryLogin()) die ();
+$customerID = false;
+if (isset($_REQUEST['customerID'])) {
+	if ((int) $_REQUEST['customerID']) $customerID = (int) $_REQUEST['customerID'];
+}
+if (!$customerID && isset($_SESSION['customerID'])) {
+	if ((int) $_SESSION['customerID']) $customerID = (int) $_SESSION['customerID'];
+}
+if ($customerID) {
+	if ($customerID != $user->personID) {
+		$customer = new Person ($customerID);
+		if (!$customer->personID) {
+			require_once ($path . '/header.tpl.php');
+			$error = 'No such user!';
+			$errorDetail = 'This person could not be found in the database. Please press your browser\'s back button or close this window, and try again.';
+			require_once ($path . '/market/templates/error.tpl.php');
+			require_once ($path . '/footer.tpl.php');
+			die ();
+		}
+	} else $customer = &$user;
+} else $customer = &$user;
+
+if (!($customer->getLft() >= $user->getLft() && $customer->getRgt() <= $user->getRgt())) {
+	require_once ($path . '/header.tpl.php');
+	$error = 'Cannot create orders for this user!';
+	$errorDetail = 'You are either not this person or not a manager of their account. Please press your browser\'s back button or close this window, and try again, or try to log in again.';
+	require_once ($path . '/market/templates/error.tpl.php');
+	require_once ($path . '/footer.tpl.php');
+	die ();
+}
+
+$isActive = $customer->isActive();
+$isCustomer = in_array(P_CUSTOMER, $customer->personType);
+if (!$isActive || !$isCustomer) {
+	require_once ($path . '/header.tpl.php');
+	$error = 'Not allowed to order!';
+	$errorDetail = 'This account ' . (!$isActive ? 'is not currently active ' : null) . (!$isActive && !$isCustomer ? ', and ' : null) . (!$isCustomer ? 'is not set up as a customer' : null) . '. If you believe you have received this message in error, please <a href="../contact.php">contact us</a> through phone or e-mail.';
+	require_once ($path . '/market/templates/error.tpl.php');
+	require_once ($path . '/footer.tpl.php');
+	die ();
+}
+
+$_SESSION['customerID'] = $customer->personID;
+
+$order = null;
+if (isset($_REQUEST['orderType'])) {
+	switch ($_REQUEST['orderType']) {
+		case 'recurring':
+			$orderType = O_RECURRING;
+			break;
+		case 'sale':
+		default:
+			$orderType = O_SALE;
+	}
+} else if (isset($_SESSION['orderID'])) {
+	$order = new Order ((int) $_SESSION['orderID']);
+	if (!$order->orderID || $order->personID != $customer->personID || ($order->orderType != $orderType && !is_null($orderType))) {
+		$order = null;
+		unset($_SESSION['orderID']);
+	}
+}
+
+if (!$order) {
+	if ($order = $customer->startOrder($orderType)) {
+		$_SESSION['orderID'] = $order->orderID;
+	} else {
+		logError('Cannot start/retrieve an order for person \'' . $customer->contactName . '\' because of error type ' . $errorCodes[$customer->getError()]); 
+		include ($path . '/header.tpl.php');
+		switch ($customer->getError()) {
+			case E_NO_OBJECT_ID:
+				$error = 'Not in a route!';
+				$errorDetail = 'This person is not in a route, and a person must be in a route in order to calculate delivery times.';
+				break;
+			default:
+				$error = 'An unexpected error has occurred!';
+				$errorDetail = 'We have experienced an unexpected error. Your account is active, but for some reason we can\'t retrieve or start your order for you. This error has been logged, and we will analyse it shortly. For assistance, please <a href="../contact.php">contact us</a> through phone or e-mail.';
+		}
+		include ($path . '/market/templates/error.tpl.php');
+		include ($path . '/footer.tpl.php');
+		die ();
+	}
+}
+
+$parent = $customer->getParentOfType(P_CATEGORY);
+switch ($parent->personID) {
+	case 27:
+		if (isset($_REQUEST['category'])) {
+			switch (strtolower($_REQUEST['category'])) {
+				case 'dairy':
+					$category = new Item (3);
+					break;
+				case 'meats':
+					$category = new Item (4);
+					break;
+				case 'bulk':
+					$category = new Item (5);
+					break;
+				case 'baked':
+					$category = new Item (7);
+					break;
+				case 'extras':
+					$category = new Item (8);
+					break;
+				case 'produce':
+				default:
+					$category = new Item (6);
+			}
+			$_SESSION['categoryID'] = $category->itemID;
+		} else if (isset($_SESSION['categoryID'])) {
+			if ((int) $_SESSION['categoryID']) $category = new Item ((int) $_SESSION['categoryID']);
+			else $category = new Item (6);
+		} else $category = new Item (6);
+		break;
+	case 28:
+		$category = new Item(400);
+}
+
+if (isset($_REQUEST['action'])) {
+	switch ($_REQUEST['action']) {
+		case 'addItem':
+			if ($order->isFromRecurringOrder()) {
+				if ($customer->customCancelsRecurring) {
+					logError('about to delete items, because custom cancels recurring');
+					$itemsToDelete = array ();
+					foreach ($order->orderItems as $thisItem) {
+						$itemsToDelete[] = $thisItem->itemID;
+					}
+					foreach ($itemsToDelete as $thisItemID) {
+						$order->deleteItem($thisItemID);
+					}
+				}
+				$order->setFromRecurringOrder(false);
+				$order->resetStars();
+				$order->calculateStars();
+				$order->save();
+			}
+			$order->addQuantity((int) $_REQUEST['itemID'], ((int) $_REQUEST['quantity'] ? (int) $_REQUEST['quantity'] : 1));
+			// TODO: EXPLOIT: a customer could add an item, delete it, and check out, and get stars for a recurring order! How do we fix that? perhaps by having $order->fromRecurringOrder as an orderID, and comparing the contents against the recurring order's contents
+			if ($ajax) {
+				$enableDelete = true;
+				include ($path . '/market/templates/shoppingListCol.tpl.php');
+				die ();
+			} else redirectThisPage('order.php');
+			break;
+		case 'addItems':
+			if ($order->isFromRecurringOrder()) {
+				if ($user->customCancelsRecurring) {
+					logError('about to delete items');
+					$itemsToDelete = array ();
+					foreach ($order->orderItems as $thisItem) {
+						$itemsToDelete[] = $thisItem->itemID;
+					}
+					foreach ($itemsToDelete as $thisItemID) {
+						$order->deleteItem($thisItemID);
+					}
+				}
+				$order->setFromRecurringOrder(false);
+				$order->resetStars();
+				$order->calculateStars();
+				$order->save();
+			}
+			foreach ($_REQUEST['qty'] as $thisItemID => $thisQty) {
+				if ((int) $thisQty > 0) $order->addQuantity((int) $thisItemID, (int) $thisQty);
+			}
+			// TODO: EXPLOIT: a customer could add an item, delete it, and check out, and get stars for a recurring order! How do we fix that? perhaps by having $order->fromRecurringOrder as an orderID, and comparing the contents against the recurring order's contents
+			if ($ajax) {
+				$enableDelete = true;
+				include ($path . '/market/templates/shoppingListCol.tpl.php');
+				die ();
+			} else redirectThisPage('order.php');
+			break;
+		case 'deleteItem':
+			$order->deleteItem((int) $_REQUEST['itemID']);
+			if ($ajax) {
+				$enableDelete = true;
+				include ($path . '/market/templates/shoppingListCol.tpl.php');
+				die ();
+			} else redirectThisPage('order.php');
+			break;
+		case 'cancelOrder':
+			$order->delete();
+			// redirectThisPage('index.php');
+			break;
+		case 'save':
+			$order->recurringOrderFrequency = (int) $_REQUEST['period'];
+			$order->setDeliveryDay((int) $_REQUEST['deliveryDay']);
+			if ($_REQUEST['dayCompleted'] && $_REQUEST['monthCompleted'] && $_REQUEST['yearCompleted']) {
+				$dateCompleted = dateFormToTimestamp($_REQUEST['yearCompleted'], $_REQUEST['monthCompleted'], $_REQUEST['dayCompleted']);
+				if ($dateCompleted) $order->setDateCompleted($dateCompleted);
+				if ($_REQUEST['dayResume'] && $_REQUEST['monthResume'] && $_REQUEST['yearResume']) {
+					$dateResume = dateFormToTimestamp($_REQUEST['yearResume'], $_REQUEST['monthResume'], $_REQUEST['dayResume']);
+					if ($dateResume) $order->setDateResume($dateResume);
+				} else $order->setDateResume(null);
+			} else {
+				$order->setDateCompleted(null);
+				$order->setDateResume(null);
+			}
+			$order->save();
+	}
+}
+
+list ($subtotal, $hst, $pst) = $order->getTotal(false);
+$route = $customer->getRoute();
+$nextDeliveryDay = $route->getNextDeliveryDay(null, false);
+
+include ($path . '/header.tpl.php');
+include ($path . '/market/templates/order.tpl.php');
+include ($path . '/footer.tpl.php');
+
+?>

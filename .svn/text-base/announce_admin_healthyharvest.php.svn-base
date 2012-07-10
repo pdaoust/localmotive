@@ -1,0 +1,119 @@
+<?php
+
+    session_start();
+    if (true == $_SESSION["lmauth"]){
+    }else{
+        exit("wrong login");
+    }
+?>
+<head>
+	<title>LocalMotive</title>
+	<link rel="stylesheet" type="text/css" href="_lib/localmotiv.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="styles_global.css" />
+	<link rel="stylesheet" type="text/css" href="styles_home_delivery.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <style type="text/css">
+<!--
+.style1 {font-weight: bold}
+.style2 {color: #FF0000}
+-->
+    </style>
+</head>
+<body bgcolor="#EFE66F" class="bodystyle">
+<div id="content">
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20">&nbsp;</td>
+    <td width="687">&nbsp;
+
+<?php
+
+$php_name="announce_admin_healthyharvest.php";
+$filelist = "announce_healthyharvest.csv";
+
+
+// check what to do
+if (!isset($_REQUEST['mode']))
+   $mode = "unknown";
+else $mode = $_REQUEST['mode'];
+
+switch ($mode) {
+       case "display": displayEntries(); break;
+       case "edit": displayEditForm($_REQUEST['id']); break;
+       case "doEdit": editEntry($_REQUEST['announce']); break;
+       default:
+       if (file_exists($filelist)) {
+			displayEditForm();
+			echo '<br><br><a href="' . $GLOBALS["filelist"] . '">Backup</a>  Right Click -> Save Link As<br>' .
+			'The session will end any time you close the browser.';
+       }
+
+} // end switch
+?>
+	</td>
+  </tr>
+</table>
+<?
+// Displays the form to edit
+function displayEditForm() {
+	// get the line to edit
+    $filecontents = file($GLOBALS["filelist"]);
+	$announce = $filecontents[0]; 
+	$announce = str_replace("<newline>", "\r\n", $announce);
+         ?>
+		
+		<strong>Edit <span class="boldfont">the Announcement</span></strong><br>	    
+		<form name=editForm action=<? echo $GLOBALS["php_name"] ?> method=post style="margin: 2">
+- do not use commas, the # symbol, or the &amp; symbol!<br>
+- for a new line use <samp>&lt;br/&gt;</samp><br>
+- <strong>Hey Thomas!</strong> note the <em>new</em> usage of html code:<br>
+<div class="intro announcement"><h3><samp>&lt;h3&gt;</samp>Heading<samp>&lt;/h3&gt;</samp><br></h3>
+<h4><samp>&lt;h4&gt;</samp>Sub-heading<samp>&lt;/h4&gt;</samp></h4>
+<p><samp>&lt;p&gt;</samp>Paragraph -- this is preferred to <samp>&lt;br/&gt;</samp> because it chunks up paragraphs tidily. Note that <samp>&lt;br/&gt;</samp> has a slash at the end. It should also only be used inside paragraphs. You can also use <samp>&lt;em&gt;</samp><em>italics</em><samp>&lt;/em&gt;</samp> and <samp>&lt;strong&gt;</samp><strong>bold</strong><samp>&lt;/strong&gt;</samp>. You can also make an item stand out by adding <samp>class="notice"</samp> to it; e.g., <samp>&lt;span class="notice"&gt;</samp><span class="notice">Hey you! Read this!</span><samp>&lt;/span&gt;</samp> or<samp>&lt;/p&gt;</samp></p>
+<h4 class="notice"><samp>&lt;h4 class="notice"&gt;</samp>This is a sub-heading that's supposed to stand out.<samp>&lt;/h4&gt;</samp></h4>
+<p><samp>&lt;p&gt;</samp>In addition, all tags (except <samp>&lt;br/&gt;</samp>) need to be closed. Paragraphs and headers should always be closed before a new paragraph or header is started, or crazy things can happen to the layout of a page. Hope this was an informative crash course in HTML.<samp>&lt;/p&gt;</samp></p></div>
+<br>
+<table width="500" border="0" cellpadding="0" cellspacing="0">
+             <tr class="mainfont">
+               
+               <td><textarea name="announce" cols="70" rows="20" class="forminput" id="announce"><? echo $announce ?>
+             </textarea></td>
+             </tr>
+          </table>
+           <input type=hidden name=mode value=doEdit>
+           <input type=submit name=submit value=doEdit>
+  </form>
+		 Display:<br>
+         <hr>
+
+	<div class="intro announcement">
+		<img src="img/announcements.png" class="announcements" alt="announcements"/>
+			 <?
+	echo $announce;
+         ?>
+   </div>
+		<hr> <?		 
+         exit;
+}
+
+// Edits and writes the updated file;
+function editEntry($announce) {
+				$announce = str_replace("\r\n", "<br/>", $announce);
+				$announce = str_replace("\'", "'", $announce);
+				$announce = str_replace('\"', '"', $announce);
+                $newfilecontents = fopen($GLOBALS["filelist"], "w+");
+                $linesize = strlen($announce . "\n");
+                $writeresult = fwrite($newfilecontents, $announce, $linesize);
+  		        fclose($newfilecontents);
+                ?> 
+ 				<div align=center class="style1">Entry changed!</div>
+				<meta http-equiv='Refresh' content='1; URL=<? echo $GLOBALS["php_name"] ?>'> <?
+                exit;
+}
+?>
+
+
+<!-- end container -->
+</div> 
+</body>
+</html>

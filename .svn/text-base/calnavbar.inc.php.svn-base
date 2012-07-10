@@ -1,0 +1,73 @@
+<div class="calnavbar">
+<strong><? echo $calnavbar_title; ?> </strong>
+<?php
+
+$coloring = array(
+	"homedelivery" => "#b0a70c",
+	"restaurants" => "#6dca20",
+	"events" => "#16b882",
+	"school" => "#006db2",
+	"packedpantry" => "#5024bc",
+	"canning" => "#5024bc",
+	"ecocamps" => "#c51fa1",
+	"harvesttours" => "#ff3000",
+	"foudroutes" => "#ff6e00"
+);
+$links = array(
+	"homedelivery" => "home_delivery.php",
+	"restaurants" => "restaurants.php",
+	"events" => "events_workshops.php",
+	"school" => "school_programmes.php",
+	"packedpantry" => "packed_pantry.php",
+	"canning" => "canning_workshops.php",
+	"ecocamps" => "eco_camps.php",
+	"harvesttours" => "harvest_tours.php",
+	"foudroutes" => "food_routes.php"
+);
+$no_events_today=true;
+$filecontents = file("calendar_list.csv");
+for ($i=0;$i<(sizeof($filecontents));$i++) {
+	$theline = $filecontents[$i];
+	// parse the line
+	$checkdate = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$eventname = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$category = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$details = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$tickets = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$purchased = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$price = substr( $theline, 0, strpos($theline, ",") );
+	$theline = substr( $theline, strpos($theline, ",")+1 );
+	$active = $theline;
+
+	if ($category==$selected_category) {
+		$no_events_today=false;
+
+		// if an event is not selected, select the first one
+		if (!isset($selected_date)) $selected_date = $checkdate;
+		if (!isset($selected_event)) $selected_event = $eventname;
+
+		// if eventname too long, shorten it for display
+		if (strlen($eventname)>15) $eventname_display = substr($eventname, 0, 14) . "...";
+		else $eventname_display = $eventname;
+
+		// display the link
+		echo '<div class="navbaritem';
+		if ($eventname==$selected_event) echo ' highlight';
+		echo '">';
+		if ($eventname!=$selected_event) echo '<a href="' . $links[$category] . '?selected_date=' . $checkdate . '&selected_event=' . $eventname . '", target="_parent"> <font color="' . $coloring[$category] . '">';
+		echo $eventname_display;
+		if ($eventname!=$selected_event) echo '</font></a>';
+		echo '</div>';
+
+	} // end if
+} // end for loop 
+if ($no_events_today) echo '<div class="navbaritem">none</div>';
+
+?>
+</div>

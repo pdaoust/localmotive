@@ -1,0 +1,59 @@
+<?php
+$navbarItems = array (
+	array ('harvest_tours', 'Harvest Tours', 'harvest_tours.php', false),
+	array ('food_routes', 'Food Routes', 'food_routes.php', false),
+	array ('home_delivery', 'Home Delivery', 'home_delivery.php', false),
+	array ('healthyharvest', 'Healthy Harvest Box', 'healthyharvest.php', false),
+	array ('events_workshops', 'Events &amp; Culture Workshops', 'events_workshops.php', false),
+	array ('school_programmes', 'School Programmes', 'school_programmes.php', false),
+	array ('packed_pantry', 'Packed Pantry', 'packed_pantry.php', false),
+	array ('eco_camps', 'Eco-Camps', 'eco_camps.php', false)
+);
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title><? echo $pageTitle; ?></title>
+		<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8"/>
+		<meta http-equiv="content-style-type" content="text/css"/>
+		<link href="styles_global.css" rel="stylesheet" type="text/css"/>
+		<link href="styles_<? echo $pageArea; ?>.css" rel="stylesheet" type="text/css"/>
+		<? if (isset($pageSubArea) && $pageSubArea == 'new_customer' && $pageArea == 'home_delivery') { ?>
+		<script type="text/javascript" language="JavaScript">
+		function toggleSurpriseOptions() {
+			if (document.newCustomer.wantssurprisebin.checked) {
+				for (i = 0; i < document.newCustomer.surprisebin.length; i ++) {
+					document.newCustomer.surprisebin[i].disabled = false;
+				}
+				document.newCustomer.frequency.disabled = false;
+				document.newCustomer.frequency.selectedIndex = 1;
+			} else {
+				for (i = 0; i < document.newCustomer.surprisebin.length; i ++) {
+					document.newCustomer.surprisebin[i].disabled = true;
+				}
+				document.newCustomer.frequency.disabled = true;
+				document.newCustomer.frequency.selectedIndex = 0;
+			}
+		}
+		</script>
+		<? } ?>
+	</head>
+	
+	<body<? if (isset($pageSubArea) && $pageSubArea == 'new_customer' && $pageArea == 'home_delivery') { ?> onload="toggleSurpriseOptions()"<? } ?>>
+		<div id="banner">
+			<h1><a href="index.php"><img src="img/<? echo $pageArea; ?>_t.jpg" alt="Localmotive - <? echo $areas[$pageArea['verbose']]; ?>"/></a></h1>
+		</div>
+		<div class="navbarpics"><?php
+			foreach ($navbarItems as $itemIndex => $thisItem) {
+				if ($thisItem[0] != $pageArea) {
+					echo '<a href="' . $thisItem[2] . '"';
+					if ($thisItem[3]) { echo ' target="_blank"'; }
+					echo '>';
+				}
+				echo '<img src="img/' . $thisItem[0] . '_b';
+				if ($thisItem[0] == $pageArea) { echo '_h.jpg"'; }
+				else { echo '.jpg" onmouseover="this.src=\'img/' . $thisItem[0] . '_b_h.jpg\'" onmouseout="this.src=\'img/' . $thisItem[0] . '_b.jpg\'"'; }
+				echo ' alt="' . $thisItem[1] . ' "/>';
+				if ($thisItem[0] != $pageArea) { echo '</a>'; }
+			}
+		?></div>
+		<div id="content">

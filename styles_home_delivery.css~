@@ -1,0 +1,35 @@
+h1, h2, a, .areaColour, div.autosuggest ul li, div.autosuggest ul li a {
+	color: #b0a70c;
+}
+
+div.autosuggest {
+	border: 1px solid #b0a70c;
+}
+
+div.autosuggest ul li.as_highlight a {
+	background-color: #b0a70c;
+}
+
+div#banner {
+	background-image: url('img/home_delivery_t_b.png');
+}
+
+div.intro, div.autosuggest {
+	background-color: #EAE7AB;
+}
+
+div.subnavbar {
+	border: 1px solid #eae7ab;
+	background-color: #ffffcc;
+}
+
+div.subnavbar .highlight {
+	border: 1px dotted #b0a70c;
+	color: #b0ac0c;
+	background-color: #eae7ab;
+}
+
+div.subnavbar div.moreimportant {
+	background-color: #b0a70c;
+	color: #ffffff;
+}

@@ -1,0 +1,26 @@
+<?php
+
+require_once('navbar.inc.php');
+
+// Each item in the array has a sub-area ID, a plain-english label, a link href, a boolean that says whether to open in a new window, and a boolean indicating whether it should stand out. NAVBAR_BREAK simply breaks the div and starts a new one.
+$subnavbarItems = array (
+	array ('home_delivery', 'Home Delivery', 'home_delivery.php', false, false),
+	array ('our_farmers', 'Our Farmers', 'our_farmers.php', false, false),
+	array ('our_food', 'Our Food', 'our_food.php', false, false),
+	array ('why_organic', 'Why Organic?', 'why_organic.php', false, false),
+	array ('delivery_info', 'Delivery Info', 'delivery_info.php', false, false),
+	array ('general_info', 'General Info', 'general_info.php', false, false)
+);
+
+// generateNavbar ($subnavbarItems, 'subnavbar', $pageSubArea, ($pageSubArea == 'home_delivery') ? NAVBAR_HORIZONTAL : NAVBAR_VERTICAL);
+generateNavbar ($subnavbarItems, 'subnavbar', $pageSubArea, NAVBAR_HORIZONTAL);
+
+if ($pageSubArea != 'home_delivery' && !isset($hideSubNavbar)) {
+	$marketNavbarItems = array (
+		array ('new_customer', 'Sign Up!', 'market/signup.php?pageArea=home_delivery', false, true),
+		array ('place_an_order', 'Place an Order', 'market/index.php?pageArea=home_delivery', false, true),
+		array ('market_tour', 'Market Tour', 'market/marketTour.php?pageArea=home_delivery', true, true)
+	);
+	generateNavbar ($marketNavbarItems, 'subnavbar alignright', $pageSubArea, NAVBAR_VERTICAL);
+}
+?>

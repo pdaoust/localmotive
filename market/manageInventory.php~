@@ -1,0 +1,336 @@
+<?php
+
+require_once ('marketInit.inc.php');
+require_once ($path . '/market/classes/item.inc.php');
+require_once ($path . '/market/classes/price.inc.php');
+
+if (!$user = tryLogin()) die ();
+if ($user->personID != 1) {
+	require_once ($path . '/header.tpl.php');
+	$loginError = 'This area is restricted to administrators. Please enter the correct administrator login info below.';
+	require_once ($path . '/market/templates/login.tpl.php');
+	require_once ($path . '/footer.tpl.php');
+	die ();
+}
+
+$pageTitle = 'Localmotive - Manage inventory';
+
+$verifyItemFields = false;
+$errorItemFields = array ();
+$showMoveControls = true;
+$sortOrder = 'lft';
+
+if (isset($_REQUEST['nodeID'])) {
+	if ((int) $_REQUEST['nodeID']) {
+		$category = new Item ((int) $_REQUEST['nodeID']);
+		if ($category->itemID) {
+		} else $category = new Item (1);
+	} else $category = new Item (1);
+} else $category = new Item (1);
+
+/* if (isset($_REQUEST['show'])) $show = $_REQUEST['show'];
+else $show = 'all';
+switch ($_REQUEST['show']) {
+	case 'tree':
+		if (isset($_REQUEST['itemID'])) {
+			$q = 'SELECT itemID FROM item WHERE itemID = ' . (int) $_REQUEST['itemID'];
+			break;
+		}
+	case 'all':
+	default:
+		$show = 'all';
+		$q = 'SELECT itemID FROM item WHERE lft = 1';
+}
+if (isset($_REQUEST['hideInactive'])) $q.= ' AND active'; */
+
+function outputItemData ($item, $parent, $status, $extras = null) {
+	echo "{\n";
+	echo "\t'status': " . (int) $status . ",\n";
+	echo "\t'itemID': " . ($item->itemID ? (int) $item->itemID : 'null') . ",\n";
+	echo "\t'parentID': " . (is_object($parent) ? $parent->itemID : (int) $parent) . ",\n";
+	echo "\t'label': \"" . addslashes($item->label) . "\",\n";
+	echo "\t'location': \"" . addslashes($item->location) . "\",\n";
+	echo "\t'distance': " . (is_null($item->distance) ? 'null' : (int) $item->distance) . ",\n";
+	echo "\t'description': \"" . addslashes($item->description) . "\",\n";
+	echo "\t'notes': '',\n";
+	echo "\t'quantity': " . (is_null($item->quantity) ? 'null' : (int) $item->quantity) . ",\n";
+	echo "\t'reorderQuantity': " . (is_null($item->reorderQuantity) ? 'null' : (int) $item->reorderQuantity) . ",\n";
+	if (is_object($parent)) {
+		$cutoffDayParent = $parent->getCutoffDay();
+		$canOrderPastZeroParent = $parent->getCanOrderPastZero();
+		$trackInventoryParent = $parent->getTrackInventory();
+		$specialPackingParent = $parent->getSpecialPacking();
+		$availableToRecurringParent = $parent->getAvailableToRecurring();
+		$organicParent = $parent->getOrganic();
+	} else if ($item->itemID) {
+		$cutoffDayParent = $item->getCutoffDay(false);
+		$canOrderPastZeroParent = $item->getCanOrderPastZero(false);
+		$trackInventoryParent = $item->getTrackInventory(false);
+		$specialPackingParent = $item->getSpecialPacking(false);
+		$availableToRecurringParent = $item->getAvailableToRecurring(false);
+		$organicParent = $item->getOrganic(false);
+	} else {
+		$cutoffDayParent = null;
+		$canOrderPastZeroParent = null;
+		$trackInventoryParent = null;
+		$specialPackingParent = null;
+		$availableToRecurringParent = null;
+		$organicParent = null;
+	}
+	echo "\t'cutoffDay': " . (is_null($item->cutoffDay) ? 'null' : (int) $item->cutoffDay) . ",\n";
+	echo "\t'cutoffDayParent': " . (is_null($cutoffDayParent) ? 'null' : (int) $cutoffDayParent) . ",\n";
+	echo "\t'canOrderPastZero': " . (is_null($item->canOrderPastZero) ? 'null' : (int) $item->canOrderPastZero) . ",\n";
+	echo "\t'canOrderPastZeroParent': " . (is_null($canOrderPastZeroParent) ? 'null' : (int) $canOrderPastZeroParent) . ",\n";
+	echo "\t'trackInventory': " . (is_null($item->trackInventory) ? 'null' : ($item->trackInventory ? 'true' : 'false')) . ",\n";
+	echo "\t'trackInventoryParent': " . (is_null($trackInventoryParent) ? 'null' : ($trackInventoryParent ? 'true' : 'false')) . ",\n";
+	echo "\t'specialPacking': " . (is_null($item->specialPacking) ? 'null' : ($item->specialPacking ? 'true' : 'false')) . ",\n";
+	echo "\t'specialPackingParent': " . (is_null($specialPackingParent) ? 'null' : ($specialPackingParent ? 'true' : 'false')) . ",\n";
+	echo "\t'availableToRecurring': " . (is_null($item->availableToRecurring) ? 'null' : ($item->availableToRecurring ? 'true' : 'false')) . ",\n";
+	echo "\t'availableToRecurringParent': " . (is_null($availableToRecurringParent) ? 'null' : ($availableToRecurringParent ? 'true' : 'false')) . ",\n";
+	echo "\t'organic': " . (is_null($item->organic) ? 'null' : ($item->organic ? 'true' : 'false')) . ",\n";
+	echo "\t'organicParent': " . (is_null($organicParent) ? 'null' : ($organicParent ? 'true' : 'false')) . ",\n";
+	echo "\t'image': " . ($item->image ? 'true' : 'false') . ",\n";
+	if ($activeStates = $item->getActiveStates()) {
+		foreach ($activeStates as $thisPath => $thisState) {
+			$activeStates[$thisPath] = '\'' . $thisPath . '\': ' . (int) $thisState;
+		}
+		$activeStates = '{' . implode(', ', $activeStates) . '}';
+		echo "\t'activeStates': " . $activeStates . ",\n";
+	}
+	if ($treeStack = $item->getPath()) {
+		global $category;
+		$depth = count($treeStack) - $category->getDepth();
+		foreach ($treeStack as $i => $thisNode) {
+			$treeStack[$i] = sprintf('%05s', $thisNode);
+		}
+		$treeToken = 'node0_' . implode('_', $treeStack);
+		echo "\t'path': '" . addslashes($treeToken) . "',\n";
+	}
+	echo "\t'active': " . ($item->active ? 'true' : 'false') . ",\n";
+	echo "\t'isActive': " . ($item->isActive() ? 'true' : 'false');
+	if ($prices = $item->getPrices()) {
+		global $db;
+		if (!$db->query('SELECT contactName, personID FROM person WHERE personID in (' . implode(', ', array_keys($prices)) . ')')) {
+			echo '{status: 0}';
+			die ();
+		}
+		$names = array ();
+		while ($thisName = $db->getRow()) {
+			$names[$thisName['personID']] = $thisName['contactName'];
+		}
+		echo ",\n\t'prices': {\n";
+		$pricesT = array ();
+		foreach ($prices as $thisPrice) {
+			$thisPriceT = "\t\t" . $thisPrice->personID . ": {\n";
+			$thisPriceT .= "\t\t\t'price': " . money_format(NF_MONEY, $thisPrice->price) . ",\n";
+			$thisPriceT .= "\t\t\t'contactName': \"" . addslashes($names[$thisPrice->personID]) . "\",\n";
+			$thisPriceT .= "\t\t\t'multiple': " . (int) $thisPrice->multiple . ",\n";
+			$thisPriceT .= "\t\t\t'hst': " . (int) in_array('hst', $thisPrice->tax) . ",\n";
+			$thisPriceT .= "\t\t\t'pst': " . (int) in_array('pst', $thisPrice->tax) . "\n";
+			$thisPriceT .= "\t\t}";
+			$pricesT[] = $thisPriceT;
+		}
+		echo implode(",\n", $pricesT) . "\n\t}";
+		$priceVals = array ();
+		foreach ($prices as $thisPrice) {
+			$priceVals[] = money_format(NF_MONEY, $thisPrice->price) . (count($thisPrice->tax) ? '+' . (in_array('hst', $thisPrice->tax) ? 'G' : null) . (in_array('pst', $thisPrice->tax) ? 'P' : null) : null) . ($thisPrice->multiple == 1 ? ' ea' : ' per ' . $thisPrice->multiple);
+		}
+		echo ",\n\t'priceInfo': '" . implode(', ', $priceVals) . "'";
+	}
+	if (is_array($extras)) {
+		foreach ($extras as $thisKey => $thisValue) {
+			echo ",\n\t'" . $thisKey . '\': ';
+			switch (gettype($thisValue)) {
+				case 'integer':
+				case 'float':
+					echo (int) $thisValue;
+					break;
+				case 'boolean':
+					echo ($thisValue ? 'true' : 'false');
+					break;
+				case 'string':
+					echo '"' . addslashes($thisValue) . '"';
+			}
+		}
+	}
+	echo "\n}";
+}
+
+if (isset($_REQUEST['action'])) {
+	switch ($_REQUEST['action']) {
+		case 'loadItem':
+			if (isset($_REQUEST['itemID'])) {
+				$item = new Item ((int) $_REQUEST['itemID']);
+				$parent = $item->getParent();
+			} else if (isset($_REQUEST['parentID'])) {
+				$item = new Item;
+				$parent = new Item ((int) $_REQUEST['parentID']);
+			}
+			if ($item->itemID || $parent->itemID) {
+				outputItemData($item, $parent, 1);
+			} else {
+				echo '{status: 0}';
+			}
+			die ();
+			break;
+		case 'editItem':
+			$itemID = (int) $_REQUEST['itemID'];
+			if ($itemID) $editItem = new Item ($itemID);
+			else $editItem = new Item;
+			$editItem->label = $_REQUEST['label'];
+			$editItem->location = ($_REQUEST['location'] ? trim($_REQUEST['location']) : null);
+			$editItem->distance = ($_REQUEST['distance'] ? (int) $_REQUEST['distance'] : null);
+			$editItem->description = $_REQUEST['description'];
+			$editItem->quantity = ($_REQUEST['quantity'] ? (int) $_REQUEST['quantity'] : null);
+			$editItem->reorderQuantity = (int) $_REQUEST['reorderQuantity'];
+			$editItem->cutoffDay = ($_REQUEST['cutoffDayNull'] ? null : (int) $_REQUEST['cutoffDay']);
+			$editItem->canOrderPastZero = ($_REQUEST['canOrderPastZeroNull'] ? null : (bool) $_REQUEST['canOrderPastZero']);
+			$editItem->trackInventory = ($_REQUEST['trackInventoryNull'] ? null : ($_REQUEST['trackInventory'] ? true : false));
+			$editItem->specialPacking = ($_REQUEST['specialPackingNull'] ? null : (bool) $_REQUEST['specialPacking']);
+			$editItem->availableToRecurring = ($_REQUEST['availableToRecurringNull'] ? null : (bool) $_REQUEST['availableToRecurring']);
+			$editItem->organic = ($_REQUEST['organicNull'] ? null : (bool) $_REQUEST['organic']);
+			$editItem->active = $_REQUEST['active'] ? true : false;
+			$db->start('saveItem');
+			if (!$itemID) $editItem->setParent((int) $_REQUEST['parentID']);
+			if (!$editItem->save()) {
+				$db->rollback('saveItem');
+				$error = $editItem->getError();
+				if ($error == E_INVALID_DATA) {
+					$status = -1;
+					$errorFields = $editItem->getErrorDetail();
+				} else $status = 0;
+			} else {
+				$status = 1;
+				foreach ($_REQUEST['price'] as $thisPersonID => $thisPrice) {
+					if ($thisPrice['price'] == '') {
+						if ($editItem->hasPrice((int) $thisPersonID)) {
+							$editItem->deletePrice((int) $thisPersonID);
+						}
+					} else {
+						$editItem->setPrice((int) $thisPersonID, (float) $thisPrice['price'], (bool) $thisPrice['hst'], (bool) $thisPrice['pst'], (int) $thisPrice['multiple']);
+					}
+				}
+				if ($_REQUEST['deleteImage'] && $editItem->image) {
+					$editItem->removeImage();
+				} else if (isset($_FILES['image'])) {
+					// TODO: add special status for image upload result
+					$editItem->addImage($_FILES['image']['tmp_name']);
+				}
+				$db->commit('saveItem');
+			}
+			if ($ajax) { 
+				ob_start();
+				?>
+<h2>Hello</h2>
+<script type="text/javascript" language="JavaScript" id="thisScript">
+<?php			
+				if (!$itemID) {
+					$status = 2;
+					$extras = array ();
+					$extras['position'] = (int) $editItem->getSpotInTree($sortOrder, $category->itemID);
+					$isActive = $editItem->isActive();
+					$extras['newRow'] = '<td class="odd"><a href="javascript:editNode(' . $editItem->itemID . ')"><img src="img/edit.png" class="icon" alt="Edit"/></a><a href="javascript:newNode(' . $editItem->itemID . ')"><img src="img/nitm.png" class="icon" alt="New"/></a><a href="javascript:deleteNode(' . $editItem->itemID . ',\'item\')"><img src="img/del.png" class="icon" alt="Delete"/></a></td>';
+					global $category;
+					$depth = $editItem->getDepth() - $category->getDepth();
+					$extras['newRow'] .= '<td class="even"><div class="nodeLabel"><span id="depth' . $editItem->itemID . '">' . str_repeat('&nbsp;&nbsp;&nbsp;', $depth) . '</span><span id="exp' . $treeToken . '"><img src="img/_.png" class="icon" alt=" "/></span>';
+					if ($showMoveControls) {
+						$extras['newRow'] .= '<div class="nav">';
+						if ($editItem->getLft() != 1) {
+							$extras['newRow'] .= '<a href="javascript:moveNode(' . $editItem->itemID . ',\'up\')"><img src="img/n_u.png" class="n_u" alt="up"/></a>';
+							$extras['newRow'] .= '<a href="javascript:moveNode(' . $editItem->itemID . ',\'down\')"><img src="img/n_d.png" class="n_d" alt="down"/></a>';
+						}
+						$extras['newRow'] .= '</div>';
+					}
+					$extras['newRow'] .= '<span ' . (!$editItem->isLeafNode() ? 'class="category" ' : null) . 'id="n' . $editItem->itemID . '_l">' . htmlEscape($editItem->label) . '</span>';
+					$extras['newRow'] .= '</div><input type="hidden" id="ts' . $treeToken . '" value="exp"/></td>';
+					$extras['newRow'] .= '<td class="odd"><div class="supplier" id="n' . $editItem->itemID . '_s">' . $editItem->supplierID . '</div></td>';
+					$extras['newRow'] .= '<td class="even" style="text-align: right;"><div id="n' . $editItem->itemID . '_q"' . ($editItem->getTrackInventory() && ($editItem->quantity <= $editItem->reorderQuantity) ? ' class="notice"' : null) . '>' . (!is_null($editItem->quantity) ? $editItem->quantity : null) . '</div></td>';
+					$extras['newRow'] .= '<td class="odd"><div class="notes" id="n' . $editItem->itemID . '_n">' . $editItem->notes . "</div></td>";
+				}
+				if (isset($errorFields)) $extras['errorFields'] = '["' . implode('", "', $errorFields) . '"]';
+				echo 'var itemData = ';
+				outputItemData ($editItem, $editItem->getParent(), $status, $extras);
+				echo ";\n";
+				echo "window.parent.validateItemInfo(itemData);\n";
+				echo "</script>\n";
+				$scriptOutput = ob_get_clean();
+				$logger->addEntry($scriptOutput);
+				echo $scriptOutput;
+				die ();
+			}
+			break;
+		case 'moveNode':
+			$editItem = new Item ((int) $_REQUEST['nodeID']);
+			switch ($_REQUEST['direction']) {
+				case 'down':
+					$direction = $editItem->moveRight(true);
+					break;
+				case 'up':
+					$direction = $editItem->moveLeft(true);
+			}
+			if ($ajax) {
+				// on success, returns three values: the delta, the branch width / 2, and the starting node path
+				echo (int) $direction;
+				if ($direction) {
+					$path = $editItem->getPath();
+					foreach ($path as $i => $thisID) {
+						$path[$i] = sprintf('%05s', $thisID);
+					}
+					echo "\n" . (($editItem->getRgt() - $editItem->getLft() + 1) / 2);
+					echo "\nnode0_" . implode('_', $path);
+				}
+				die ();
+			}
+			break;
+		case 'deleteItem':
+			if (isset($_REQUEST['itemID'])) {
+				$item = new Item ((int) $_REQUEST['itemID']);
+				$path = $item->getPath();
+				$parentID = $item->getParentID();
+				$success = $item->delete();
+				if ($ajax) {
+					if ($success) {
+						foreach ($path as $i => $thisID) {
+							$path[$i] = sprintf('%05s', $thisID);
+						}
+						echo 'node0.' . implode('.', $path) . "\n";
+						array_pop($path);
+						$parent = new Item ((int) $parentID);
+						echo 'node0.' . implode('.', $path) . ':' . (int) $parent->isLeafNode();
+					} else echo '0';
+					die ();
+				}
+			}
+	}
+	if (!($verifyItemFields)) redirectThisPage('manageInventory.php' . ($show ? '?show=' . $all : ''));
+}
+
+/* if (!$db->query($q)) {
+	print_r($db->getError());
+	include ($path . '/header.tpl.php');
+	include ($path . '/market/templates/databaseError.tpl.php');
+	include ($path . '/footer.tpl.php');
+	die ();
+}
+if (!$thisItemID = $db->getRow()) {
+	if (!$db->query('SELECT itemID FROM item WHERE lft = 1')) {
+		include ($path . '/header.tpl.php');
+		include ($path . '/market/templates/databaseError.tpl.php');
+		include ($path . '/footer.tpl.php');
+		die ();
+	}
+	$thisItemID = $db->getRow();
+} */
+
+$tree = $category->getTree('lft');
+$node = &$category;
+$categories = $user->getTree('lft', null, array('personType' => P_CATEGORY));
+/* echo '<pre>';
+print_r($tree);
+echo '</pre>'; */
+
+include ($path . '/header.tpl.php');
+include ($path . '/market/templates/manageInventory.tpl.php');
+include ($path . '/footer.tpl.php');
+
+?>
