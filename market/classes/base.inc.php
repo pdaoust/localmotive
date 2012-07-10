@@ -827,7 +827,7 @@ abstract class MarketTree extends MarketPrototype {
 	}
 
 	// inheritance-safe object constructor, for children et al
-	abstract public function newObject ($objectData);
+	abstract public function newObject ($objectData = null);
 
 	abstract protected function matchCriteria ($object, $criteria);
 
